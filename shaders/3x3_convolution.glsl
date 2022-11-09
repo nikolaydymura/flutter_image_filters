@@ -2,7 +2,7 @@ precision highp float;
             
             uniform sampler2D inputImageTexture;
             
-            uniform mediump mat3 inputconvolutionMatrix;
+            uniform mediump mat3 inputConvolutionMatrix;
             
             varying vec2 textureCoordinate;
             varying vec2 leftTextureCoordinate;
@@ -28,9 +28,9 @@ precision highp float;
                 mediump vec4 topRightColor = texture2D(inputImageTexture, topRightTextureCoordinate);
                 mediump vec4 topLeftColor = texture2D(inputImageTexture, topLeftTextureCoordinate);
             
-                mediump vec4 resultColor = topLeftColor * inputconvolutionMatrix[0][0] + topColor * inputconvolutionMatrix[0][1] + topRightColor * inputconvolutionMatrix[0][2];
-                resultColor += leftColor * inputconvolutionMatrix[1][0] + centerColor * inputconvolutionMatrix[1][1] + rightColor * inputconvolutionMatrix[1][2];
-                resultColor += bottomLeftColor * inputconvolutionMatrix[2][0] + bottomColor * inputconvolutionMatrix[2][1] + bottomRightColor * inputconvolutionMatrix[2][2];
+                mediump vec4 resultColor = topLeftColor * inputConvolutionMatrix[0][0] + topColor * inputConvolutionMatrix[0][1] + topRightColor * inputConvolutionMatrix[0][2];
+                resultColor += leftColor * inputConvolutionMatrix[1][0] + centerColor * inputConvolutionMatrix[1][1] + rightColor * inputConvolutionMatrix[1][2];
+                resultColor += bottomLeftColor * inputConvolutionMatrix[2][0] + bottomColor * inputConvolutionMatrix[2][1] + bottomRightColor * inputConvolutionMatrix[2][2];
             
                 gl_FragColor = resultColor;
             }
