@@ -1,20 +1,34 @@
 part of image_filters;
 
 class MonochromeShaderConfiguration extends ShaderConfiguration {
-  final List<double> _floats;
+  final NumberParameter _intensity;
+  final ColorParameter _color;
 
-  MonochromeShaderConfiguration() : _floats = [1.0, 0.6, 0.45, 0.3];
+  MonochromeShaderConfiguration()
+      : _intensity = NumberParameter('inputIntensity', 'intensity', 0, 1.0),
+        _color = ColorParameter(
+          'inputColor',
+          'color',
+          1,
+          Color.fromRGBO(
+            (0.6 * 255).toInt(),
+            (0.45 * 255).toInt(),
+            (0.3 * 255).toInt(),
+            1.0,
+          ),
+        ),
+        super([1.0, 0.6, 0.45, 0.3]);
 
-  void setIntensity(double value) {
-    _floats[0] = value;
+  set intensity(double value) {
+    _intensity.value = value;
+    _intensity.update(this);
   }
 
-  void setColor(Color value) {
-    _floats[1] = value.red / 255.0;
-    _floats[2] = value.green / 255.0;
-    _floats[3] = value.blue / 255.0;
+  set color(Color value) {
+    _color.value = value;
+    _color.update(this);
   }
 
   @override
-  Iterable<double> get numUniforms => _floats;
+  List<ShaderParameter> get parameters => [_intensity, _color];
 }
