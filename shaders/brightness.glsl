@@ -1,11 +1,14 @@
-varying highp vec2 textureCoordinate;
+#version 320 es
+precision mediump float;
+layout(location = 0) uniform lowp float inputBrightness;
+layout(location = 1) uniform vec2 screenSize;
+layout(location = 2) uniform lowp sampler2D inputImageTexture;
 
-uniform sampler2D inputImageTexture;
-uniform lowp float inputBrightness;
+layout(location = 0) out vec4 fragColor;
 
-void main()
-{
-    lowp vec4 textureColor = texture2D(inputImageTexture, textureCoordinate);
+void main() {
+    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
+    vec4 textureColor = texture(inputImageTexture, textureCoordinate);
 
-    gl_FragColor = vec4((textureColor.rgb + vec3(inputBrightness)), textureColor.w);
+    fragColor = vec4((textureColor.rgb + vec3(inputBrightness)), textureColor.w);
 }

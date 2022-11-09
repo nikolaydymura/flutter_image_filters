@@ -41,6 +41,7 @@ abstract class ShaderParameter {
 
 class ColorParameter extends ShaderParameter {
   Color value;
+
   ColorParameter(super.shaderName, super.displayName, super.offset, this.value);
 
   @override
@@ -54,7 +55,32 @@ class ColorParameter extends ShaderParameter {
 
 class NumberParameter extends ShaderParameter {
   num value;
-  NumberParameter(super.shaderName, super.displayName, super.offset, this.value);
+
+  NumberParameter(
+    super.shaderName,
+    super.displayName,
+    super.offset,
+    this.value,
+  );
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    configuration._floats[_offset] = value.toDouble();
+  }
+}
+
+class SliderNumberParameter extends NumberParameter {
+  num? min;
+  num? max;
+
+  SliderNumberParameter(
+    super.shaderName,
+    super.displayName,
+    super.offset,
+    super.value, {
+    this.min,
+    this.max,
+  });
 
   @override
   void update(ShaderConfiguration configuration) {
