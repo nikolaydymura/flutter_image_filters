@@ -37,6 +37,11 @@ abstract class ShaderParameter {
   ShaderParameter(this._shaderName, this.displayName, this._offset);
 
   void update(ShaderConfiguration configuration);
+
+  @override
+  String toString() {
+    return 'ShaderParameter: $_shaderName => $displayName';
+  }
 }
 
 class ColorParameter extends ShaderParameter {
@@ -85,5 +90,31 @@ class SliderNumberParameter extends NumberParameter {
   @override
   void update(ShaderConfiguration configuration) {
     configuration._floats[_offset] = value.toDouble();
+  }
+}
+
+class SizeParameter extends ShaderParameter {
+  Size value;
+
+  SizeParameter(super.shaderName, super.displayName, super.offset, this.value);
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    final size = value;
+    configuration._floats[_offset] = size.width;
+    configuration._floats[_offset + 1] = size.height;
+  }
+}
+
+class PointParameter extends ShaderParameter {
+  Point<double> value;
+
+  PointParameter(super.shaderName, super.displayName, super.offset, this.value);
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    final size = value;
+    configuration._floats[_offset] = size.x;
+    configuration._floats[_offset + 1] = size.y;
   }
 }
