@@ -5,7 +5,14 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
   final ColorParameter _color;
 
   MonochromeShaderConfiguration()
-      : _intensity = NumberParameter('inputIntensity', 'intensity', 0, 1.0),
+      : _intensity = SliderNumberParameter(
+          'inputIntensity',
+          'intensity',
+          0,
+          1.0,
+          min: 0.0,
+          max: 1.0,
+        ),
         _color = ColorParameter(
           'inputColor',
           'color',

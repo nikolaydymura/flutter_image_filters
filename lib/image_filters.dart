@@ -6,7 +6,6 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
-import 'package:image/image.dart' as img;
 import 'package:image_filters/src/shaders/brightness_sprv.dart';
 
 import 'src/shaders/lookup_sprv.dart';
