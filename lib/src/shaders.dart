@@ -10,6 +10,13 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   VibranceShaderConfiguration: () => vibranceFragmentProgram(),
   ContrastShaderConfiguration: () => contrastFragmentProgram(),
   HueShaderConfiguration: () => hueFragmentProgram(),
+  SwirlShaderConfiguration: () => swirlFragmentProgram(),
+  SolarizeShaderConfiguration: () => solarizeFragmentProgram(),
+  SaturationShaderConfiguration: () => saturationFragmentProgram(),
+  RGBShaderConfiguration: () => rgbFragmentProgram(),
+  PosterizeShaderConfiguration: () => posterizeFragmentProgram(),
+  PixelationShaderConfiguration: () => pixelationFragmentProgram(),
+  OpacityShaderConfiguration: () => opacityFragmentProgram(),
 };
 
 Map<String, ShaderConfiguration Function()> availableShaders = {
@@ -22,4 +29,11 @@ Map<String, ShaderConfiguration Function()> availableShaders = {
   'Vibrance': () => VibranceShaderConfiguration(),
   'Contrast': () => ContrastShaderConfiguration(),
   'Hue': () => HueShaderConfiguration(),
+  'Swirl': () => SwirlShaderConfiguration(),
+  'Solarize': () => SolarizeShaderConfiguration(),
+  'Saturation': () => SaturationShaderConfiguration(),
+  'RGB': () => RGBShaderConfiguration(),
+  'Posterize': () => PosterizeShaderConfiguration(),
+  'Pixelation': () => PixelationShaderConfiguration(),
+  'Opacity': () => OpacityShaderConfiguration(),
 };
