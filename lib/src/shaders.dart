@@ -17,6 +17,7 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   PosterizeShaderConfiguration: () => posterizeFragmentProgram(),
   PixelationShaderConfiguration: () => pixelationFragmentProgram(),
   OpacityShaderConfiguration: () => opacityFragmentProgram(),
+  NoneShaderConfiguration: () => noneFragmentProgram(),
 };
 
 Map<String, ShaderConfiguration Function()> availableShaders = {
