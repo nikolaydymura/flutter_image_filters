@@ -15,5 +15,5 @@ void main()
     vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
     highp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
     
-    fragColor = vec4(textureColor.r * inputRed, textureColor.g * inputGreen, textureColor.b * inputBlue, 1.0);
+    fragColor = vec4(textureColor.r * inputRed, textureColor.g * inputGreen, textureColor.b * inputBlue, textureColor.w);
 }

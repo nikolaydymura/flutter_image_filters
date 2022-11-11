@@ -56,6 +56,16 @@ class ColorParameter extends ShaderParameter {
     configuration._floats[_offset + 1] = color.green / 255.0;
     configuration._floats[_offset + 2] = color.blue / 255.0;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ColorParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
 class NumberParameter extends ShaderParameter {
@@ -72,6 +82,16 @@ class NumberParameter extends ShaderParameter {
   void update(ShaderConfiguration configuration) {
     configuration._floats[_offset] = value.toDouble();
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NumberParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
 class SliderNumberParameter extends NumberParameter {
@@ -87,10 +107,6 @@ class SliderNumberParameter extends NumberParameter {
     this.max,
   });
 
-  @override
-  void update(ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toDouble();
-  }
 }
 
 class SizeParameter extends ShaderParameter {
@@ -104,6 +120,16 @@ class SizeParameter extends ShaderParameter {
     configuration._floats[_offset] = size.width;
     configuration._floats[_offset + 1] = size.height;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SizeParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
 
 class PointParameter extends ShaderParameter {
@@ -117,4 +143,14 @@ class PointParameter extends ShaderParameter {
     configuration._floats[_offset] = size.x;
     configuration._floats[_offset + 1] = size.y;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PointParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
 }

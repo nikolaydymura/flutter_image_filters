@@ -4,7 +4,7 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _colorLevels;
 
   PosterizeShaderConfiguration()
-      : _colorLevels = SliderNumberParameter(
+      : _colorLevels = _IntParameter(
           'inputColorLevels',
           'colorLevels',
           0,
@@ -21,4 +21,20 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
 
   @override
   List<ShaderParameter> get parameters => [_colorLevels];
+}
+
+class _IntParameter extends SliderNumberParameter {
+  _IntParameter(
+      super.shaderName,
+      super.displayName,
+      super.offset,
+      super.value, {
+        super.min,
+        super.max,
+      });
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    configuration._floats[_offset] = value.toInt().toDouble();
+  }
 }
