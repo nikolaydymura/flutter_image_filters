@@ -9,6 +9,10 @@ import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
 
 import 'src/shaders/brightness_sprv.dart';
+import 'src/shaders/bulge_distortion_sprv.dart';
+import 'src/shaders/cga_colorspace_sprv.dart';
+import 'src/shaders/color_invert_sprv.dart';
+import 'src/shaders/color_matrix_sprv.dart';
 import 'src/shaders/contrast_sprv.dart';
 import 'src/shaders/highlight_shadow_sprv.dart';
 import 'src/shaders/hue_sprv.dart';
@@ -31,6 +35,10 @@ import 'src/shaders/white_balance_sprv.dart';
 import 'src/shaders/zoom_blur_sprv.dart';
 
 part 'src/configurations/brightness.dart';
+part 'src/configurations/bulge_distortion.dart';
+part 'src/configurations/cga_colorspace.dart';
+part 'src/configurations/color_invert.dart';
+part 'src/configurations/color_matrix.dart';
 part 'src/configurations/configuration.dart';
 part 'src/configurations/contrast.dart';
 part 'src/configurations/highlight_shadow.dart';

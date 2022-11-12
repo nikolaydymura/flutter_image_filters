@@ -18,9 +18,14 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   PixelationShaderConfiguration: () => pixelationFragmentProgram(),
   OpacityShaderConfiguration: () => opacityFragmentProgram(),
   LuminanceShaderConfiguration: () => luminanceFragmentProgram(),
-  LuminanceThresholdShaderConfiguration: () => luminanceThresholdFragmentProgram(),
+  LuminanceThresholdShaderConfiguration: () =>
+      luminanceThresholdFragmentProgram(),
   KuwaharaShaderConfiguration: () => kuwaharaFragmentProgram(),
   HighlightShadowShaderConfiguration: () => highlightShadowFragmentProgram(),
+  BulgeDistortionShaderConfiguration: () => bulgeDistortionFragmentProgram(),
+  CGAColorspaceShaderConfiguration: () => cgaColorspaceFragmentProgram(),
+  ColorInvertShaderConfiguration: () => colorInvertFragmentProgram(),
+  ColorMatrixShaderConfiguration: () => colorMatrixFragmentProgram(),
   NoneShaderConfiguration: () => noneFragmentProgram(),
 };
 
@@ -45,4 +50,8 @@ Map<String, ShaderConfiguration Function()> availableShaders = {
   'Luminance Threshold': () => LuminanceThresholdShaderConfiguration(),
   'Kuwahara': () => KuwaharaShaderConfiguration(),
   'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
+  'Bulge Distortion': () => BulgeDistortionShaderConfiguration(),
+  'CGA Colorspace': () => CGAColorspaceShaderConfiguration(),
+  'Color Invert': () => ColorInvertShaderConfiguration(),
+  'Color Matrix': () => ColorMatrixShaderConfiguration(),
 };

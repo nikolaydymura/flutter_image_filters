@@ -106,7 +106,6 @@ class SliderNumberParameter extends NumberParameter {
     this.min,
     this.max,
   });
-
 }
 
 class SizeParameter extends ShaderParameter {
@@ -148,6 +147,32 @@ class PointParameter extends ShaderParameter {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is PointParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class Matrix4Parameter extends ShaderParameter {
+  Matrix4 value;
+
+  Matrix4Parameter(
+    super.shaderName,
+    super.displayName,
+    super.offset,
+    this.value,
+  );
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    configuration._floats.setAll(_offset, value.storage);
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Matrix4Parameter &&
           runtimeType == other.runtimeType &&
           value == other.value;
 
