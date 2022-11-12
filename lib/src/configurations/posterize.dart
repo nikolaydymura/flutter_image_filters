@@ -4,7 +4,7 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _colorLevels;
 
   PosterizeShaderConfiguration()
-      : _colorLevels = _IntParameter(
+      : _colorLevels = _IntSliderParameter(
           'inputColorLevels',
           'colorLevels',
           0,
@@ -23,8 +23,8 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
   List<ShaderParameter> get parameters => [_colorLevels];
 }
 
-class _IntParameter extends SliderNumberParameter {
-  _IntParameter(
+class _IntSliderParameter extends SliderNumberParameter {
+  _IntSliderParameter(
       super.shaderName,
       super.displayName,
       super.offset,

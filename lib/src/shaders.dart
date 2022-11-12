@@ -17,6 +17,10 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   PosterizeShaderConfiguration: () => posterizeFragmentProgram(),
   PixelationShaderConfiguration: () => pixelationFragmentProgram(),
   OpacityShaderConfiguration: () => opacityFragmentProgram(),
+  LuminanceShaderConfiguration: () => luminanceFragmentProgram(),
+  LuminanceThresholdShaderConfiguration: () => luminanceThresholdFragmentProgram(),
+  KuwaharaShaderConfiguration: () => kuwaharaFragmentProgram(),
+  HighlightShadowShaderConfiguration: () => highlightShadowFragmentProgram(),
   NoneShaderConfiguration: () => noneFragmentProgram(),
 };
 
@@ -37,4 +41,8 @@ Map<String, ShaderConfiguration Function()> availableShaders = {
   'Posterize': () => PosterizeShaderConfiguration(),
   'Pixelation': () => PixelationShaderConfiguration(),
   'Opacity': () => OpacityShaderConfiguration(),
+  'Luminance': () => LuminanceShaderConfiguration(),
+  'Luminance Threshold': () => LuminanceThresholdShaderConfiguration(),
+  'Kuwahara': () => KuwaharaShaderConfiguration(),
+  'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
 };

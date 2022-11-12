@@ -18,8 +18,8 @@ float monoColor(float v1, float v2) {
 }
 
 void main() {
-  vec2 coords = gl_FragCoord.xy / screenSize;
-  vec4 textureColor = texture(inputImageTexture, coords);
+  vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
+  vec4 textureColor = texture(inputImageTexture, textureCoordinate);
   float luminance = dot(textureColor.rgb, luminanceWeighting);
 
   vec4 desat = vec4(luminance, luminance, luminance, 1.0);
