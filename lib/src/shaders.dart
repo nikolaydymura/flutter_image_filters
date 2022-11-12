@@ -26,6 +26,13 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   CGAColorspaceShaderConfiguration: () => cgaColorspaceFragmentProgram(),
   ColorInvertShaderConfiguration: () => colorInvertFragmentProgram(),
   ColorMatrixShaderConfiguration: () => colorMatrixFragmentProgram(),
+  CrosshatchShaderConfiguration: () => crosshatchFragmentProgram(),
+  ExposureShaderConfiguration: () => exposureFragmentProgram(),
+  FalseColorShaderConfiguration: () => falseColorFragmentProgram(),
+  GammaShaderConfiguration: () => gammaFragmentProgram(),
+  GrayscaleShaderConfiguration: () => grayscaleFragmentProgram(),
+  GlassSphereShaderConfiguration: () => glassSphereFragmentProgram(),
+  HalftoneShaderConfiguration: () => halftoneFragmentProgram(),
   NoneShaderConfiguration: () => noneFragmentProgram(),
 };
 
@@ -54,4 +61,11 @@ Map<String, ShaderConfiguration Function()> availableShaders = {
   'CGA Colorspace': () => CGAColorspaceShaderConfiguration(),
   'Color Invert': () => ColorInvertShaderConfiguration(),
   'Color Matrix': () => ColorMatrixShaderConfiguration(),
+  'Crosshatch': () => CrosshatchShaderConfiguration(),
+  'Exposure': () => ExposureShaderConfiguration(),
+  'False Color': () => FalseColorShaderConfiguration(),
+  'Gamma': () => GammaShaderConfiguration(),
+  'Grayscale': () => GrayscaleShaderConfiguration(),
+  'Glass Sphere': () => GlassSphereShaderConfiguration(),
+  'Halftone': () => HalftoneShaderConfiguration(),
 };

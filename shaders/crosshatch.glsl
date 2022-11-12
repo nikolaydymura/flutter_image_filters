@@ -1,11 +1,20 @@
-varying highp vec2 textureCoordinate;
-uniform sampler2D inputImageTexture;
-uniform highp float inputCrossHatchSpacing;
-uniform highp float inputLineWidth;
+#version 320 es
+
+precision highp float;
+
+layout(location = 0) out vec4 fragColor;
+
+layout(location = 3) uniform sampler2D inputImageTexture;
+layout(location = 0) uniform highp float inputCrossHatchSpacing;
+layout(location = 1) uniform highp float inputLineWidth;
+layout(location = 2) uniform vec2 screenSize;
+
 const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
+
 void main()
 {
-    highp float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
+    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
+    highp float luminance = dot(texture(inputImageTexture, textureCoordinate).rgb, W);
     lowp vec4 colorToDisplay = vec4(1.0, 1.0, 1.0, 1.0);
     if (luminance < 1.00)
     {
@@ -35,5 +44,5 @@ void main()
             colorToDisplay = vec4(0.0, 0.0, 0.0, 1.0);
         }
     }
-    gl_FragColor = colorToDisplay;
+    fragColor = colorToDisplay;
 }
