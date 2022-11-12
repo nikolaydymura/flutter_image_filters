@@ -13,6 +13,11 @@ class ImageShaderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final aspectParameter = _configuration.parameters.whereType<AspectRatioParameter>().firstOrNull;
+    if (aspectParameter != null) {
+      aspectParameter.value = size;
+      aspectParameter.update(_configuration);
+    }
     final floatUniforms = Float32List.fromList(
       [..._configuration.numUniforms, size.width, size.height],
     );

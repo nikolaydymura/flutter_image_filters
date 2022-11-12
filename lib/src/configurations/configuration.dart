@@ -179,3 +179,29 @@ class Matrix4Parameter extends ShaderParameter {
   @override
   int get hashCode => value.hashCode;
 }
+
+class AspectRatioParameter extends ShaderParameter {
+  Size value;
+
+  AspectRatioParameter(
+    super.shaderName,
+    super.displayName,
+    super.offset,
+    this.value,
+  );
+
+  @override
+  void update(ShaderConfiguration configuration) {
+    configuration._floats[_offset] = value.width / value.height;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AspectRatioParameter &&
+          runtimeType == other.runtimeType &&
+          value == other.value;
+
+  @override
+  int get hashCode => value.hashCode;
+}

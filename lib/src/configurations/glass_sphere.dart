@@ -3,7 +3,7 @@ part of image_filters;
 class GlassSphereShaderConfiguration extends ShaderConfiguration {
   final PointParameter _center;
   final NumberParameter _radius;
-  final NumberParameter _aspectRatio;
+  final AspectRatioParameter _aspectRatio;
   final NumberParameter _refractiveIndex;
 
   GlassSphereShaderConfiguration()
@@ -14,11 +14,15 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
           const Point<double>(0.5, 0.5),
         ),
         _radius = NumberParameter('inputRadius', 'radius', 2, 0.25),
-        _aspectRatio =
-            NumberParameter('inputAspectRatio', 'aspectRatio', 3, 0.67),
+        _aspectRatio = AspectRatioParameter(
+          'inputAspectRatio',
+          'aspectRatio',
+          3,
+          const Size(1, 1),
+        ),
         _refractiveIndex =
             NumberParameter('inputRefractiveIndex', 'refractiveIndex', 4, 0.71),
-        super([0.5, 0.5, 0.25, 0.67, 0.71]);
+        super([0.5, 0.5, 0.25, 1.0, 0.71]);
 
   set center(Point<double> value) {
     _center.value = value;
@@ -28,11 +32,6 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
   set radius(double value) {
     _radius.value = value;
     _radius.update(this);
-  }
-
-  set aspectRatio(double value) {
-    _aspectRatio.value = value;
-    _aspectRatio.update(this);
   }
 
   set refractiveIndex(double value) {

@@ -2,7 +2,7 @@ part of image_filters;
 
 class HalftoneShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _fractionalWidthOfPixel;
-  final NumberParameter _aspectRatio;
+  final AspectRatioParameter _aspectRatio;
 
   HalftoneShaderConfiguration()
       : _fractionalWidthOfPixel = NumberParameter(
@@ -11,22 +11,17 @@ class HalftoneShaderConfiguration extends ShaderConfiguration {
           0,
           0.01,
         ),
-        _aspectRatio = NumberParameter(
+        _aspectRatio = AspectRatioParameter(
           'inputAspectRatio',
           'aspectRatio',
           1,
-          0.67,
+          const Size(1, 1),
         ),
-        super([0.01, 0.67]);
+        super([0.01, 1.0]);
 
   set fractionalWidthOfPixel(double value) {
     _fractionalWidthOfPixel.value = value;
     _fractionalWidthOfPixel.update(this);
-  }
-
-  set aspectRatio(double value) {
-    _aspectRatio.value = value;
-    _aspectRatio.update(this);
   }
 
   @override

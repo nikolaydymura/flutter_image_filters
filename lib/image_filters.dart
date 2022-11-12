@@ -7,6 +7,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
+import 'package:collection/collection.dart';
 
 import 'src/shaders/brightness_sprv.dart';
 import 'src/shaders/bulge_distortion_sprv.dart';
