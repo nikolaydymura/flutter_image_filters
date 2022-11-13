@@ -1,4 +1,4 @@
-part of image_filters;
+part of flutter_image_filters;
 
 Map<Type, Future<FragmentProgram> Function()> _shaders = {
   MonochromeShaderConfiguration: () => monochromeFragmentProgram(),

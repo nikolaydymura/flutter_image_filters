@@ -1,4 +1,4 @@
-part of image_filters;
+part of flutter_image_filters;
 
 class LuminanceThresholdShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _threshold;

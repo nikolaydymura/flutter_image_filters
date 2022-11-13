@@ -1,4 +1,4 @@
-part of image_filters;
+part of flutter_image_filters;
 
 abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;

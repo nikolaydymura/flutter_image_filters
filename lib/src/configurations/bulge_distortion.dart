@@ -1,4 +1,4 @@
-part of image_filters;
+part of flutter_image_filters;
 
 class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
   final AspectRatioParameter _aspectRatio;

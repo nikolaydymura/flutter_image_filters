@@ -1,4 +1,4 @@
-part of image_filters;
+part of flutter_image_filters;
 
 class OpacityShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _opacity;

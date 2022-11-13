@@ -1,4 +1,4 @@
-name: image_filters
+name: flutter_image_filters
 description: Image filters based on SPRV shaders
 version: 0.0.1
 homepage:
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.1
   flutter_gpu_filters_interface: ^0.0.1
 
 dev_dependencies:

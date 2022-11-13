@@ -1,4 +1,4 @@
-library image_filters;
+library flutter_image_filters;
 
 import 'dart:async';
 import 'dart:io';
@@ -8,6 +8,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_gpu_filters_interface/flutter_gpu_filters_interface.dart';
 
 import 'src/shaders/brightness_sprv.dart';
