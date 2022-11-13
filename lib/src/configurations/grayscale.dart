@@ -6,5 +6,5 @@ class GrayscaleShaderConfiguration extends ShaderConfiguration {
       : super([]);
 
   @override
-  List<ShaderParameter> get parameters => [];
+  List<ConfigurationParameter> get parameters => [];
 }

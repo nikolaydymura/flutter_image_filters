@@ -4,11 +4,11 @@ class KuwaharaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _radius;
 
   KuwaharaShaderConfiguration()
-      : _radius = _IntParameter(
+      : _radius = ShaderIntParameter(
           'inputRadius',
           'radius',
-          0,
           3.0,
+          0,
         ),
         super([3.0]);
 
@@ -18,14 +18,5 @@ class KuwaharaShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_radius];
-}
-
-class _IntParameter extends NumberParameter {
-  _IntParameter(super.shaderName, super.displayName, super.offset, super.value);
-
-  @override
-  void update(ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toInt().toDouble();
-  }
+  List<ConfigurationParameter> get parameters => [_radius];
 }

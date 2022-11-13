@@ -4,11 +4,11 @@ class ContrastShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _contrast;
 
   ContrastShaderConfiguration()
-      : _contrast = SliderNumberParameter(
+      : _contrast = ShaderSliderNumberParameter(
           'inputContrast',
           'contrast',
-          0,
           1.2,
+          0,
           min: 0.0,
           max: 4.0,
         ),
@@ -20,5 +20,5 @@ class ContrastShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_contrast];
+  List<ConfigurationParameter> get parameters => [_contrast];
 }

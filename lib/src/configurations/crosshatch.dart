@@ -5,17 +5,17 @@ class CrosshatchShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _lineWidth;
 
   CrosshatchShaderConfiguration()
-      : _crossHatchSpacing = NumberParameter(
+      : _crossHatchSpacing = ShaderNumberParameter(
           'inputCrossHatchSpacing',
           'crossHatchSpacing',
-          0,
           0.03,
+          0,
         ),
-        _lineWidth = NumberParameter(
+        _lineWidth = ShaderNumberParameter(
           'inputLineWidth',
           'lineWidth',
-          1,
           0.003,
+          1,
         ),
         super([0.03, 0.003]);
 
@@ -30,5 +30,6 @@ class CrosshatchShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_crossHatchSpacing, _lineWidth];
+  List<ConfigurationParameter> get parameters =>
+      [_crossHatchSpacing, _lineWidth];
 }

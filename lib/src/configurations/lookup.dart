@@ -7,24 +7,45 @@ class LookupTableShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _columns;
 
   LookupTableShaderConfiguration()
-      : _intensity = NumberParameter('inputIntensity', 'intensity', 0, 1.0),
-        _size = NumberParameter('inputSize', 'size', 1, 8.0),
-        _rows = NumberParameter('inputRows', 'rows', 2, 8.0),
-        _columns = NumberParameter('inputColumns', 'columns', 3, 8.0),
+      : _intensity = ShaderNumberParameter(
+          'inputIntensity',
+          'intensity',
+          1.0,
+          0,
+        ),
+        _size = ShaderNumberParameter('inputSize', 'size', 8.0, 1),
+        _rows = ShaderNumberParameter('inputRows', 'rows', 8.0, 2),
+        _columns = ShaderNumberParameter('inputColumns', 'columns', 8.0, 3),
         super([1.0, 8.0, 8.0, 8.0]);
 
   LookupTableShaderConfiguration.size8x64()
-      : _intensity = NumberParameter('inputIntensity', 'intensity', 0, 1.0),
-        _size = NumberParameter('inputSize', 'size', 1, 8.0),
-        _rows = NumberParameter('inputRows', 'rows', 2, 64.0),
-        _columns = NumberParameter('inputColumns', 'columns', 3, 8.0),
+      : _intensity = ShaderNumberParameter(
+          'inputIntensity',
+          'intensity',
+          1.0,
+          0,
+        ),
+        _size = ShaderNumberParameter(
+          'inputSize',
+          'size',
+          8.0,
+          1,
+        ),
+        _rows = ShaderNumberParameter(
+          'inputRows',
+          'rows',
+          64.0,
+          2,
+        ),
+        _columns = ShaderNumberParameter('inputColumns', 'columns', 8.0, 3),
         super([1.0, 8.0, 64.0, 8.0]);
 
   LookupTableShaderConfiguration.size16x1()
-      : _intensity = NumberParameter('inputIntensity', 'intensity', 0, 1.0),
-        _size = NumberParameter('inputSize', 'size', 1, 16.0),
-        _rows = NumberParameter('inputRows', 'rows', 2, 1.0),
-        _columns = NumberParameter('inputColumns', 'columns', 3, 16.0),
+      : _intensity =
+            ShaderNumberParameter('inputIntensity', 'intensity', 1.0, 0),
+        _size = ShaderNumberParameter('inputSize', 'size', 16.0, 1),
+        _rows = ShaderNumberParameter('inputRows', 'rows', 1.0, 2),
+        _columns = ShaderNumberParameter('inputColumns', 'columns', 16.0, 3),
         super([1.0, 16.0, 1.0, 16.0]);
 
   set intensity(double value) {
@@ -48,5 +69,6 @@ class LookupTableShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_intensity, _size, _rows, _columns];
+  List<ConfigurationParameter> get parameters =>
+      [_intensity, _size, _rows, _columns];
 }

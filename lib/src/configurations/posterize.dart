@@ -7,8 +7,8 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
       : _colorLevels = _IntSliderParameter(
           'inputColorLevels',
           'colorLevels',
-          0,
           10.0,
+          0,
           min: 1.0,
           max: 256.0,
         ),
@@ -20,18 +20,18 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_colorLevels];
+  List<ConfigurationParameter> get parameters => [_colorLevels];
 }
 
-class _IntSliderParameter extends SliderNumberParameter {
+class _IntSliderParameter extends ShaderSliderNumberParameter {
   _IntSliderParameter(
-      super.shaderName,
-      super.displayName,
-      super.offset,
-      super.value, {
-        super.min,
-        super.max,
-      });
+    super.shaderName,
+    super.displayName,
+    super.value,
+    super.offset, {
+    super.min,
+    super.max,
+  });
 
   @override
   void update(ShaderConfiguration configuration) {

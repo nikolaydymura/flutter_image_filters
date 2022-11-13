@@ -4,11 +4,11 @@ class GammaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _gamma;
 
   GammaShaderConfiguration()
-      : _gamma = SliderNumberParameter(
+      : _gamma = ShaderSliderNumberParameter(
           'inputGamma',
           'gamma',
-          0,
           1.2,
+          0,
           min: 0.0,
           max: 3.0,
         ),
@@ -20,5 +20,5 @@ class GammaShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_gamma];
+  List<ConfigurationParameter> get parameters => [_gamma];
 }

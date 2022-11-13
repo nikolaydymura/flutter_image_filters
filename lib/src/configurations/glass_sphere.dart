@@ -7,21 +7,30 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _refractiveIndex;
 
   GlassSphereShaderConfiguration()
-      : _center = PointParameter(
+      : _center = ShaderPointParameter(
           'inputCenter',
           'center',
-          0,
           const Point<double>(0.5, 0.5),
+          0,
         ),
-        _radius = NumberParameter('inputRadius', 'radius', 2, 0.25),
-        _aspectRatio = AspectRatioParameter(
+        _radius = ShaderNumberParameter(
+          'inputRadius',
+          'radius',
+          0.25,
+          2,
+        ),
+        _aspectRatio = ShaderAspectRatioParameter(
           'inputAspectRatio',
           'aspectRatio',
-          3,
           const Size(1, 1),
+          3,
         ),
-        _refractiveIndex =
-            NumberParameter('inputRefractiveIndex', 'refractiveIndex', 4, 0.71),
+        _refractiveIndex = ShaderNumberParameter(
+          'inputRefractiveIndex',
+          'refractiveIndex',
+          0.71,
+          4,
+        ),
         super([0.5, 0.5, 0.25, 1.0, 0.71]);
 
   set center(Point<double> value) {
@@ -40,6 +49,6 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters =>
+  List<ConfigurationParameter> get parameters =>
       [_center, _radius, _aspectRatio, _refractiveIndex];
 }

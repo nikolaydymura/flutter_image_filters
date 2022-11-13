@@ -8,14 +8,14 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
       : _temperature = _TemperatureParameter(
           'inputTemperature',
           'temperature',
-          0,
           5000.0,
+          0,
         ),
         _tint = _TintParameter(
           'inputTint',
           'tint',
-          1,
           0.0,
+          1,
         ),
         super([5000.0, 0.0]);
 
@@ -41,15 +41,15 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
   int get hashCode => _temperature.hashCode ^ _tint.hashCode;
 
   @override
-  List<ShaderParameter> get parameters => [_temperature, _tint];
+  List<ConfigurationParameter> get parameters => [_temperature, _tint];
 }
 
-class _TemperatureParameter extends NumberParameter {
+class _TemperatureParameter extends ShaderNumberParameter {
   _TemperatureParameter(
-    super.shaderName,
+    super.name,
     super.displayName,
-    super.offset,
     super.value,
+    super.offset,
   );
 
   @override
@@ -61,13 +61,13 @@ class _TemperatureParameter extends NumberParameter {
   }
 }
 
-class _TintParameter extends NumberParameter {
+class _TintParameter extends ShaderNumberParameter {
   _TintParameter(
-      super.shaderName,
-      super.displayName,
-      super.offset,
-      super.value,
-      );
+    super.shaderName,
+    super.displayName,
+    super.value,
+    super.offset,
+  );
 
   @override
   void update(ShaderConfiguration configuration) {

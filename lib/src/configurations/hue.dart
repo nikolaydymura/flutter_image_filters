@@ -1,16 +1,16 @@
 part of image_filters;
 
 class HueShaderConfiguration extends ShaderConfiguration {
-  final NumberParameter _hueAdjust;
-
   HueShaderConfiguration()
-      : _hueAdjust = NumberParameter(
+      : _hueAdjust = ShaderNumberParameter(
           'inputHueAdjust',
           'hueAdjust',
-          0,
           90.0,
+          0,
         ),
         super([90.0]);
+
+  final NumberParameter _hueAdjust;
 
   set hueAdjust(double value) {
     _hueAdjust.value = value;
@@ -18,5 +18,5 @@ class HueShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_hueAdjust];
+  List<ConfigurationParameter> get parameters => [_hueAdjust];
 }

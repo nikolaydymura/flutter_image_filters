@@ -4,5 +4,5 @@ class ColorInvertShaderConfiguration extends ShaderConfiguration {
   ColorInvertShaderConfiguration() : super([]);
 
   @override
-  List<ShaderParameter> get parameters => [];
+  List<ConfigurationParameter> get parameters => [];
 }

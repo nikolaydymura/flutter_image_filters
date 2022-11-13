@@ -4,11 +4,11 @@ class OpacityShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _opacity;
 
   OpacityShaderConfiguration()
-      : _opacity = SliderNumberParameter(
+      : _opacity = ShaderSliderNumberParameter(
           'inputOpacity',
           'opacity',
-          0,
           1.0,
+          0,
           min: .0,
           max: 1.0,
         ),
@@ -20,5 +20,5 @@ class OpacityShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_opacity];
+  List<ConfigurationParameter> get parameters => [_opacity];
 }

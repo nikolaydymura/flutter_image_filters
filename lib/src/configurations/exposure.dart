@@ -4,11 +4,11 @@ class ExposureShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _exposure;
 
   ExposureShaderConfiguration()
-      : _exposure = SliderNumberParameter(
+      : _exposure = ShaderSliderNumberParameter(
           'inputExposure',
           'exposure',
-          0,
           1.0,
+          0,
           min: -10.0,
           max: 10.0,
         ),
@@ -20,5 +20,5 @@ class ExposureShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_exposure];
+  List<ConfigurationParameter> get parameters => [_exposure];
 }

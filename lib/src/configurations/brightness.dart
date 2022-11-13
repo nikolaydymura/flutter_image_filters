@@ -4,11 +4,11 @@ class BrightnessShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _brightness;
 
   BrightnessShaderConfiguration()
-      : _brightness = SliderNumberParameter(
+      : _brightness = ShaderSliderNumberParameter(
           'inputBrightness',
           'brightness',
-          0,
           0.0,
+          0,
           min: -1.0,
           max: 1.0,
         ),
@@ -20,5 +20,5 @@ class BrightnessShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_brightness];
+  List<ConfigurationParameter> get parameters => [_brightness];
 }

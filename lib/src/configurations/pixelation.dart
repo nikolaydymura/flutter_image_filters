@@ -6,23 +6,23 @@ class PixelationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _pixel;
 
   PixelationShaderConfiguration()
-      : _widthFactor = NumberParameter(
+      : _widthFactor = ShaderNumberParameter(
           'inputWidthFactor',
           'widthFactor',
-          0,
           0.005,
+          0,
         ),
-        _heightFactor = NumberParameter(
+        _heightFactor = ShaderNumberParameter(
           'inputHeightFactor',
           'heightFactor',
-          0,
           0.005,
+          0,
         ),
-        _pixel = NumberParameter(
+        _pixel = ShaderNumberParameter(
           'inputPixel',
           'pixel',
-          0,
           1.0,
+          0,
         ),
         super([0.005, 0.005, 1.0]);
 
@@ -42,5 +42,6 @@ class PixelationShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_widthFactor, _heightFactor, _pixel];
+  List<ConfigurationParameter> get parameters =>
+      [_widthFactor, _heightFactor, _pixel];
 }

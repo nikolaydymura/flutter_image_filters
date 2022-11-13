@@ -1,11 +1,9 @@
 part of image_filters;
 
-abstract class ShaderConfiguration {
+abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;
 
   ShaderConfiguration(this._floats);
-
-  List<ShaderParameter> get parameters;
 
   Iterable<double> get numUniforms => _floats;
 
@@ -29,179 +27,132 @@ abstract class ShaderConfiguration {
   }
 }
 
-abstract class ShaderParameter {
-  final String _shaderName;
-  final String displayName;
+class ShaderColorParameter extends ColorParameter {
   final int _offset;
 
-  ShaderParameter(this._shaderName, this.displayName, this._offset);
-
-  void update(ShaderConfiguration configuration);
-
-  @override
-  String toString() {
-    return 'ShaderParameter: $_shaderName => $displayName';
-  }
-}
-
-class ColorParameter extends ShaderParameter {
-  Color value;
-
-  ColorParameter(super.shaderName, super.displayName, super.offset, this.value);
+  ShaderColorParameter(
+    super.shaderName,
+    super.displayName,
+    super.value,
+    this._offset,
+  );
 
   @override
-  void update(ShaderConfiguration configuration) {
+  FutureOr<void> update(covariant ShaderConfiguration configuration) {
     final color = value;
     configuration._floats[_offset] = color.red / 255.0;
     configuration._floats[_offset + 1] = color.green / 255.0;
     configuration._floats[_offset + 2] = color.blue / 255.0;
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ColorParameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }
 
-class NumberParameter extends ShaderParameter {
-  num value;
+class ShaderNumberParameter extends NumberParameter {
+  final int _offset;
 
-  NumberParameter(
+  ShaderNumberParameter(
     super.shaderName,
     super.displayName,
-    super.offset,
-    this.value,
+    super.value,
+    this._offset,
   );
 
   @override
-  void update(ShaderConfiguration configuration) {
+  void update(covariant ShaderConfiguration configuration) {
     configuration._floats[_offset] = value.toDouble();
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is NumberParameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }
 
-class SliderNumberParameter extends NumberParameter {
-  num? min;
-  num? max;
+class ShaderSliderNumberParameter extends RangeNumberParameter {
+  final int _offset;
 
-  SliderNumberParameter(
+  ShaderSliderNumberParameter(
     super.shaderName,
     super.displayName,
-    super.offset,
-    super.value, {
-    this.min,
-    this.max,
+    super.value,
+    this._offset, {
+    super.min,
+    super.max,
   });
-}
-
-class SizeParameter extends ShaderParameter {
-  Size value;
-
-  SizeParameter(super.shaderName, super.displayName, super.offset, this.value);
 
   @override
-  void update(ShaderConfiguration configuration) {
+  void update(covariant ShaderConfiguration configuration) {
+    configuration._floats[_offset] = value.toDouble();
+  }
+}
+
+class ShaderSizeParameter extends SizeParameter {
+  final int _offset;
+
+  ShaderSizeParameter(super.name, super.displayName, super.value, this._offset);
+
+  @override
+  void update(covariant ShaderConfiguration configuration) {
     final size = value;
     configuration._floats[_offset] = size.width;
     configuration._floats[_offset + 1] = size.height;
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is SizeParameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }
 
-class PointParameter extends ShaderParameter {
-  Point<double> value;
+class ShaderPointParameter extends PointParameter {
+  final int _offset;
 
-  PointParameter(super.shaderName, super.displayName, super.offset, this.value);
-
-  @override
-  void update(ShaderConfiguration configuration) {
-    final size = value;
-    configuration._floats[_offset] = size.x;
-    configuration._floats[_offset + 1] = size.y;
-  }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PointParameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
-}
-
-class Matrix4Parameter extends ShaderParameter {
-  Matrix4 value;
-
-  Matrix4Parameter(
-    super.shaderName,
+  ShaderPointParameter(
+    super.name,
     super.displayName,
-    super.offset,
-    this.value,
+    super.value,
+    this._offset,
   );
 
   @override
-  void update(ShaderConfiguration configuration) {
+  void update(covariant ShaderConfiguration configuration) {
+    final point = value;
+    configuration._floats[_offset] = point.x;
+    configuration._floats[_offset + 1] = point.y;
+  }
+}
+
+class ShaderMatrix4Parameter extends Matrix4Parameter {
+  final int _offset;
+
+  ShaderMatrix4Parameter(
+    super.name,
+    super.displayName,
+    super.value,
+    this._offset,
+  );
+
+  @override
+  void update(covariant ShaderConfiguration configuration) {
     configuration._floats.setAll(_offset, value.storage);
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Matrix4Parameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }
 
-class AspectRatioParameter extends ShaderParameter {
-  Size value;
+class ShaderAspectRatioParameter extends AspectRatioParameter {
+  final int _offset;
 
-  AspectRatioParameter(
+  ShaderAspectRatioParameter(
+    super.name,
+    super.displayName,
+    super.value,
+    this._offset,
+  );
+
+  @override
+  void update(covariant ShaderConfiguration configuration) {
+    configuration._floats[_offset] = value.width / value.height;
+  }
+}
+
+class ShaderIntParameter extends ShaderNumberParameter {
+  ShaderIntParameter(
     super.shaderName,
     super.displayName,
+    super.value,
     super.offset,
-    this.value,
   );
 
   @override
   void update(ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.width / value.height;
+    configuration._floats[_offset] = value.toInt().toDouble();
   }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AspectRatioParameter &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
-
-  @override
-  int get hashCode => value.hashCode;
 }

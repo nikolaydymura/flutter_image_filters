@@ -9,24 +9,24 @@ class RGBShaderConfiguration extends ShaderConfiguration {
       : _red = _ColorIntensityParameter(
           'inputRed',
           'red',
-          0,
           255.0,
+          0,
           min: 0.0,
           max: 255.0,
         ),
         _green = _ColorIntensityParameter(
           'inputGreen',
           'green',
-          1,
           255.0,
+          1,
           min: 0.0,
           max: 255.0,
         ),
         _blue = _ColorIntensityParameter(
           'inputBlue',
           'blue',
-          2,
           255.0,
+          2,
           min: 0.0,
           max: 255.0,
         ),
@@ -48,7 +48,7 @@ class RGBShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_red, _green, _blue];
+  List<ConfigurationParameter> get parameters => [_red, _green, _blue];
 
   @override
   bool operator ==(Object other) =>
@@ -63,12 +63,12 @@ class RGBShaderConfiguration extends ShaderConfiguration {
   int get hashCode => _red.hashCode ^ _green.hashCode ^ _blue.hashCode;
 }
 
-class _ColorIntensityParameter extends SliderNumberParameter {
+class _ColorIntensityParameter extends ShaderSliderNumberParameter {
   _ColorIntensityParameter(
     super.shaderName,
     super.displayName,
-    super.offset,
-    super.value, {
+    super.value,
+    super.offset, {
     super.min,
     super.max,
   });

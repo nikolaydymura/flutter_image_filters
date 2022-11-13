@@ -5,24 +5,24 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
   final ColorParameter _color;
 
   MonochromeShaderConfiguration()
-      : _intensity = SliderNumberParameter(
+      : _intensity = ShaderSliderNumberParameter(
           'inputIntensity',
           'intensity',
-          0,
           1.0,
+          0,
           min: 0.0,
           max: 1.0,
         ),
-        _color = ColorParameter(
+        _color = ShaderColorParameter(
           'inputColor',
           'color',
-          1,
           Color.fromRGBO(
             (0.6 * 255).toInt(),
             (0.45 * 255).toInt(),
             (0.3 * 255).toInt(),
             1.0,
           ),
+          1,
         ),
         super([1.0, 0.6, 0.45, 0.3]);
 
@@ -37,7 +37,7 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_intensity, _color];
+  List<ConfigurationParameter> get parameters => [_intensity, _color];
 
   @override
   bool operator ==(Object other) =>

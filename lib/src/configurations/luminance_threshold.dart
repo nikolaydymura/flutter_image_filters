@@ -4,11 +4,11 @@ class LuminanceThresholdShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _threshold;
 
   LuminanceThresholdShaderConfiguration()
-      : _threshold = NumberParameter(
+      : _threshold = ShaderNumberParameter(
           'inputThreshold',
           'threshold',
-          0,
           0.5,
+          0,
         ),
         super([0.5]);
 
@@ -18,5 +18,5 @@ class LuminanceThresholdShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_threshold];
+  List<ConfigurationParameter> get parameters => [_threshold];
 }

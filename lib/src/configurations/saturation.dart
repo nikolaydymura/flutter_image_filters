@@ -4,11 +4,11 @@ class SaturationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _saturation;
 
   SaturationShaderConfiguration()
-      : _saturation = SliderNumberParameter(
+      : _saturation = ShaderSliderNumberParameter(
           'inputSaturation',
           'saturation',
-          0,
           1.0,
+          0,
           min: 0.0,
           max: 2.0,
         ),
@@ -20,5 +20,5 @@ class SaturationShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_saturation];
+  List<ConfigurationParameter> get parameters => [_saturation];
 }

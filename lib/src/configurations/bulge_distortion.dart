@@ -3,35 +3,35 @@ part of image_filters;
 class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
   final AspectRatioParameter _aspectRatio;
   final PointParameter _center;
-  final NumberParameter _radius;
-  final NumberParameter _scale;
+  final RangeNumberParameter _radius;
+  final RangeNumberParameter _scale;
 
   BulgeDistortionShaderConfiguration()
-      : _aspectRatio = AspectRatioParameter(
+      : _aspectRatio = ShaderAspectRatioParameter(
           'inputAspectRatio',
           'aspectRatio',
-          0,
           const Size(1, 1),
+          0,
         ),
-        _center = PointParameter(
+        _center = ShaderPointParameter(
           'inputCenter',
           'center',
-          1,
           const Point<double>(0.5, 0.5),
+          1,
         ),
-        _radius = SliderNumberParameter(
+        _radius = ShaderSliderNumberParameter(
           'inputRadius',
           'radius',
-          3,
           0.25,
+          3,
           min: .0,
           max: 1.0,
         ),
-        _scale = SliderNumberParameter(
+        _scale = ShaderSliderNumberParameter(
           'inputScale',
           'scale',
-          4,
           0.5,
+          4,
           min: -1.0,
           max: 1.0,
         ),
@@ -59,6 +59,6 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters =>
+  List<ConfigurationParameter> get parameters =>
       [_aspectRatio, _center, _radius, _scale];
 }

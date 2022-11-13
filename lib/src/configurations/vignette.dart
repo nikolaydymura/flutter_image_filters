@@ -7,20 +7,25 @@ class VignetteShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _end;
 
   VignetteShaderConfiguration()
-      : _center = PointParameter(
+      : _center = ShaderPointParameter(
           'inputVignetteCenter',
           'center',
-          0,
           const Point<double>(0.0, 0.0),
+          0,
         ),
-        _color = ColorParameter(
+        _color = ShaderColorParameter(
           'inputVignetteColor',
           'color',
-          2,
           Colors.black,
+          2,
         ),
-        _start = NumberParameter('inputVignetteStart', 'start', 5, 0.3),
-        _end = NumberParameter('inputVignetteEnd', 'end', 6, 0.75),
+        _start = ShaderNumberParameter(
+          'inputVignetteStart',
+          'start',
+          0.3,
+          5,
+        ),
+        _end = ShaderNumberParameter('inputVignetteEnd', 'end', 0.75, 6),
         super([
           0.0,
           0.0,
@@ -52,5 +57,6 @@ class VignetteShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_center, _color, _start, _end];
+  List<ConfigurationParameter> get parameters =>
+      [_center, _color, _start, _end];
 }

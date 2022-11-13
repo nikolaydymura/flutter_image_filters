@@ -5,19 +5,19 @@ class HighlightShadowShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _highlights;
 
   HighlightShadowShaderConfiguration()
-      : _shadows = SliderNumberParameter(
+      : _shadows = ShaderSliderNumberParameter(
           'inputShadows',
           'shadows',
-          0,
           0.0,
+          0,
           min: 0.0,
           max: 1.0,
         ),
-        _highlights = SliderNumberParameter(
+        _highlights = ShaderSliderNumberParameter(
           'inputHighlights',
           'highlights',
-          0,
           1.0,
+          0,
           min: 0.0,
           max: 1.0,
         ),
@@ -34,5 +34,5 @@ class HighlightShadowShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  List<ShaderParameter> get parameters => [_shadows, _highlights];
+  List<ConfigurationParameter> get parameters => [_shadows, _highlights];
 }

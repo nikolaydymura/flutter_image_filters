@@ -4,5 +4,5 @@ class NoneShaderConfiguration extends ShaderConfiguration {
   NoneShaderConfiguration() : super([]);
 
   @override
-  List<ShaderParameter> get parameters => [];
+  List<ConfigurationParameter> get parameters => [];
 }
