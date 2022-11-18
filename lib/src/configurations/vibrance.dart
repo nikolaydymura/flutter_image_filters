@@ -4,7 +4,7 @@ class VibranceShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _vibrance;
 
   VibranceShaderConfiguration()
-      : _vibrance = ShaderNumberParameter(
+      : _vibrance = _NumberParameter(
           'inputVibrance',
           'vibrance',
           0.0,

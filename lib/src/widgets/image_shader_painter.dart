@@ -1,19 +1,20 @@
 part of flutter_image_filters;
 
 class ImageShaderPainter extends CustomPainter {
-  ImageShaderPainter(
-    this._fragmentProgram,
-    this._textures,
-    this._configuration,
-  );
+  ImageShaderPainter(this._fragmentProgram,
+      this._texture,
+      this._configuration,);
 
   final ShaderConfiguration _configuration;
-  final Iterable<TextureSource> _textures;
+  final TextureSource _texture;
   final FragmentProgram _fragmentProgram;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final aspectParameter = _configuration.parameters.whereType<AspectRatioParameter>().firstOrNull;
+    final aspectParameter =
+        _configuration.parameters
+            .whereType<AspectRatioParameter>()
+            .firstOrNull;
     if (aspectParameter != null) {
       aspectParameter.value = size;
       aspectParameter.update(_configuration);
@@ -22,11 +23,16 @@ class ImageShaderPainter extends CustomPainter {
       [..._configuration.numUniforms, size.width, size.height],
     );
 
+    final textures = [_texture, ..._configuration.parameters
+        .whereType<TextureParameter>()
+        .map((e) => e.textureSource)
+        .whereType<TextureSource>()
+    ];
     final paint = Paint()
       ..color = Colors.orangeAccent
       ..shader = _fragmentProgram.shader(
         floatUniforms: floatUniforms,
-        samplerUniforms: _textures.map((e) => e.image).toList(),
+        samplerUniforms: textures.map((e) => e.image).toList(),
       );
 
     /// Draw a rectangle with the shader-paint

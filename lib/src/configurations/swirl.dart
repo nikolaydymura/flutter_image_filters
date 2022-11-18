@@ -6,13 +6,13 @@ class SwirlShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _angle;
 
   SwirlShaderConfiguration()
-      : _center = ShaderPointParameter(
+      : _center = _PointParameter(
           'inputCenter',
           'center',
           const Point<double>(0.5, 0.5),
           0,
         ),
-        _radius = ShaderSliderNumberParameter(
+        _radius = _RangeNumberParameter(
           'inputRadius',
           'radius',
           0.5,
@@ -20,7 +20,7 @@ class SwirlShaderConfiguration extends ShaderConfiguration {
           min: 0.0,
           max: 1.0,
         ),
-        _angle = ShaderSliderNumberParameter(
+        _angle = _RangeNumberParameter(
           'inputAngle',
           'angle',
           1.0,

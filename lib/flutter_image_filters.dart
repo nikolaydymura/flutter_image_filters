@@ -5,10 +5,10 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_gpu_filters_interface/flutter_gpu_filters_interface.dart';
 
 import 'src/shaders/brightness_sprv.dart';
@@ -51,6 +51,13 @@ part 'src/configurations/color_invert.dart';
 part 'src/configurations/color_matrix.dart';
 part 'src/configurations/configuration.dart';
 part 'src/configurations/contrast.dart';
+part 'src/configurations/crosshatch.dart';
+part 'src/configurations/exposure.dart';
+part 'src/configurations/false_color.dart';
+part 'src/configurations/gamma.dart';
+part 'src/configurations/glass_sphere.dart';
+part 'src/configurations/grayscale.dart';
+part 'src/configurations/halftone.dart';
 part 'src/configurations/highlight_shadow.dart';
 part 'src/configurations/hue.dart';
 part 'src/configurations/kuwahara.dart';
@@ -70,14 +77,51 @@ part 'src/configurations/vibrance.dart';
 part 'src/configurations/vignette.dart';
 part 'src/configurations/white_balance.dart';
 part 'src/configurations/zoom_blur.dart';
-part 'src/configurations/crosshatch.dart';
-part 'src/configurations/exposure.dart';
-part 'src/configurations/false_color.dart';
-part 'src/configurations/gamma.dart';
-part 'src/configurations/grayscale.dart';
-part 'src/configurations/glass_sphere.dart';
-part 'src/configurations/halftone.dart';
 part 'src/shaders.dart';
 part 'src/texture_source.dart';
 part 'src/widgets/image_shader_painter.dart';
 part 'src/widgets/image_shader_preview.dart';
+part 'src/parameters.dart';
+
+class FlutterImageFilters {
+  FlutterImageFilters._();
+  static Iterable<String> get availableFilters => _availableFilters.keys;
+
+  static final Map<String, ShaderConfiguration Function()> _availableFilters = {
+    'Brightness': () => BrightnessShaderConfiguration(),
+    'Bulge Distortion': () => BulgeDistortionShaderConfiguration(),
+    'CGA Colorspace': () => CGAColorspaceShaderConfiguration(),
+    'Color Invert': () => ColorInvertShaderConfiguration(),
+    'Color Matrix': () => ColorMatrixShaderConfiguration(),
+    'Contrast': () => ContrastShaderConfiguration(),
+    'Crosshatch': () => CrosshatchShaderConfiguration(),
+    'Exposure': () => ExposureShaderConfiguration(),
+    'False Color': () => FalseColorShaderConfiguration(),
+    'Gamma': () => GammaShaderConfiguration(),
+    //TODO: 'Glass Sphere': () => GlassSphereShaderConfiguration(),
+    'Grayscale': () => GrayscaleShaderConfiguration(),
+    'Halftone': () => HalftoneShaderConfiguration(),
+    'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
+    'Hue': () => HueShaderConfiguration(),
+    //TODO: 'Kuwahara': () => KuwaharaShaderConfiguration(),
+    'Lookup Table': () => LookupTableShaderConfiguration(),
+    'Luminance Threshold': () => LuminanceThresholdShaderConfiguration(),
+    'Luminance': () => LuminanceShaderConfiguration(),
+    'Monochrome': () => MonochromeShaderConfiguration(),
+    'Opacity': () => OpacityShaderConfiguration(),
+    'Pixelation': () => PixelationShaderConfiguration(),
+    'Posterize': () => PosterizeShaderConfiguration(),
+    'RGB': () => RGBShaderConfiguration(),
+    'Saturation': () => SaturationShaderConfiguration(),
+    'Solarize': () => SolarizeShaderConfiguration(),
+    'Swirl': () => SwirlShaderConfiguration(),
+    'Vibrance': () => VibranceShaderConfiguration(),
+    'Vignette': () => VignetteShaderConfiguration(),
+    'White Balance': () => WhiteBalanceShaderConfiguration(),
+    'Zoom Blur': () => ZoomBlurShaderConfiguration(),
+  };
+
+  static ShaderConfiguration? createFilter({required String displayName}) {
+    return _availableFilters[displayName]?.call();
+  }
+}

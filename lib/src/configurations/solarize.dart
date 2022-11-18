@@ -4,7 +4,7 @@ class SolarizeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _threshold;
 
   SolarizeShaderConfiguration()
-      : _threshold = ShaderNumberParameter(
+      : _threshold = _NumberParameter(
           'inputThreshold',
           'threshold',
           0.5,

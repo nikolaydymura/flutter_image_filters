@@ -2,20 +2,29 @@ part of flutter_image_filters;
 
 class ImageShaderPreview extends StatelessWidget {
   final ShaderConfiguration configuration;
-  final Iterable<TextureSource> textures;
+  final Future<FragmentProgram> Function()? fragmentProgramProvider;
+  final TextureSource texture;
 
   const ImageShaderPreview({
     Key? key,
     required this.configuration,
-    required this.textures,
+    required this.texture,
+  })  : fragmentProgramProvider = null,
+        super(key: key);
+
+  const ImageShaderPreview.custom({
+    Key? key,
+    required this.configuration,
+    required this.texture,
+    this.fragmentProgramProvider,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<FragmentProgram>(
-        /// Use the generated loader function here
-        future: _shaders[configuration.runtimeType]?.call(),
+        future: fragmentProgramProvider?.call() ??
+            _fragmentPrograms[configuration.runtimeType]?.call(),
         builder: ((context, snapshot) {
           if (snapshot.hasError && kDebugMode) {
             return SingleChildScrollView(
@@ -30,7 +39,7 @@ class ImageShaderPreview extends StatelessWidget {
           return SizedBox.expand(
             child: CustomPaint(
               painter:
-                  ImageShaderPainter(shaderProgram, textures, configuration),
+                  ImageShaderPainter(shaderProgram, texture, configuration),
             ),
           );
         }),

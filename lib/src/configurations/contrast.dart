@@ -4,7 +4,7 @@ class ContrastShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _contrast;
 
   ContrastShaderConfiguration()
-      : _contrast = ShaderSliderNumberParameter(
+      : _contrast = _RangeNumberParameter(
           'inputContrast',
           'contrast',
           1.2,

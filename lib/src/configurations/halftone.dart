@@ -4,13 +4,13 @@ class HalftoneShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _fractionalWidthOfPixel;
 
   HalftoneShaderConfiguration()
-      : _fractionalWidthOfPixel = ShaderNumberParameter(
+      : _fractionalWidthOfPixel = _NumberParameter(
           'inputFractionalWidthOfPixel',
           'fractionalWidthOfPixel',
           0.01,
           0,
         ),
-        _aspectRatio = ShaderAspectRatioParameter(
+        _aspectRatio = _AspectRatioParameter(
           'inputAspectRatio',
           'aspectRatio',
           const Size(1, 1),

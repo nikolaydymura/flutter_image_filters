@@ -7,19 +7,19 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
   final RangeNumberParameter _scale;
 
   BulgeDistortionShaderConfiguration()
-      : _aspectRatio = ShaderAspectRatioParameter(
+      : _aspectRatio = _AspectRatioParameter(
           'inputAspectRatio',
           'aspectRatio',
           const Size(1, 1),
           0,
         ),
-        _center = ShaderPointParameter(
+        _center = _PointParameter(
           'inputCenter',
           'center',
           const Point<double>(0.5, 0.5),
           1,
         ),
-        _radius = ShaderSliderNumberParameter(
+        _radius = _RangeNumberParameter(
           'inputRadius',
           'radius',
           0.25,
@@ -27,7 +27,7 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
           min: .0,
           max: 1.0,
         ),
-        _scale = ShaderSliderNumberParameter(
+        _scale = _RangeNumberParameter(
           'inputScale',
           'scale',
           0.5,

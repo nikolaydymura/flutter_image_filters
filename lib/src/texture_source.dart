@@ -7,43 +7,50 @@ class TextureSource {
 
   TextureSource._(this.image, this.width, this.height);
 
-  static Future<TextureSource> fromAsset(String asset) async {
-    final imageData = await rootBundle.load(asset);
-    final image = await decodeImageFromList(imageData.buffer.asUint8List());
-    return TextureSource._(
-      ImageShader(
-        image,
-        TileMode.repeated,
-        TileMode.repeated,
-        Matrix4.identity().storage,
-      ),
-      image.width,
-      image.height,
-    );
+  static Future<TextureSource> fromAsset(
+    String asset, {
+    TileMode tmx = TileMode.repeated,
+    TileMode tmy = TileMode.repeated,
+  }) async {
+    final buffer = await ImmutableBuffer.fromAsset(asset);
+    return await _fromImmutableBuffer(buffer, tmx, tmy);
   }
 
-  static Future<TextureSource> fromFile(File file) async {
-    final imageData = await file.readAsBytes();
-    final image = await decodeImageFromList(imageData.buffer.asUint8List());
-    return TextureSource._(
-      ImageShader(
-        image,
-        TileMode.repeated,
-        TileMode.repeated,
-        Matrix4.identity().storage,
-      ),
-      image.width,
-      image.height,
-    );
+  static Future<TextureSource> fromFile(
+    File file, {
+    TileMode tmx = TileMode.repeated,
+    TileMode tmy = TileMode.repeated,
+  }) async {
+    final data = await file.readAsBytes();
+    final buffer = await ImmutableBuffer.fromUint8List(data);
+    return _fromImmutableBuffer(buffer, tmx, tmy);
   }
 
-  static Future<TextureSource> fromMemory(Uint8List data) async {
-    final image = await decodeImageFromList(data);
+  static Future<TextureSource> fromMemory(
+    Uint8List data, {
+    TileMode tmx = TileMode.repeated,
+    TileMode tmy = TileMode.repeated,
+  }) async {
+    final buffer = await ImmutableBuffer.fromUint8List(data);
+
+    return await _fromImmutableBuffer(buffer, tmx, tmy);
+  }
+
+  static Future<TextureSource> _fromImmutableBuffer(
+    ImmutableBuffer buffer,
+    TileMode tmx,
+    TileMode tmy,
+  ) async {
+    final codec =
+        await PaintingBinding.instance.instantiateImageCodecFromBuffer(buffer);
+    final frameInfo = await codec.getNextFrame();
+
+    final image = frameInfo.image;
     return TextureSource._(
       ImageShader(
         image,
-        TileMode.repeated,
-        TileMode.repeated,
+        tmx,
+        tmy,
         Matrix4.identity().storage,
       ),
       image.width,

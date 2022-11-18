@@ -63,7 +63,7 @@ class RGBShaderConfiguration extends ShaderConfiguration {
   int get hashCode => _red.hashCode ^ _green.hashCode ^ _blue.hashCode;
 }
 
-class _ColorIntensityParameter extends ShaderSliderNumberParameter {
+class _ColorIntensityParameter extends _RangeNumberParameter {
   _ColorIntensityParameter(
     super.shaderName,
     super.displayName,

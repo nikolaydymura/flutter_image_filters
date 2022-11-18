@@ -6,19 +6,19 @@ class PixelationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _pixel;
 
   PixelationShaderConfiguration()
-      : _widthFactor = ShaderNumberParameter(
+      : _widthFactor = _NumberParameter(
           'inputWidthFactor',
           'widthFactor',
           0.005,
           0,
         ),
-        _heightFactor = ShaderNumberParameter(
+        _heightFactor = _NumberParameter(
           'inputHeightFactor',
           'heightFactor',
           0.005,
           0,
         ),
-        _pixel = ShaderNumberParameter(
+        _pixel = _NumberParameter(
           'inputPixel',
           'pixel',
           1.0,

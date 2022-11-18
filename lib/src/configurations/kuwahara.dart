@@ -4,7 +4,7 @@ class KuwaharaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _radius;
 
   KuwaharaShaderConfiguration()
-      : _radius = ShaderIntParameter(
+      : _radius = _IntParameter(
           'inputRadius',
           'radius',
           3.0,

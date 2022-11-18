@@ -5,13 +5,13 @@ class ZoomBlurShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _size;
 
   ZoomBlurShaderConfiguration()
-      : _center = ShaderPointParameter(
+      : _center = _PointParameter(
           'inputBlurCenter',
           'center',
           const Point<double>(0.5, 0.5),
           0,
         ),
-        _size = ShaderNumberParameter(
+        _size = _NumberParameter(
           'inputBlurSize',
           'size',
           1.0,

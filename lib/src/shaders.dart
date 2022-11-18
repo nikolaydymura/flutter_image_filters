@@ -1,6 +1,6 @@
 part of flutter_image_filters;
 
-Map<Type, Future<FragmentProgram> Function()> _shaders = {
+Map<Type, Future<FragmentProgram> Function()> _fragmentPrograms = {
   MonochromeShaderConfiguration: () => monochromeFragmentProgram(),
   LookupTableShaderConfiguration: () => lookupFragmentProgram(),
   BrightnessShaderConfiguration: () => brightnessFragmentProgram(),
@@ -34,38 +34,4 @@ Map<Type, Future<FragmentProgram> Function()> _shaders = {
   GlassSphereShaderConfiguration: () => glassSphereFragmentProgram(),
   HalftoneShaderConfiguration: () => halftoneFragmentProgram(),
   NoneShaderConfiguration: () => noneFragmentProgram(),
-};
-
-Map<String, ShaderConfiguration Function()> availableShaders = {
-  'Monochrome': () => MonochromeShaderConfiguration(),
-  'Lookup Table': () => LookupTableShaderConfiguration(),
-  'Brightness': () => BrightnessShaderConfiguration(),
-  'Zoom Blur': () => ZoomBlurShaderConfiguration(),
-  'White Balance': () => WhiteBalanceShaderConfiguration(),
-  'Vignette': () => VignetteShaderConfiguration(),
-  'Vibrance': () => VibranceShaderConfiguration(),
-  'Contrast': () => ContrastShaderConfiguration(),
-  'Hue': () => HueShaderConfiguration(),
-  'Swirl': () => SwirlShaderConfiguration(),
-  'Solarize': () => SolarizeShaderConfiguration(),
-  'Saturation': () => SaturationShaderConfiguration(),
-  'RGB': () => RGBShaderConfiguration(),
-  'Posterize': () => PosterizeShaderConfiguration(),
-  'Pixelation': () => PixelationShaderConfiguration(),
-  'Opacity': () => OpacityShaderConfiguration(),
-  'Luminance': () => LuminanceShaderConfiguration(),
-  'Luminance Threshold': () => LuminanceThresholdShaderConfiguration(),
-  'Kuwahara': () => KuwaharaShaderConfiguration(),
-  'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
-  'Bulge Distortion': () => BulgeDistortionShaderConfiguration(),
-  'CGA Colorspace': () => CGAColorspaceShaderConfiguration(),
-  'Color Invert': () => ColorInvertShaderConfiguration(),
-  'Color Matrix': () => ColorMatrixShaderConfiguration(),
-  'Crosshatch': () => CrosshatchShaderConfiguration(),
-  'Exposure': () => ExposureShaderConfiguration(),
-  'False Color': () => FalseColorShaderConfiguration(),
-  'Gamma': () => GammaShaderConfiguration(),
-  'Grayscale': () => GrayscaleShaderConfiguration(),
-  'Glass Sphere': () => GlassSphereShaderConfiguration(),
-  'Halftone': () => HalftoneShaderConfiguration(),
 };

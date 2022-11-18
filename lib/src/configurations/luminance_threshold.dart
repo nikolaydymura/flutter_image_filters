@@ -4,7 +4,7 @@ class LuminanceThresholdShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _threshold;
 
   LuminanceThresholdShaderConfiguration()
-      : _threshold = ShaderNumberParameter(
+      : _threshold = _NumberParameter(
           'inputThreshold',
           'threshold',
           0.5,

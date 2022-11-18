@@ -23,7 +23,7 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
   List<ConfigurationParameter> get parameters => [_colorLevels];
 }
 
-class _IntSliderParameter extends ShaderSliderNumberParameter {
+class _IntSliderParameter extends _RangeNumberParameter {
   _IntSliderParameter(
     super.shaderName,
     super.displayName,
