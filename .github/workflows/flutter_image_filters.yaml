@@ -1,4 +1,4 @@
-name: flutter_bloc
+name: flutter_image_filters
 
 on:
   push:
