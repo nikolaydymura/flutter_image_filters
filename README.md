@@ -127,54 +127,54 @@ class _PreviewPageState extends State<PreviewPage> {
 
 ### Support status of [GPUImage for iOS](https://github.com/BradLarson/GPUImage2) and [GPUImage for Android](https://github.com/cats-oss/android-gpuimage) shaders
 
--[x] Brightness
--[x] Bulge Distortion
--[x] CGA Colorspace
--[x] Color Invert
--[x] Color Matrix
--[x] Contrast
--[x] Crosshatch
--[x] Exposure
--[x] False Color
--[x] Gamma
--[x] Grayscale
--[x] Halftone
--[x] Highlight Shadow
--[x] Hue
--[x] Lookup Table
--[x] Luminance
--[x] Luminance Threshold
--[x] Monochrome
--[x] Opacity
--[x] Pixelation
--[x] Posterize
--[x] RGB
--[x] Saturation
--[x] Solarize
--[x] Swirl
--[x] Vibrance
--[x] Vignette
--[x] White Balance
--[x] Zoom Blur
+- [x] Brightness
+- [x] Bulge Distortion
+- [x] CGA Colorspace
+- [x] Color Invert
+- [x] Color Matrix
+- [x] Contrast
+- [x] Crosshatch
+- [x] Exposure
+- [x] False Color
+- [x] Gamma
+- [x] Grayscale
+- [x] Halftone
+- [x] Highlight Shadow
+- [x] Hue
+- [x] Lookup Table
+- [x] Luminance
+- [x] Luminance Threshold
+- [x] Monochrome
+- [x] Opacity
+- [x] Pixelation
+- [x] Posterize
+- [x] RGB
+- [x] Saturation
+- [x] Solarize
+- [x] Swirl
+- [x] Vibrance
+- [x] Vignette
+- [x] White Balance
+- [x] Zoom Blur
 
 ### Sample results
 
 ![Brightness](demos/Brightness.jpg)
-![Bulge Distortion](demos/Bulge Distortion.jpg)
-![CGA Colorspace](demos/CGA Colorspace.jpg)
-![Color Invert](demos/Color Invert.jpg)
-![Color Matrix](demos/Color Matrix.jpg)
+![Bulge Distortion](demos/Bulge%20Distortion.jpg)
+![CGA Colorspace](demos/CGA%20Colorspace.jpg)
+![Color Invert](demos/Color%20Invert.jpg)
+![Color Matrix](demos/Color%20Matrix.jpg)
 ![Contrast](demos/Contrast.jpg)
 ![Crosshatch](demos/Crosshatch.jpg)
 ![Exposure](demos/Exposure.jpg)
-![False Color](demos/False Color.jpg)
+![False Color](demos/False%20Color.jpg)
 ![Gamma](demos/Gamma.jpg)
 ![Grayscale](demos/Grayscale.jpg)
 ![Halftone](demos/Halftone.jpg)
-![Highlight Shadow](demos/Highlight Shadow.jpg)
+![Highlight Shadow](demos/Highlight%20Shadow.jpg)
 ![Hue](demos/Hue.jpg)
-![Lookup Table](demos/Lookup Table.jpg)
-![Luminance Threshold](demos/Luminance Threshold.jpg)
+![Lookup Table](demos/Lookup%20Table.jpg)
+![Luminance Threshold](demos/Luminance%20Threshold.jpg)
 ![Luminance](demos/Luminance.jpg)
 ![Monochrome](demos/Monochrome.jpg)
 ![Opacity](demos/Opacity.jpg)
@@ -186,8 +186,8 @@ class _PreviewPageState extends State<PreviewPage> {
 ![Swirl](demos/Swirl.jpg)
 ![Vibrance](demos/Vibrance.jpg)
 ![Vignette](demos/Vignette.jpg)
-![White Balance](demos/White Balance.jpg)
-![Zoom Blur](demos/Zoom Blur.jpg)
+![White Balance](demos/White%20Balance.jpg)
+![Zoom Blur](demos/Zoom%20Blur.jpg)
 
 ## Examples
 
