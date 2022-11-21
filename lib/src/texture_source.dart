@@ -5,6 +5,8 @@ class TextureSource {
   final int width;
   final int height;
 
+  Size get size => Size(width.toDouble(), height.toDouble());
+
   TextureSource._(this.image, this.width, this.height);
 
   static Future<TextureSource> fromAsset(
