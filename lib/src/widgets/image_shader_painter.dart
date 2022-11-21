@@ -1,9 +1,11 @@
 part of flutter_image_filters;
 
 class ImageShaderPainter extends CustomPainter {
-  ImageShaderPainter(this._fragmentProgram,
-      this._texture,
-      this._configuration,);
+  ImageShaderPainter(
+    this._fragmentProgram,
+    this._texture,
+    this._configuration,
+  );
 
   final ShaderConfiguration _configuration;
   final TextureSource _texture;
@@ -12,9 +14,7 @@ class ImageShaderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final aspectParameter =
-        _configuration.parameters
-            .whereType<AspectRatioParameter>()
-            .firstOrNull;
+        _configuration.parameters.whereType<AspectRatioParameter>().firstOrNull;
     if (aspectParameter != null) {
       aspectParameter.value = size;
       aspectParameter.update(_configuration);
@@ -23,10 +23,12 @@ class ImageShaderPainter extends CustomPainter {
       [..._configuration.numUniforms, size.width, size.height],
     );
 
-    final textures = [_texture, ..._configuration.parameters
-        .whereType<TextureParameter>()
-        .map((e) => e.textureSource)
-        .whereType<TextureSource>()
+    final textures = [
+      _texture,
+      ..._configuration.parameters
+          .whereType<TextureParameter>()
+          .map((e) => e.textureSource)
+          .whereType<TextureSource>()
     ];
     final paint = Paint()
       ..color = Colors.orangeAccent

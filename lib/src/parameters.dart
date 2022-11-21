@@ -53,19 +53,6 @@ class _RangeNumberParameter extends RangeNumberParameter {
   }
 }
 
-class _SizeParameter extends SizeParameter {
-  final int _offset;
-
-  _SizeParameter(super.name, super.displayName, super.value, this._offset);
-
-  @override
-  void update(covariant ShaderConfiguration configuration) {
-    final size = value;
-    configuration._floats[_offset] = size.width;
-    configuration._floats[_offset + 1] = size.height;
-  }
-}
-
 class _PointParameter extends PointParameter {
   final int _offset;
 
