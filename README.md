@@ -5,7 +5,7 @@ A flutter package for iOS and Android for applying OpenGL filters to image.
 ### Export processed image
 
 ```dart
-final texture = await TextureSource.fromAsset('images/demo.jpeg');
+final texture = await TextureSource.fromAsset('demo.jpeg');
 final configuration = BrightnessShaderConfiguration();
 configuration.brightness = 0.5;
 final image = await configuration.export(texture, texture.size);
@@ -37,6 +37,8 @@ final image = await configuration.export(texture, texture.size);
 
 ### ImageShaderPreview example
 ```dart
+import 'package:flutter_image_filters/flutter_image_filters.dart';
+
 class PreviewPage extends StatefulWidget {
   const PreviewPage({Key? key}) : super(key: key);
 
@@ -77,6 +79,9 @@ class _PreviewPageState extends State<PreviewPage> {
 
 ### Divided preview sample
 ```dart
+import 'package:before_after_image_slider_nullsafty/before_after_image_slider_nullsafty.dart';
+import 'package:flutter_image_filters/flutter_image_filters.dart';
+
 class PreviewPage extends StatefulWidget {
   const PreviewPage({Key? key}) : super(key: key);
 
@@ -121,6 +126,33 @@ class _PreviewPageState extends State<PreviewPage> {
         : const Offstage();
   }
 }
+```
+
+### Export & save processed image
+
+```dart
+import 'package:image/image.dart' as img;
+import 'package:path_provider/path_provider.dart';
+
+
+
+final texture = await TextureSource.fromAsset('demo.jpeg');
+final configuration = BrightnessShaderConfiguration();
+configuration.brightness = 0.5;
+final image = await configuration.export(texture, texture.size);
+
+final directory = await getTemporaryDirectory();
+final output =
+File('${directory.path}/result.jpeg');
+final bytes = await image.toByteData();
+final persistedImage = img.Image.fromBytes(
+  image.width,
+  image.height,
+  bytes!.buffer.asUint8List(),
+);
+img.JpegEncoder encoder = img.JpegEncoder();
+final data = encoder.encodeImage(persistedImage);
+await output.writeAsBytes(data);
 ```
 
 ## Additional information
