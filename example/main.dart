@@ -22,18 +22,18 @@ class _PreviewPageState extends State<PreviewPage> {
         .then((value) => texture = value)
         .whenComplete(
           () => setState(() {
-        textureLoaded = true;
-      }),
-    );
+            textureLoaded = true;
+          }),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     return textureLoaded
         ? ImageShaderPreview(
-      texture: texture,
-      configuration: configuration,
-    )
+            texture: texture,
+            configuration: configuration,
+          )
         : const Offstage();
   }
 }
