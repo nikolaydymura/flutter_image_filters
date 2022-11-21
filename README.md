@@ -12,7 +12,7 @@ final image = await configuration.export(texture, texture.size);
 ```
 
 ### LookupTable sample
-
+![LUT](demos/lookup_amatorka.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
 final configuration = LookupTableShaderConfiguration();
@@ -24,7 +24,7 @@ final image = await configuration.export(texture, texture.size);
 ```
 
 ### LookupTable HALD sample
-
+![LUT](demos/lookup_hald.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
 final configuration = LookupTableShaderConfiguration();
