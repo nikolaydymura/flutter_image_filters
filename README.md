@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://pub.dev/packages/flutter_image_filters"><img src="https://img.shields.io/pub/v/flutter_image_filters.svg" alt="Pub"></a>
-<a href="https://github.com/nikolaydymura/flutter_image_filters/actions"><img src="https://github.com/nikolaydymura/flutter_image_filters/workflows/flutter_image_filters/badge.svg" alt="build"></a>
+<a href="https://github.com/nikolaydymura/flutter_image_filters/actions"><img src="https://github.com/nikolaydymura/flutter_image_filters/actions/workflows/flutter_image_filters.yaml/badge.svg" alt="build"></a>
 <a href="https://github.com/nikolaydymura/flutter_image_filters"><img src="https://img.shields.io/github/stars/nikolaydymura/flutter_image_filters.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Star on Github"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
 </p>
