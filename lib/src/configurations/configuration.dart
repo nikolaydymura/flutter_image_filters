@@ -5,6 +5,7 @@ abstract class ShaderConfiguration extends FilterConfiguration {
 
   ShaderConfiguration(this._floats);
 
+  /// Returns all shader uniforms. Order of items in array must be as listed in fragment shader code
   Iterable<double> get numUniforms => _floats;
 
   Future<Image> export(
