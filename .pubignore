@@ -1,0 +1,8 @@
+demos/
+shaders/
+coverage/
+build/
+scripts/
+test/
+*.iml
+!lib/src/shaders/

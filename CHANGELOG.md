@@ -1,5 +1,8 @@
-## 0.0.1
+## 0.0.2
 
+- Fixed README.md resources
+
+## 0.0.1
 
 Initial Version of the library.
 

@@ -21,7 +21,7 @@ final image = await configuration.export(texture, texture.size);
 ```
 
 ### LookupTable sample
-![LUT](demos/lookup_amatorka.png)
+![LUT](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/lookup_amatorka.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
 final configuration = LookupTableShaderConfiguration();
@@ -33,7 +33,7 @@ final image = await configuration.export(texture, texture.size);
 ```
 
 ### LookupTable HALD sample
-![LUT](demos/lookup_hald.png)
+![LUT](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/lookup_hald.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
 final configuration = LookupTableShaderConfiguration();
@@ -200,35 +200,35 @@ await output.writeAsBytes(data);
 
 ### Sample results
 
-![Brightness](demos/Brightness.jpg)
-![Bulge Distortion](demos/Bulge%20Distortion.jpg)
-![CGA Colorspace](demos/CGA%20Colorspace.jpg)
-![Color Invert](demos/Color%20Invert.jpg)
-![Color Matrix](demos/Color%20Matrix.jpg)
-![Contrast](demos/Contrast.jpg)
-![Crosshatch](demos/Crosshatch.jpg)
-![Exposure](demos/Exposure.jpg)
-![False Color](demos/False%20Color.jpg)
-![Gamma](demos/Gamma.jpg)
-![Grayscale](demos/Grayscale.jpg)
-![Halftone](demos/Halftone.jpg)
-![Highlight Shadow](demos/Highlight%20Shadow.jpg)
-![Hue](demos/Hue.jpg)
-![Lookup Table](demos/Lookup%20Table.jpg)
-![Luminance Threshold](demos/Luminance%20Threshold.jpg)
-![Luminance](demos/Luminance.jpg)
-![Monochrome](demos/Monochrome.jpg)
-![Opacity](demos/Opacity.jpg)
-![Pixelation](demos/Pixelation.jpg)
-![Posterize](demos/Posterize.jpg)
-![RGB](demos/RGB.jpg)
-![Saturation](demos/Saturation.jpg)
-![Solarize](demos/Solarize.jpg)
-![Swirl](demos/Swirl.jpg)
-![Vibrance](demos/Vibrance.jpg)
-![Vignette](demos/Vignette.jpg)
-![White Balance](demos/White%20Balance.jpg)
-![Zoom Blur](demos/Zoom%20Blur.jpg)
+![Brightness](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Brightness.jpg)
+![Bulge Distortion](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Bulge%20Distortion.jpg)
+![CGA Colorspace](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/CGA%20Colorspace.jpg)
+![Color Invert](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Color%20Invert.jpg)
+![Color Matrix](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Color%20Matrix.jpg)
+![Contrast](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Contrast.jpg)
+![Crosshatch](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Crosshatch.jpg)
+![Exposure](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Exposure.jpg)
+![False Color](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/False%20Color.jpg)
+![Gamma](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Gamma.jpg)
+![Grayscale](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Grayscale.jpg)
+![Halftone](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Halftone.jpg)
+![Highlight Shadow](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Highlight%20Shadow.jpg)
+![Hue](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Hue.jpg)
+![Lookup Table](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Lookup%20Table.jpg)
+![Luminance Threshold](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Luminance%20Threshold.jpg)
+![Luminance](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Luminance.jpg)
+![Monochrome](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Monochrome.jpg)
+![Opacity](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Opacity.jpg)
+![Pixelation](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Pixelation.jpg)
+![Posterize](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Posterize.jpg)
+![RGB](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/RGB.jpg)
+![Saturation](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Saturation.jpg)
+![Solarize](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Solarize.jpg)
+![Swirl](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Swirl.jpg)
+![Vibrance](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Vibrance.jpg)
+![Vignette](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Vignette.jpg)
+![White Balance](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/White%20Balance.jpg)
+![Zoom Blur](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Zoom%20Blur.jpg)
 
 ## Examples
 
