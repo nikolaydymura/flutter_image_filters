@@ -85,7 +85,9 @@ part 'src/parameters.dart';
 
 class FlutterImageFilters {
   FlutterImageFilters._();
-  static Iterable<String> get availableFilters => _availableFilters.keys;
+
+  static Iterable<String> get availableFilters =>
+      kIsWeb ? const <String>[] : _availableFilters.keys;
 
   static final Map<String, ShaderConfiguration Function()> _availableFilters = {
     'Brightness': () => BrightnessShaderConfiguration(),
@@ -122,6 +124,9 @@ class FlutterImageFilters {
   };
 
   static ShaderConfiguration? createFilter({required String displayName}) {
+    if (kIsWeb) {
+      return null;
+    }
     return _availableFilters[displayName]?.call();
   }
 }
