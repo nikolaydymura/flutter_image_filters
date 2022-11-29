@@ -16,7 +16,6 @@ void main() {
   });
 
   test('export all', skip: true, () async {
-
     for (final name in FlutterImageFilters.availableFilters) {
       final configuration = FlutterImageFilters.createFilter(displayName: name);
       if (configuration == null) {
