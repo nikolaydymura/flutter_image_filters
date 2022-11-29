@@ -84,7 +84,9 @@ part 'src/widgets/image_shader_preview.dart';
 part 'src/parameters.dart';
 
 class FlutterImageFilters {
+// coverage:ignore-start
   FlutterImageFilters._();
+// coverage:ignore-end
 
   static Iterable<String> get availableFilters =>
       kIsWeb ? const <String>[] : _availableFilters.keys;

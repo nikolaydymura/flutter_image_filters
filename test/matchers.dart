@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_test/src/buffer_matcher.dart';

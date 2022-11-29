@@ -16,34 +16,31 @@ class ImageShaderPreview extends StatelessWidget {
     Key? key,
     required this.configuration,
     required this.texture,
-    this.fragmentProgramProvider,
+    required this.fragmentProgramProvider,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<FragmentProgram>(
-        future: fragmentProgramProvider?.call() ??
-            _fragmentPrograms[configuration.runtimeType]?.call(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasError && kDebugMode) {
-            return SingleChildScrollView(
-              child: Text(snapshot.error.toString()),
-            );
-          }
-          final shaderProgram = snapshot.data;
-          if (shaderProgram == null) {
-            return const CircularProgressIndicator();
-          }
-
-          return SizedBox.expand(
-            child: CustomPaint(
-              painter:
-                  ImageShaderPainter(shaderProgram, texture, configuration),
-            ),
+    return FutureBuilder<FragmentProgram>(
+      future: fragmentProgramProvider?.call() ??
+          _fragmentPrograms[configuration.runtimeType]?.call(),
+      builder: ((context, snapshot) {
+        if (snapshot.hasError && kDebugMode) {
+          return SingleChildScrollView(
+            child: Text(snapshot.error.toString()),
           );
-        }),
-      ),
+        }
+        final shaderProgram = snapshot.data;
+        if (shaderProgram == null) {
+          return const CircularProgressIndicator();
+        }
+
+        return SizedBox.expand(
+          child: CustomPaint(
+            painter: ImageShaderPainter(shaderProgram, texture, configuration),
+          ),
+        );
+      }),
     );
   }
 }
