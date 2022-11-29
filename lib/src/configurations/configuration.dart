@@ -31,4 +31,7 @@ abstract class ShaderConfiguration extends FilterConfiguration {
         .toImage(size.width.floor(), size.height.floor());
     return renderedImage;
   }
+
+  @override
+  List<ConfigurationParameter> get parameters => [];
 }
