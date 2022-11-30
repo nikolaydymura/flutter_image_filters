@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -26,6 +27,7 @@ void main() {
     });
     test('color_matrix 0.1', () async {
       configuration.intensity = 0.1;
+      configuration.colorMatrix = Matrix4.identity();
 
       await expectFilteredSuccessfully(
         configuration,
@@ -35,6 +37,7 @@ void main() {
     });
     test('color_matrix 0.5', () async {
       configuration.intensity = 0.5;
+      configuration.colorMatrix = Matrix4.identity();
 
       await expectFilteredSuccessfully(
         configuration,
@@ -44,6 +47,7 @@ void main() {
     });
     test('color_matrix 0.9', () async {
       configuration.intensity = 0.9;
+      configuration.colorMatrix = Matrix4.identity();
 
       await expectFilteredSuccessfully(
         configuration,
