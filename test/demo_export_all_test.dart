@@ -54,4 +54,43 @@ void main() {
       debugPrint('Exported: ${output.absolute}');
     }
   });
+  test('configuration not present', () async {
+    final configuration = _InvalidConfiguration();
+    final size = Size(texture.width.toDouble(), texture.height.toDouble()) / 3;
+    expect(
+      () => configuration.export(texture, size),
+      throwsA(
+        isA<UnsupportedError>().having(
+          (p0) => p0.toString(),
+          'configuration not defined',
+          'Unsupported operation: Invalid shader for _InvalidConfiguration',
+        ),
+      ),
+    );
+  });
+  test('custom configuration', () async {
+    final configuration = _InvalidConfiguration();
+    final size = Size(texture.width.toDouble(), texture.height.toDouble()) / 3;
+    expect(
+      () => configuration.export(
+        texture,
+        size,
+        fragmentProgramProvider: () async => DummyFragmentProgram(),
+      ),
+      throwsA(
+        isA<NoSuchMethodError>(),
+      ),
+    );
+  });
+}
+
+class DummyFragmentProgram implements FragmentProgram {
+  @override
+  noSuchMethod(Invocation invocation) {
+    return super.noSuchMethod(invocation);
+  }
+}
+
+class _InvalidConfiguration extends ShaderConfiguration {
+  _InvalidConfiguration() : super([]);
 }

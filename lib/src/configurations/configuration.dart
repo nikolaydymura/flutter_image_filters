@@ -13,9 +13,11 @@ abstract class ShaderConfiguration extends FilterConfiguration {
     Size size, {
     Future<FragmentProgram> Function()? fragmentProgramProvider,
   }) async {
+// coverage:ignore-start
     if (kIsWeb) {
       throw UnsupportedError('Not supported for web');
     }
+// coverage:ignore-end
     PictureRecorder recorder = PictureRecorder();
     Canvas canvas = Canvas(recorder);
     final fragmentProgram = await (fragmentProgramProvider?.call() ??

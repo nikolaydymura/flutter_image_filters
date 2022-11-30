@@ -15,7 +15,9 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
   }) async {
     final buffer = await ImmutableBuffer.fromAsset(asset);
+// coverage:ignore-start
     return await _fromImmutableBuffer(buffer, tmx, tmy);
+// coverage:ignore-end
   }
 
   static Future<TextureSource> fromFile(
