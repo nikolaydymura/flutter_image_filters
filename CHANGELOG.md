@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Added new TextureSource constructor
+
 ## 0.0.3
 
 - Fixed LICENCE

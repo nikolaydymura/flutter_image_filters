@@ -22,6 +22,20 @@ configuration.brightness = 0.5;
 final image = await configuration.export(texture, texture.size);
 ```
 
+### Pipeline export 
+```dart
+final texture = await TextureSource.fromAsset('demo.jpeg');
+final brConfig = BrightnessShaderConfiguration();
+brConfig.brightness = 0.5;
+
+final stConfig = SaturationShaderConfiguration();
+stConfig.saturation = 0.5;
+
+final result1 = await brConfig.export(texture, texture.size);
+final nextTexture = TextureSource.fromImage(result1);
+final result = await stConfig.export(nextTexture, nextTexture.size);
+```
+
 ### LookupTable sample
 ![LUT](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/lookup_amatorka.png)
 ```dart

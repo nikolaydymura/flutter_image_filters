@@ -40,16 +40,11 @@ class TextureSource {
     return await _fromImmutableBuffer(buffer, tmx, tmy);
   }
 
-  static Future<TextureSource> _fromImmutableBuffer(
-    ImmutableBuffer buffer,
-    TileMode tmx,
-    TileMode tmy,
-  ) async {
-    final codec =
-        await PaintingBinding.instance.instantiateImageCodecFromBuffer(buffer);
-    final frameInfo = await codec.getNextFrame();
-
-    final image = frameInfo.image;
+  static TextureSource fromImage(
+    Image image, {
+    TileMode tmx = TileMode.repeated,
+    TileMode tmy = TileMode.repeated,
+  }) {
     return TextureSource._(
       ImageShader(
         image,
@@ -60,5 +55,17 @@ class TextureSource {
       image.width,
       image.height,
     );
+  }
+
+  static Future<TextureSource> _fromImmutableBuffer(
+    ImmutableBuffer buffer,
+    TileMode tmx,
+    TileMode tmy,
+  ) async {
+    final codec =
+        await PaintingBinding.instance.instantiateImageCodecFromBuffer(buffer);
+    final frameInfo = await codec.getNextFrame();
+
+    return fromImage(frameInfo.image, tmx: tmx, tmy: tmy);
   }
 }
