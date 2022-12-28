@@ -38,15 +38,4 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
 
   @override
   List<ConfigurationParameter> get parameters => [_intensity, _color];
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MonochromeShaderConfiguration &&
-          runtimeType == other.runtimeType &&
-          _intensity.value == other._intensity.value &&
-          _color.value == other._color.value;
-
-  @override
-  int get hashCode => _intensity.value.hashCode ^ _color.value.hashCode;
 }

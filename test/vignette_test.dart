@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,11 +11,14 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final inputFile = File('test/demo.jpeg');
 
-  final configuration = VignetteShaderConfiguration();
+  late VignetteShaderConfiguration configuration;
 
   late final TextureSource texture;
   setUpAll(() async {
     texture = await TextureSource.fromFile(inputFile);
+  });
+  setUp(() {
+    configuration = VignetteShaderConfiguration();
   });
 
   group('VignetteShaderConfiguration', () {
@@ -23,6 +27,14 @@ void main() {
         configuration,
         texture,
         'vignette_default.jpeg',
+      );
+    });
+    test('vignette red', () async {
+      configuration.color = Colors.red;
+      await expectFilteredSuccessfully(
+        configuration,
+        texture,
+        'vignette_red.jpeg',
       );
     });
     test('vignette 0.1, 0.1, 0.1, 0.55', () async {

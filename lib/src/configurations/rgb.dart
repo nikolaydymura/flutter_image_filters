@@ -49,18 +49,6 @@ class RGBShaderConfiguration extends ShaderConfiguration {
 
   @override
   List<ConfigurationParameter> get parameters => [_red, _green, _blue];
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is RGBShaderConfiguration &&
-          runtimeType == other.runtimeType &&
-          _red == other._red &&
-          _green == other._green &&
-          _blue == other._blue;
-
-  @override
-  int get hashCode => _red.hashCode ^ _green.hashCode ^ _blue.hashCode;
 }
 
 class _ColorIntensityParameter extends _RangeNumberParameter {

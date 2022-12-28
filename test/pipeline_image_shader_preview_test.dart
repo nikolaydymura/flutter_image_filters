@@ -14,14 +14,14 @@ void main() {
     texture = await TextureSource.fromMemory(inputFile.readAsBytesSync());
   });
 
-  group('ImageShaderPreview', () {
+  group('PipelineImageShaderPreview', () {
     testWidgets('Kuwahara always fails', (tester) async {
-      final configuration = KuwaharaShaderConfiguration();
-      configuration.radius = 2.0;
+      final configuration = GroupShaderConfiguration()
+        ..add(KuwaharaShaderConfiguration()..radius = 2.0);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreview(
+            body: PipelineImageShaderPreview(
               texture: texture,
               configuration: configuration,
             ),
@@ -35,14 +35,17 @@ void main() {
       );
     });
     testWidgets('Glass Sphere always fails', (tester) async {
-      final configuration = GlassSphereShaderConfiguration();
-      configuration.radius = 0.5;
-      configuration.refractiveIndex = 0.71;
-      configuration.center = const Point(0.7, 0.7);
+      final configuration = GroupShaderConfiguration()
+        ..add(
+          GlassSphereShaderConfiguration()
+            ..radius = 0.5
+            ..refractiveIndex = 0.71
+            ..center = const Point(0.7, 0.7),
+        );
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreview(
+            body: PipelineImageShaderPreview(
               texture: texture,
               configuration: configuration,
             ),
@@ -56,7 +59,8 @@ void main() {
       );
     });
     testWidgets('display error', (tester) async {
-      final configuration = MonochromeShaderConfiguration();
+      final configuration = GroupShaderConfiguration()
+        ..add(MonochromeShaderConfiguration());
       FlutterImageFilters.register<MonochromeShaderConfiguration>(
         () async => throw 'Oops!!!',
         override: true,
@@ -64,7 +68,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreview(
+            body: PipelineImageShaderPreview(
               texture: texture,
               configuration: configuration,
             ),
@@ -75,13 +79,56 @@ void main() {
       final errorFinder = find.text('Oops!!!');
       expect(errorFinder, findsOneWidget);
     });
-
-    testWidgets('successfully draw', (tester) async {
-      final configuration = MonochromeShaderConfiguration();
+    testWidgets('remove single item from group', (tester) async {
+      final monochromeShaderConfiguration = MonochromeShaderConfiguration();
+      final configuration = GroupShaderConfiguration()
+        ..add(monochromeShaderConfiguration);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreview(
+            body: PipelineImageShaderPreviewDemo(
+              texture: texture,
+              configuration: configuration,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      configuration.remove(monochromeShaderConfiguration);
+      await tester.tap(find.text('Update'));
+      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      final errorFinder = find.textContaining('Group is empty');
+      expect(errorFinder, findsOneWidget);
+    });
+
+    testWidgets('clear group', (tester) async {
+      final configuration = GroupShaderConfiguration()
+        ..add(MonochromeShaderConfiguration());
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: PipelineImageShaderPreviewDemo(
+              texture: texture,
+              configuration: configuration,
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      configuration.clear();
+      await tester.tap(find.text('Update'));
+      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      final errorFinder = find.textContaining('Group is empty');
+      expect(errorFinder, findsOneWidget);
+    });
+
+    testWidgets('successfully draw', (tester) async {
+      final configuration = GroupShaderConfiguration()
+        ..add(MonochromeShaderConfiguration());
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: PipelineImageShaderPreview(
               texture: texture,
               configuration: configuration,
             ),
@@ -94,12 +141,13 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsNothing);
     });
     testWidgets('successfully re-draw', (tester) async {
-      final configuration = MonochromeShaderConfiguration();
+      final monoConfiguration = MonochromeShaderConfiguration();
 
+      final configuration = GroupShaderConfiguration()..add(monoConfiguration);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreviewDemo(
+            body: PipelineImageShaderPreviewDemo(
               texture: texture,
               configuration: configuration,
             ),
@@ -110,7 +158,7 @@ void main() {
       final canvasFinder = find.byType(CustomPaint);
       expect(canvasFinder, findsAtLeastNWidgets(1));
       expect(find.byType(CircularProgressIndicator), findsNothing);
-      configuration.intensity = 0.5;
+      monoConfiguration.intensity = 0.5;
       await tester.tap(find.text('Update'));
       await tester.pumpAndSettle(const Duration(milliseconds: 100));
       expect(canvasFinder, findsAtLeastNWidgets(1));
@@ -119,21 +167,23 @@ void main() {
   });
 }
 
-class ImageShaderPreviewDemo extends StatefulWidget {
+class PipelineImageShaderPreviewDemo extends StatefulWidget {
   final TextureSource texture;
-  final ShaderConfiguration configuration;
+  final GroupShaderConfiguration configuration;
 
-  const ImageShaderPreviewDemo({
+  const PipelineImageShaderPreviewDemo({
     Key? key,
     required this.texture,
     required this.configuration,
   }) : super(key: key);
 
   @override
-  State<ImageShaderPreviewDemo> createState() => _ImageShaderPreviewDemoState();
+  State<PipelineImageShaderPreviewDemo> createState() =>
+      _PipelineImageShaderPreviewDemoState();
 }
 
-class _ImageShaderPreviewDemoState extends State<ImageShaderPreviewDemo> {
+class _PipelineImageShaderPreviewDemoState
+    extends State<PipelineImageShaderPreviewDemo> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -145,7 +195,7 @@ class _ImageShaderPreviewDemoState extends State<ImageShaderPreviewDemo> {
           child: const Text('Update'),
         ),
         Expanded(
-          child: ImageShaderPreview(
+          child: PipelineImageShaderPreview(
             texture: widget.texture,
             configuration: widget.configuration,
           ),

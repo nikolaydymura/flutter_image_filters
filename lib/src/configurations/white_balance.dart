@@ -30,17 +30,6 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is WhiteBalanceShaderConfiguration &&
-          runtimeType == other.runtimeType &&
-          _temperature == other._temperature &&
-          _tint == other._tint;
-
-  @override
-  int get hashCode => _temperature.hashCode ^ _tint.hashCode;
-
-  @override
   List<ConfigurationParameter> get parameters => [_temperature, _tint];
 }
 

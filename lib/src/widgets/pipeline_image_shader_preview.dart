@@ -18,6 +18,7 @@ class PipelineImageShaderPreview extends StatelessWidget {
       future: _export(),
       builder: ((context, snapshot) {
         if (snapshot.hasError && kDebugMode) {
+          debugPrint(snapshot.error.toString());
           return SingleChildScrollView(
             child: Text(snapshot.error.toString()),
           );
@@ -35,12 +36,17 @@ class PipelineImageShaderPreview extends StatelessWidget {
   }
 
   Future<Image> _export() async {
-    final watch = Stopwatch();
-    watch.start();
-    final result = await configuration.export(texture, texture.size);
-    debugPrint(
-      'Exporting image took ${watch.elapsedMilliseconds} milliseconds',
-    );
-    return result;
+    if (kDebugMode) {
+      final watch = Stopwatch();
+      watch.start();
+      final result = await configuration.export(texture, texture.size);
+      debugPrint(
+        'Exporting image took ${watch.elapsedMilliseconds} milliseconds',
+      );
+      return result;
+    } else {
+      final result = await configuration.export(texture, texture.size);
+      return result;
+    }
   }
 }
