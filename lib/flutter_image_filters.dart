@@ -77,15 +77,17 @@ part 'src/configurations/vibrance.dart';
 part 'src/configurations/vignette.dart';
 part 'src/configurations/white_balance.dart';
 part 'src/configurations/zoom_blur.dart';
+part 'src/parameters.dart';
 part 'src/shaders.dart';
 part 'src/texture_source.dart';
 part 'src/widgets/image_shader_painter.dart';
 part 'src/widgets/image_shader_preview.dart';
-part 'src/parameters.dart';
+part 'src/widgets/pipeline_image_shader_preview.dart';
 
 class FlutterImageFilters {
 // coverage:ignore-start
   FlutterImageFilters._();
+
 // coverage:ignore-end
 
   static Iterable<String> get availableFilters =>
@@ -130,5 +132,19 @@ class FlutterImageFilters {
       return null;
     }
     return _availableFilters[displayName]?.call();
+  }
+
+  static void register<T extends ShaderConfiguration>(
+    Future<FragmentProgram> Function() fragmentProgramProvider, {
+    bool override = false,
+  }) {
+    if (override) {
+      _fragmentPrograms[T] = fragmentProgramProvider;
+    } else {
+      _fragmentPrograms.putIfAbsent(
+        T,
+        () => fragmentProgramProvider,
+      );
+    }
   }
 }

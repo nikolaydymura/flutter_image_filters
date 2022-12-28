@@ -57,13 +57,15 @@ void main() {
     });
     testWidgets('display error', (tester) async {
       final configuration = MonochromeShaderConfiguration();
+      FlutterImageFilters.register<MonochromeShaderConfiguration>(
+          () async => throw 'Oops!!!',
+          override: true,);
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ImageShaderPreview.custom(
+            body: ImageShaderPreview(
               texture: texture,
               configuration: configuration,
-              fragmentProgramProvider: () async => throw 'Oops!!!',
             ),
           ),
         ),

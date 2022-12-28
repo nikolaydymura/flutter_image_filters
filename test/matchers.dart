@@ -7,8 +7,9 @@ import 'package:image/image.dart' as img;
 Future<void> expectFilteredSuccessfully(
   ShaderConfiguration configuration,
   TextureSource texture,
-  String goldenKey,
-) async {
+  String goldenKey, {
+  String? configurationKey,
+}) async {
   final image = await configuration.export(texture, texture.size);
   final bytes = await image.toByteData();
 
@@ -22,7 +23,7 @@ Future<void> expectFilteredSuccessfully(
   img.JpegEncoder encoder = img.JpegEncoder();
   final data = encoder.encodeImage(persistedImage);
   final output = File(
-    'test/goldens/shaders/${configuration.runtimeType}/$goldenKey',
+    'test/goldens/shaders/${configurationKey ?? configuration.runtimeType}/$goldenKey',
   );
   await expectLater(data, bufferMatchesGoldenFile(output.absolute.path));
 }

@@ -4,9 +4,11 @@ class ImageShaderPainter extends CustomPainter {
   ImageShaderPainter(
     this._fragmentProgram,
     this._texture,
-    this._configuration,
-  );
+    this._configuration, {
+    this.blendMode = BlendMode.src,
+  });
 
+  final BlendMode blendMode;
   final ShaderConfiguration _configuration;
   final TextureSource _texture;
   final FragmentProgram _fragmentProgram;
@@ -53,7 +55,7 @@ class ImageShaderPainter extends CustomPainter {
         Offset(size.width, 0)
       ],
     );
-    canvas.drawVertices(vertices, BlendMode.src, paint);
+    canvas.drawVertices(vertices, blendMode, paint);
   }
 
   @override

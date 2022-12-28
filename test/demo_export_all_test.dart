@@ -70,12 +70,15 @@ void main() {
   });
   test('custom configuration', () async {
     final configuration = _InvalidConfiguration();
+    FlutterImageFilters.register<_InvalidConfiguration>(
+      () async => DummyFragmentProgram(),
+      override: true,
+    );
     final size = Size(texture.width.toDouble(), texture.height.toDouble()) / 3;
     expect(
       () => configuration.export(
         texture,
         size,
-        fragmentProgramProvider: () async => DummyFragmentProgram(),
       ),
       throwsA(
         isA<NoSuchMethodError>(),
