@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'fixtures.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final inputFile = File('test/demo.jpeg');
@@ -56,8 +58,8 @@ void main() {
       );
     });
     testWidgets('display error', (tester) async {
-      final configuration = MonochromeShaderConfiguration();
-      FlutterImageFilters.register<MonochromeShaderConfiguration>(
+      final configuration = InvalidConfiguration();
+      FlutterImageFilters.register<InvalidConfiguration>(
         () async => throw 'Oops!!!',
         override: true,
       );

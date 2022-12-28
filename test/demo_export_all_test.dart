@@ -6,6 +6,8 @@ import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
 
+import 'fixtures.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final inputFile = File('test/demo.jpeg');
@@ -55,7 +57,7 @@ void main() {
     }
   });
   test('configuration not present', () async {
-    final configuration = _InvalidConfiguration();
+    final configuration = InvalidConfiguration();
     final size = Size(texture.width.toDouble(), texture.height.toDouble()) / 3;
     expect(
       () => configuration.export(texture, size),
@@ -63,14 +65,14 @@ void main() {
         isA<UnsupportedError>().having(
           (p0) => p0.toString(),
           'configuration not defined',
-          'Unsupported operation: Invalid shader for _InvalidConfiguration',
+          'Unsupported operation: Invalid shader for InvalidConfiguration',
         ),
       ),
     );
   });
   test('custom configuration', () async {
-    final configuration = _InvalidConfiguration();
-    FlutterImageFilters.register<_InvalidConfiguration>(
+    final configuration = InvalidConfiguration();
+    FlutterImageFilters.register<InvalidConfiguration>(
       () async => DummyFragmentProgram(),
       override: true,
     );
@@ -85,15 +87,4 @@ void main() {
       ),
     );
   });
-}
-
-class DummyFragmentProgram implements FragmentProgram {
-  @override
-  noSuchMethod(Invocation invocation) {
-    return super.noSuchMethod(invocation);
-  }
-}
-
-class _InvalidConfiguration extends ShaderConfiguration {
-  _InvalidConfiguration() : super([]);
 }

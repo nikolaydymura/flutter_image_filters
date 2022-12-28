@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'fixtures.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final inputFile = File('test/demo.jpeg');
@@ -60,10 +62,9 @@ void main() {
     });
     testWidgets('display error', (tester) async {
       final configuration = GroupShaderConfiguration()
-        ..add(MonochromeShaderConfiguration());
-      FlutterImageFilters.register<MonochromeShaderConfiguration>(
+        ..add(InvalidConfiguration());
+      FlutterImageFilters.register<InvalidConfiguration>(
         () async => throw 'Oops!!!',
-        override: true,
       );
       await tester.pumpWidget(
         MaterialApp(
@@ -128,14 +129,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: PipelineImageShaderPreview(
+            body: PipelineImageShaderPreviewDemo(
               texture: texture,
               configuration: configuration,
             ),
           ),
         ),
       );
-      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle(const Duration(milliseconds: 200));
       final canvasFinder = find.byType(CustomPaint);
       expect(canvasFinder, findsAtLeastNWidgets(1));
       expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -154,13 +155,13 @@ void main() {
           ),
         ),
       );
-      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle(const Duration(milliseconds: 200));
       final canvasFinder = find.byType(CustomPaint);
       expect(canvasFinder, findsAtLeastNWidgets(1));
       expect(find.byType(CircularProgressIndicator), findsNothing);
       monoConfiguration.intensity = 0.5;
       await tester.tap(find.text('Update'));
-      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      await tester.pumpAndSettle(const Duration(milliseconds: 200));
       expect(canvasFinder, findsAtLeastNWidgets(1));
       await tester.pump(const Duration(milliseconds: 100));
     });
