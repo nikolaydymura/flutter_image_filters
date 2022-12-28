@@ -226,7 +226,7 @@ await output.writeAsBytes(data);
 
 ### Support status of [GPUImage for iOS](https://github.com/BradLarson/GPUImage2) and [GPUImage for Android](https://github.com/cats-oss/android-gpuimage) shaders
 
-- [x] Brightness
+ :white_check_mark: Brightness
 - [x] Bulge Distortion
 - [x] CGA Colorspace
 - [x] Color Invert
