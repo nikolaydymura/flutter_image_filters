@@ -226,35 +226,37 @@ await output.writeAsBytes(data);
 
 ### Support status of [GPUImage for iOS](https://github.com/BradLarson/GPUImage2) and [GPUImage for Android](https://github.com/cats-oss/android-gpuimage) shaders
 
- :white_check_mark: Brightness
-- [x] Bulge Distortion
-- [x] CGA Colorspace
-- [x] Color Invert
-- [x] Color Matrix
-- [x] Contrast
-- [x] Crosshatch
-- [x] Exposure
-- [x] False Color
-- [x] Gamma
-- [x] Grayscale
-- [x] Halftone
-- [x] Highlight Shadow
-- [x] Hue
-- [x] Lookup Table
-- [x] Luminance
-- [x] Luminance Threshold
-- [x] Monochrome
-- [x] Opacity
-- [x] Pixelation
-- [x] Posterize
-- [x] RGB
-- [x] Saturation
-- [x] Solarize
-- [x] Swirl
-- [x] Vibrance
-- [x] Vignette
-- [x] White Balance
-- [x] Zoom Blur
+| Status             | Name                |
+|:-------------------|:--------------------|
+ | :white_check_mark: | Brightness          |
+ | :white_check_mark: | Bulge Distortion    |
+ | :white_check_mark: | CGA Colorspace      |
+ | :white_check_mark: | Color Invert        |
+ | :white_check_mark: | Color Matrix        |
+ | :white_check_mark: | Contrast            |
+ | :white_check_mark: | Crosshatch          |
+ | :white_check_mark: | Exposure            |
+ | :white_check_mark: | False Color         |
+ | :white_check_mark: | Gamma               |
+ | :white_check_mark: | Grayscale           |
+ | :white_check_mark: | Halftone            |
+ | :white_check_mark: | Highlight Shadow    |
+ | :white_check_mark: | Hue                 |
+ | :white_check_mark: | Lookup Table        |
+ | :white_check_mark: | Luminance           |
+ | :white_check_mark: | Luminance Threshold |
+ | :white_check_mark: | Monochrome          |
+ | :white_check_mark: | Opacity             |
+ | :white_check_mark: | Pixelation          |
+ | :white_check_mark: | Posterize           |
+ | :white_check_mark: | RGB                 |
+ | :white_check_mark: | Saturation          |
+ | :white_check_mark: | Solarize            |
+ | :white_check_mark: | Swirl               |
+ | :white_check_mark: | Vibrance            |
+ | :white_check_mark: | Vignette            |
+ | :white_check_mark: | White Balance       |
+ | :white_check_mark: | Zoom Blur           |
 
 ### Sample results
 

@@ -83,8 +83,8 @@ class GroupShaderConfiguration extends ShaderConfiguration {
         final changed = !listEquals(uniforms, configuration._floats);
         if (changed) {
           bool found = false;
-          for(final c in _configurations) {
-            if (c == configuration){
+          for (final c in _configurations) {
+            if (c == configuration) {
               found = true;
             }
             if (found) {
