@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Added new PipelineImageShaderPreview and GroupShaderConfiguration
+
 ## 0.0.4
 
 - Added new TextureSource constructor
