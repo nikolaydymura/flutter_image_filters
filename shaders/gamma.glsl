@@ -8,10 +8,13 @@ layout(location = 2) uniform sampler2D inputImageTexture;
 layout(location = 0) uniform lowp float inputGamma;
 layout(location = 1) uniform vec2 screenSize;
 
-void main()
-{
+vec4 processColor(vec4 sourceColor){
+     return vec4(pow(textureColor.rgb, vec3(inputGamma)), textureColor.w);
+}
+
+void main() {
     vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
     lowp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
 
-    fragColor = vec4(pow(textureColor.rgb, vec3(inputGamma)), textureColor.w);
+    fragColor = processColor(textureColor);
 }

@@ -11,6 +11,7 @@ const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
 
 vec4 processColor(vec4 sourceColor){
     float luminance = dot(sourceColor.rgb, W);
+
     return vec4(vec3(luminance), sourceColor.a);
 }
 

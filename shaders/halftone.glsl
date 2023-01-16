@@ -23,5 +23,6 @@ void main()
   lowp vec3 sampledColor = texture(inputImageTexture, samplePos).rgb;
   highp float dotScaling = 1.0 - dot(sampledColor, W);
   lowp float checkForPresenceWithinDot = 1.0 - step(distanceFromSamplePoint, (inputFractionalWidthOfPixel * 0.5) * dotScaling);
+
   fragColor = vec4(vec3(checkForPresenceWithinDot), 1.0);
 }

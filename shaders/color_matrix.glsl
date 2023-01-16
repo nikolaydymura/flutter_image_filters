@@ -9,11 +9,16 @@ layout(location = 0) uniform lowp mat4 inputColorMatrix;
 layout(location = 1) uniform lowp float inputIntensity;
 layout(location = 2) uniform vec2 screenSize;
 
+vec4 processColor(vec4 sourceColor){
+    lowp vec4 outputColor = sourceColor * inputColorMatrix;
+
+    return (inputIntensity * outputColor) + ((1.0 - inputIntensity) * sourceColor);
+}
+
 void main()
 {
     vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
     lowp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-    lowp vec4 outputColor = textureColor * inputColorMatrix;
     
-    fragColor = (inputIntensity * outputColor) + ((1.0 - inputIntensity) * textureColor);
+    fragColor = processColor(textureColor);
 }
