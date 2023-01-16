@@ -12,7 +12,7 @@ vec4 processColor(vec4 sourceColor){
 
 void main() {
     vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
-    vec4 textureColor = texture(inputImageTexture, textureCoordinate);
+    vec4 sourceColor = texture(inputImageTexture, textureCoordinate);
 
-    fragColor = processColor(textureColor);
+    fragColor = processColor(sourceColor);
 }

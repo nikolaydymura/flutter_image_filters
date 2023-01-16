@@ -15,8 +15,8 @@ vec2 computeSliceOffset(float slice, float slicesPerRow, vec2 sliceSize) {
                           floor(slice / slicesPerRow));
 }
 
-vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slicesPerRow) {
-  float slice   = textureColor.z * (size - 1.0);
+vec4 sampleAs3DTexture(vec3 sourceColor, float size, float numRows, float slicesPerRow) {
+  float slice   = sourceColor.z * (size - 1.0);
   float zOffset = fract(slice);                         // dist between slices
 
   vec2 sliceSize = vec2(1.0 / slicesPerRow,             // u space of 1 slice
@@ -28,7 +28,7 @@ vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slice
   vec2 slicePixelSize = sliceSize / size;               // space of 1 pixel
   vec2 sliceInnerSize = slicePixelSize * (size - 1.0);  // space of size pixels
 
-  vec2 uv = slicePixelSize * 0.5 + textureColor.xy * sliceInnerSize;
+  vec2 uv = slicePixelSize * 0.5 + sourceColor.xy * sliceInnerSize;
   vec4 slice0Color = texture(inputTextureCubeData, slice0Offset + uv);
   vec4 slice1Color = texture(inputTextureCubeData, slice1Offset + uv);
   return mix(slice0Color, slice1Color, zOffset);
@@ -36,7 +36,7 @@ vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slice
 
 void main() {
    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
-   vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-   vec4 newColor = sampleAs3DTexture(textureColor.rgb, inputSize, inputRows, inputColumns);
-   fragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+   vec4 sourceColor = texture(inputImageTexture, textureCoordinate);
+   vec4 newColor = sampleAs3DTexture(sourceColor.rgb, inputSize, inputRows, inputColumns);
+   fragColor = mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
 }

@@ -18,7 +18,7 @@ void main()
     highp vec2 sampleDivisor = vec2(1.0 / 200.0, 1.0 / 320.0);
 
     highp vec2 samplePos = textureCoordinate - mod(textureCoordinate, sampleDivisor);
-    highp vec4 color = texture(inputImageTexture, samplePos );
+    highp vec4 color = texture(inputImageTexture, samplePos);
 
     highp float blackDistance = distance(color, colorBlack);
     highp float whiteDistance = distance(color, colorWhite);

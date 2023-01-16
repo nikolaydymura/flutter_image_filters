@@ -9,13 +9,13 @@ layout(location = 0) uniform highp float inputColorLevels;
 layout(location = 1) uniform vec2 screenSize;
 
 vec4 processColor(vec4 sourceColor){
-    return floor((textureColor * inputColorLevels) + vec4(0.5)) / inputColorLevels;
+    return floor((sourceColor * inputColorLevels) + vec4(0.5)) / inputColorLevels;
 }
 
 void main()
 {
    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
-   highp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
+   highp vec4 sourceColor = texture(inputImageTexture, textureCoordinate);
    
-   fragColor = processColor(textureColor);
+   fragColor = processColor(sourceColor);
 }
