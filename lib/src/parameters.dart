@@ -12,10 +12,17 @@ class _ColorParameter extends ColorParameter {
 
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) {
-    final color = value;
-    configuration._floats[_offset] = color.red / 255.0;
-    configuration._floats[_offset + 1] = color.green / 255.0;
-    configuration._floats[_offset + 2] = color.blue / 255.0;
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      final color = value;
+      configuration._floats[_offset] = color.red / 255.0;
+      configuration._floats[_offset + 1] = color.green / 255.0;
+      configuration._floats[_offset + 2] = color.blue / 255.0;
+    }
   }
 }
 
@@ -31,7 +38,14 @@ class _NumberParameter extends NumberParameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toDouble();
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats[_offset] = value.toDouble();
+    }
   }
 }
 
@@ -49,7 +63,14 @@ class _RangeNumberParameter extends RangeNumberParameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toDouble();
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats[_offset] = value.toDouble();
+    }
   }
 }
 
@@ -65,9 +86,16 @@ class _PointParameter extends PointParameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    final point = value;
-    configuration._floats[_offset] = point.x;
-    configuration._floats[_offset + 1] = point.y;
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      final point = value;
+      configuration._floats[_offset] = point.x;
+      configuration._floats[_offset + 1] = point.y;
+    }
   }
 }
 
@@ -83,7 +111,14 @@ class _Matrix4Parameter extends Matrix4Parameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    configuration._floats.setAll(_offset, value.storage);
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats.setAll(_offset, value.storage);
+    }
   }
 }
 
@@ -99,7 +134,14 @@ class _AspectRatioParameter extends AspectRatioParameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.width / value.height;
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats[_offset] = value.width / value.height;
+    }
   }
 }
 
@@ -113,7 +155,14 @@ class _IntParameter extends _NumberParameter {
 
   @override
   void update(covariant ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toInt().toDouble();
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats[_offset] = value.toInt().toDouble();
+    }
   }
 }
 
@@ -124,12 +173,29 @@ class TextureParameter extends DataParameter {
 
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) async {
-    if (asset != null) {
-      textureSource = await TextureSource.fromAsset(asset!);
-    } else if (file != null) {
-      textureSource = await TextureSource.fromFile(file!);
-    } else if (data != null) {
-      textureSource = await TextureSource.fromMemory(data!);
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      if (asset != null) {
+        textureSource = await TextureSource.fromAsset(asset!);
+      } else if (file != null) {
+        textureSource = await TextureSource.fromFile(file!);
+      } else if (data != null) {
+        textureSource = await TextureSource.fromMemory(data!);
+      }
     }
+  }
+}
+
+extension on ConfigurationParameter {
+  ShaderConfiguration? findByParameter(BunchShaderConfiguration configuration) {
+    return configuration._configurations.firstWhereOrNull(
+      (conf) =>
+          conf.parameters.firstWhereOrNull((parameter) => parameter == this) !=
+          null,
+    );
   }
 }

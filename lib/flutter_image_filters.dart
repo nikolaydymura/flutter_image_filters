@@ -23,6 +23,7 @@ import 'src/shaders/false_color_sprv.dart';
 import 'src/shaders/gamma_sprv.dart';
 import 'src/shaders/glass_sphere_sprv.dart';
 import 'src/shaders/grayscale_sprv.dart';
+import 'src/shaders/hald_lookup_sprv.dart';
 import 'src/shaders/halftone_sprv.dart';
 import 'src/shaders/highlight_shadow_sprv.dart';
 import 'src/shaders/hue_sprv.dart';
@@ -110,7 +111,8 @@ class FlutterImageFilters {
     'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
     'Hue': () => HueShaderConfiguration(),
     //TODO: 'Kuwahara': () => KuwaharaShaderConfiguration(),
-    'Lookup Table': () => LookupTableShaderConfiguration(),
+    'Square Lookup Table': () => SquareLookupTableShaderConfiguration(),
+    'HALD Lookup Table': () => HALDLookupTableShaderConfiguration(),
     'Luminance Threshold': () => LuminanceThresholdShaderConfiguration(),
     'Luminance': () => LuminanceShaderConfiguration(),
     'Monochrome': () => MonochromeShaderConfiguration(),

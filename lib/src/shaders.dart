@@ -2,7 +2,8 @@ part of flutter_image_filters;
 
 Map<Type, Future<FragmentProgram> Function()> _fragmentPrograms = {
   MonochromeShaderConfiguration: () => monochromeFragmentProgram(),
-  LookupTableShaderConfiguration: () => lookupFragmentProgram(),
+  SquareLookupTableShaderConfiguration: () => lookupFragmentProgram(),
+  HALDLookupTableShaderConfiguration: () => haldLookupFragmentProgram(),
   BrightnessShaderConfiguration: () => brightnessFragmentProgram(),
   ZoomBlurShaderConfiguration: () => zoomBlurFragmentProgram(),
   WhiteBalanceShaderConfiguration: () => whiteBalanceFragmentProgram(),

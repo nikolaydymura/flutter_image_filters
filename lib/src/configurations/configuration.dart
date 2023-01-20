@@ -105,3 +105,20 @@ class GroupShaderConfiguration extends ShaderConfiguration {
     return result;
   }
 }
+
+class BunchShaderConfiguration extends ShaderConfiguration {
+  final List<ShaderConfiguration> _configurations;
+
+  @override
+  Iterable<double> get numUniforms =>
+      _configurations.map((e) => e.numUniforms).expand((e) => e);
+
+  BunchShaderConfiguration(this._configurations) : super(<double>[]);
+
+  T configuration<T extends ShaderConfiguration>({required int at}) =>
+      _configurations[at] as T;
+
+  @override
+  List<ConfigurationParameter> get parameters =>
+      _configurations.map((e) => e.parameters).expand((e) => e).toList();
+}
