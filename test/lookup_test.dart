@@ -13,9 +13,9 @@ void main() {
   setUpAll(() async {
     texture = await TextureSource.fromFile(inputFile);
   });
-  group('LookupTableShaderConfiguration', () {
+  group('SquareLookupTableShaderConfiguration', () {
     test('8x8', () async {
-      final configuration = LookupTableShaderConfiguration();
+      final configuration = SquareLookupTableShaderConfiguration();
       await configuration.setLutFile(File('demos/lookup_amatorka.png'));
       await expectFilteredSuccessfully(
         configuration,
@@ -24,7 +24,7 @@ void main() {
       );
     });
     test('8x8 0.5 intensity', () async {
-      final configuration = LookupTableShaderConfiguration();
+      final configuration = SquareLookupTableShaderConfiguration();
       configuration.intensity = 0.5;
       await configuration.setLutFile(File('demos/lookup_amatorka.png'));
       await expectFilteredSuccessfully(
@@ -33,8 +33,10 @@ void main() {
         '8x8_0.5.jpeg',
       );
     });
+  });
+  group('HALDLookupTableShaderConfiguration', () {
     test('8x64', () async {
-      final configuration = LookupTableShaderConfiguration.size8x64();
+      final configuration = HALDLookupTableShaderConfiguration();
       final bytes = await File('demos/lookup_hald.png').readAsBytes();
       await configuration.setLutImage(bytes);
 
@@ -44,34 +46,8 @@ void main() {
         '8x64.jpeg',
       );
     });
-    test('16x1', () async {
-      final configuration = LookupTableShaderConfiguration.size16x1();
-      await configuration.setLutFile(File('demos/lookup_line.png'));
-
-      await expectFilteredSuccessfully(
-        configuration,
-        texture,
-        '16x1.jpeg',
-      );
-    });
-    test('16x1 to 8x8', () async {
-      final configuration = LookupTableShaderConfiguration.size16x1();
-      configuration.size = 8;
-      configuration.columns = 8;
-      configuration.rows = 8;
-      await configuration.setLutFile(File('demos/lookup_amatorka.png'));
-
-      await expectFilteredSuccessfully(
-        configuration,
-        texture,
-        '8x8.jpeg',
-      );
-    });
     test('asset not found', () async {
-      final configuration = LookupTableShaderConfiguration.size16x1();
-      configuration.size = 8;
-      configuration.columns = 8;
-      configuration.rows = 8;
+      final configuration = HALDLookupTableShaderConfiguration();
       expect(
         () => configuration.setLutAsset('demos/lookup_amatorka.png'),
         throwsA(

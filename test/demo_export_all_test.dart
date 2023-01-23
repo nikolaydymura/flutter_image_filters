@@ -23,11 +23,11 @@ void main() {
       if (configuration == null) {
         continue;
       }
-      if (configuration is LookupTableShaderConfiguration) {
-        configuration.size = 8;
-        configuration.rows = 8;
-        configuration.columns = 8;
+      if (configuration is SquareLookupTableShaderConfiguration) {
         await configuration.setLutFile(File('demos/lookup_amatorka.png'));
+      }
+      if (configuration is HALDLookupTableShaderConfiguration) {
+        await configuration.setLutFile(File('demos/lookup_hald.png'));
       }
       final output = File('demos/$name.jpg');
       final size =
