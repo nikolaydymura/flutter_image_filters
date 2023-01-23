@@ -27,6 +27,6 @@ void main()
         textureCoordinateToUse += inputCenter;
     }
 
-    fragColor = texture(inputImageTexture, textureCoordinateToUse );
+    fragColor = texture(inputImageTexture, textureCoordinateToUse);
 
 }

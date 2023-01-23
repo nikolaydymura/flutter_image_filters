@@ -10,13 +10,17 @@ layout(location = 1) uniform vec2 screenSize;
 
 const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
 
-void main()
-{
+vec4 processColor(vec4 sourceColor){
+    highp float luminance = dot(sourceColor.rgb, W);
+    highp float inputThresholdResult = step(luminance, inputThreshold);
+    highp vec3 finalColor = abs(inputThresholdResult - sourceColor.rgb);
+
+    return vec4(finalColor, sourceColor.w);
+}
+
+void main() {
     vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
     highp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-    highp float luminance = dot(textureColor.rgb, W);
-    highp float inputThresholdResult = step(luminance, inputThreshold);
-    highp vec3 finalColor = abs(inputThresholdResult - textureColor.rgb);
     
-    fragColor = vec4(finalColor, textureColor.w);
+    fragColor = processColor(textureColor);
 }

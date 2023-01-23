@@ -17,10 +17,8 @@ float monoColor(float v1, float v2) {
   return v1 < 0.5 ? lr : hr;
 }
 
-void main() {
-  vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
-  vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-  float luminance = dot(textureColor.rgb, luminanceWeighting);
+vec4 processColor(vec4 sourceColor){
+  float luminance = dot(sourceColor.rgb, luminanceWeighting);
 
   vec4 desat = vec4(luminance, luminance, luminance, 1.0);
 
@@ -34,5 +32,12 @@ void main() {
       1.0
       );
 
-  fragColor = vec4(mix(textureColor.rgb, outputColor.rgb, inputIntensity), textureColor.a);
+    return vec4(mix(sourceColor.rgb, outputColor.rgb, inputIntensity), sourceColor.a);
+}
+
+void main() {
+  vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
+  vec4 textureColor = texture(inputImageTexture, textureCoordinate);
+
+  fragColor = processColor(textureColor);
 }
