@@ -132,9 +132,9 @@ void generateShader(
 
   finalShader.addAll(shaderInputs);
   finalShader.add('\n');
-  finalShader.addAll(processFunctions);
-  finalShader.add('\n');
   finalShader.addAll(shaderConstants);
+  finalShader.add('\n');
+  finalShader.addAll(processFunctions);
   finalShader.add('\n');
   finalShader.add('void main(){');
   finalShader.add('\tvec2 textureCoordinate = gl_FragCoord.xy / screenSize;');

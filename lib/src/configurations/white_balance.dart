@@ -17,7 +17,7 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
           0.0,
           1,
         ),
-        super([5000.0, 0.0]);
+        super([0.0, 0.0]);
 
   set temperature(double value) {
     _temperature.value = value;
