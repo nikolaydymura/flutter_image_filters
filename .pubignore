@@ -1,4 +1,5 @@
 demos/
+doc/images
 shaders/
 coverage/
 build/
