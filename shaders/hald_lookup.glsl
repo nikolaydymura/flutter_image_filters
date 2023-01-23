@@ -32,9 +32,14 @@ vec4 sampleAs3DTexture(vec3 textureColor, float size, float numRows, float slice
   return mix(slice0Color, slice1Color, zOffset);
 }
 
+vec4 processColor(vec4 sourceColor){
+   vec4 newColor = sampleAs3DTexture(sourceColor.rgb, 8.0, 64.0, 8.0);
+   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
+}
+
 void main() {
    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
    vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-   vec4 newColor = sampleAs3DTexture(textureColor.rgb, 8.0, 64.0, 8.0);
-   fragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+
+   fragColor = processColor(textureColor);
 }

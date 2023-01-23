@@ -20,19 +20,23 @@ float newColor(float v1, float v2) {
     float gr = 1.0 - 2.0 * (1.0 - v1) * (1.0 - v2);
     return v1 < 0.5 ? lr : gr;
 }
- 
-void main() {
-   vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
-   lowp vec4 source = texture(inputImageTexture, textureCoordinate);
-   
-   mediump vec3 yiq = RGBtoYIQ * source.rgb; //adjusting inputTint
+
+vec4 processColor(vec4 sourceColor){
+   mediump vec3 yiq = RGBtoYIQ * sourceColor.rgb; //adjusting inputTint
    yiq.b = clamp(yiq.b + inputTint*0.5226*0.1, -0.5226, 0.5226);
    lowp vec3 rgb = YIQtoRGB * yiq;
-                
+
    lowp vec3 processed = vec3(
     newColor(rgb.r, warmFilter.r),
     newColor(rgb.g, warmFilter.g),
     newColor(rgb.b, warmFilter.b));
-                
-   fragColor = vec4(mix(rgb, processed, inputTemperature), source.a);
+
+   return vec4(mix(rgb, processed, inputTemperature), sourceColor.a);
+}
+ 
+void main() {
+   vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
+   lowp vec4 textureColor = texture(inputImageTexture, textureCoordinate);
+
+   fragColor = processColor(textureColor);
 }

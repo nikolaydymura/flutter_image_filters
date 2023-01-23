@@ -74,4 +74,4 @@ jobs:
           skipIfReleaseExists: true
           name: "GLSL sources 0.1.0"
           tag: "v0.1.0"
-          artifacts: "shaders/brightness.glsl,shaders/color_invert.glsl,shaders/color_matrix.glsl,shaders/contrast.glsl,shaders/exposure.glsl,shaders/false_color.glsl,shaders/gamma.glsl,shaders/grayscale.glsl,shaders/halftone.glsl,shaders/luminance.glsl,shaders/luminance_threshold.glsl,shaders/monochrome.glsl,shaders/opacity.glsl,shaders/posterize.glsl,shaders/rgb.glsl,shaders/saturation.glsl,shaders/solarize.glsl"
+          artifacts: "shaders/brightness.glsl,shaders/color_invert.glsl,shaders/color_matrix.glsl,shaders/contrast.glsl,shaders/exposure.glsl,shaders/false_color.glsl,shaders/gamma.glsl,shaders/grayscale.glsl,shaders/hald_lookup.glsl,shaders/halftone.glsl,shaders/highlight_shadow.glsl,shaders/lookup.glsl,shaders/luminance.glsl,shaders/luminance_threshold.glsl,shaders/monochrome.glsl,shaders/opacity.glsl,shaders/posterize.glsl,shaders/rgb.glsl,shaders/saturation.glsl,shaders/solarize.glsl,shaders/vibrance.glsl,shaders/white_balance.glsl"

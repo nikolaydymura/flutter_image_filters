@@ -33,9 +33,14 @@ vec4 lookupFrom2DTexture(vec3 textureColor) {
     return mix(newColor1, newColor2, fract(blueColor));
 }
 
+vec4 processColor(vec4 sourceColor){
+   vec4 newColor = lookupFrom2DTexture(sourceColor.rgb);
+   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
+}
+
 void main() {
    vec2 textureCoordinate = gl_FragCoord.xy / screenSize;
    vec4 textureColor = texture(inputImageTexture, textureCoordinate);
-   vec4 newColor = lookupFrom2DTexture(textureColor.rgb);
-   fragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), inputIntensity);
+
+   fragColor = processColor(textureColor);
 }

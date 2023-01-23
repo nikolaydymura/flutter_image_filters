@@ -11,7 +11,10 @@ const supported = [
   'false_color',
   'gamma',
   'grayscale',
+  'hald_lookup',
   'halftone',
+  'highlight_shadow',
+  'lookup',
   'luminance',
   'luminance_threshold',
   'monochrome',
@@ -19,7 +22,9 @@ const supported = [
   'posterize',
   'rgb',
   'saturation',
-  'solarize'
+  'solarize',
+  'vibrance',
+  'white_balance'
 ];
 
 Future<void> main(List<String> arguments) async {
