@@ -41,10 +41,7 @@ final result = await configuration.export(texture, texture.size);
 ![LUT](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/lookup_amatorka.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
-final configuration = LookupTableShaderConfiguration();
-configuration.size = 8;
-configuration.rows = 8;
-configuration.columns = 8;
+final configuration = SquareLookupTableShaderConfiguration();
 await configuration.setLutAsset('lookup_amatorka.png');
 final image = await configuration.export(texture, texture.size);
 ```
@@ -53,10 +50,7 @@ final image = await configuration.export(texture, texture.size);
 ![LUT](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/lookup_hald.png)
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
-final configuration = LookupTableShaderConfiguration();
-configuration.size = 8;
-configuration.rows = 64;
-configuration.columns = 8;
+final configuration = HALDLookupTableShaderConfiguration();
 await configuration.setLutAsset('lookup_hald.png');
 final image = await configuration.export(texture, texture.size);
 ```
@@ -240,6 +234,7 @@ await output.writeAsBytes(data);
  | :white_check_mark: | Gamma               |
  | :white_check_mark: | Grayscale           |
  | :white_check_mark: | Halftone            |
+ | :white_check_mark: | Haze                |
  | :white_check_mark: | Highlight Shadow    |
  | :white_check_mark: | Hue                 |
  | :white_check_mark: | Lookup Table        |

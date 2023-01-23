@@ -34,5 +34,6 @@ Map<Type, Future<FragmentProgram> Function()> _fragmentPrograms = {
   GrayscaleShaderConfiguration: () => grayscaleFragmentProgram(),
   GlassSphereShaderConfiguration: () => glassSphereFragmentProgram(),
   HalftoneShaderConfiguration: () => halftoneFragmentProgram(),
+  HazeShaderConfiguration: () => hazeFragmentProgram(),
   NoneShaderConfiguration: () => noneFragmentProgram(),
 };

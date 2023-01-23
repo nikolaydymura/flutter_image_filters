@@ -2,7 +2,25 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 
-const supported = ['brightness', 'contrast', 'grayscale'];
+const supported = [
+  'brightness',
+  'color_invert',
+  'color_matrix',
+  'contrast',
+  'exposure',
+  'false_color',
+  'gamma',
+  'grayscale',
+  'halftone',
+  'luminance',
+  'luminance_threshold',
+  'monochrome',
+  'opacity',
+  'posterize',
+  'rgb',
+  'saturation',
+  'solarize'
+];
 
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {

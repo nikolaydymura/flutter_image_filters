@@ -25,6 +25,7 @@ import 'src/shaders/glass_sphere_sprv.dart';
 import 'src/shaders/grayscale_sprv.dart';
 import 'src/shaders/hald_lookup_sprv.dart';
 import 'src/shaders/halftone_sprv.dart';
+import 'src/shaders/haze_sprv.dart';
 import 'src/shaders/highlight_shadow_sprv.dart';
 import 'src/shaders/hue_sprv.dart';
 import 'src/shaders/kuwahara_sprv.dart';
@@ -59,6 +60,7 @@ part 'src/configurations/gamma.dart';
 part 'src/configurations/glass_sphere.dart';
 part 'src/configurations/grayscale.dart';
 part 'src/configurations/halftone.dart';
+part 'src/configurations/haze.dart';
 part 'src/configurations/highlight_shadow.dart';
 part 'src/configurations/hue.dart';
 part 'src/configurations/kuwahara.dart';
@@ -108,6 +110,7 @@ class FlutterImageFilters {
     //TODO: 'Glass Sphere': () => GlassSphereShaderConfiguration(),
     'Grayscale': () => GrayscaleShaderConfiguration(),
     'Halftone': () => HalftoneShaderConfiguration(),
+    'Haze': () => HazeShaderConfiguration(),
     'Highlight Shadow': () => HighlightShadowShaderConfiguration(),
     'Hue': () => HueShaderConfiguration(),
     //TODO: 'Kuwahara': () => KuwaharaShaderConfiguration(),
