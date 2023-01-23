@@ -5,8 +5,11 @@
 ```shell
 flutter pub add -d shader
 ```
-### 2. Download and extract GLSL sources of shaders
-
+### 2. Download [GLSL sources](https://github.com/nikolaydymura/flutter_image_filters/releases) and place them into specific folder
+```dart
+downloaded/shaders/brightness.glsl
+downloaded/shaders/contrast.glsl
+```
 ### 3. View list of shaders available for processing
 
 ```shell
