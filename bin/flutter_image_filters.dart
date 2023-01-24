@@ -226,7 +226,8 @@ void processShader(
       continue;
     }
 
-    if (element.contains('luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);')) {
+    if (element
+        .contains('luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);')) {
       if (shaderConstants.contains(element)) {
         continue;
       }
