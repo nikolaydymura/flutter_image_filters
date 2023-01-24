@@ -23,6 +23,9 @@ final image = await configuration.export(texture, texture.size);
 ```
 
 ### Pipeline export 
+
+In case you see performance issues, look on [how to generate and use bunch of filters](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/GENERATE.md)
+
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
 final brConfig = BrightnessShaderConfiguration();
@@ -267,9 +270,10 @@ await output.writeAsBytes(data);
 ![Gamma](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Gamma.jpg)
 ![Grayscale](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Grayscale.jpg)
 ![Halftone](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Halftone.jpg)
+![Haze](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Haze.jpg)
 ![Highlight Shadow](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Highlight%20Shadow.jpg)
 ![Hue](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Hue.jpg)
-![Lookup Table](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Lookup%20Table.jpg)
+![Square Lookup Table](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Square%20Lookup%20Table.jpg)
 ![Luminance Threshold](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Luminance%20Threshold.jpg)
 ![Luminance](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Luminance.jpg)
 ![Monochrome](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/demos/Monochrome.jpg)
@@ -293,3 +297,4 @@ await output.writeAsBytes(data);
 
 - [Nikolay Dymura](https://github.com/nikolaydymura)
 - [Egor Terekhov](https://github.com/EgorEko)
+- [Nataliia Zabiiaka](https://github.com/nataliiazabiiaka)
