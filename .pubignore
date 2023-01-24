@@ -1,6 +1,7 @@
 demos/
 doc/images
 shaders/
+shaders120/
 coverage/
 build/
 scripts/

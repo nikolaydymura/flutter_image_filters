@@ -1,10 +1,10 @@
 #version 320 es
 precision mediump float;
 
-layout(location = 0) uniform lowp float inputIntensity;
+layout(location = 0) uniform lowp float inputIntensityL;
 layout(location = 1) uniform vec2 screenSize;
 layout(location = 2) uniform lowp sampler2D inputImageTexture;
-layout(location = 3) uniform mediump sampler2D inputTextureCubeData;
+layout(location = 3) uniform mediump sampler2D inputTextureCubeDataL;
 
 layout(location = 0) out vec4 fragColor;
 
@@ -27,15 +27,15 @@ vec4 lookupFrom2DTexture(vec3 textureColor) {
     texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
     texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
 
-    vec4 newColor1 = texture(inputTextureCubeData, texPos1);
-    vec4 newColor2 = texture(inputTextureCubeData, texPos2);
+    vec4 newColor1 = texture(inputTextureCubeDataL, texPos1);
+    vec4 newColor2 = texture(inputTextureCubeDataL, texPos2);
 
     return mix(newColor1, newColor2, fract(blueColor));
 }
 
 vec4 processColor(vec4 sourceColor){
    vec4 newColor = lookupFrom2DTexture(sourceColor.rgb);
-   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
+   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensityL);
 }
 
 void main() {

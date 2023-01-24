@@ -8,10 +8,10 @@ layout(location = 1) uniform sampler2D inputImageTexture;
 layout(location = 0) uniform vec2 screenSize;
 
 // Values from \Graphics Shaders: Theory and Practice\ by Bailey and Cunningham
-const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
+const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
 
 vec4 processColor(vec4 sourceColor){
-    float luminance = dot(sourceColor.rgb, W);
+    float luminance = dot(sourceColor.rgb, luminanceWeighting);
 
     return vec4(vec3(luminance), sourceColor.a);
 }

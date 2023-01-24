@@ -10,7 +10,7 @@ layout(location = 0) uniform highp float inputFractionalWidthOfPixel;
 layout(location = 1) uniform highp float inputAspectRatio;
 layout(location = 2) uniform vec2 screenSize;
 
-const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
+const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
 
 void main()
 {
@@ -21,7 +21,7 @@ void main()
   highp vec2 adjustedSamplePos = vec2(samplePos.x, (samplePos.y * inputAspectRatio + 0.5 - 0.5 * inputAspectRatio));
   highp float distanceFromSamplePoint = distance(adjustedSamplePos, textureCoordinateToUse);
   lowp vec3 sampledColor = texture(inputImageTexture, samplePos).rgb;
-  highp float dotScaling = 1.0 - dot(sampledColor, W);
+  highp float dotScaling = 1.0 - dot(sampledColor, luminanceWeighting);
   lowp float checkForPresenceWithinDot = 1.0 - step(distanceFromSamplePoint, (inputFractionalWidthOfPixel * 0.5) * dotScaling);
 
   fragColor = vec4(vec3(checkForPresenceWithinDot), 1.0);

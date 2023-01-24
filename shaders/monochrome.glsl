@@ -4,12 +4,12 @@ precision highp float;
 
 layout(location = 0) out vec4 fragColor;
 
-layout(location = 0) uniform float inputIntensity;
+layout(location = 0) uniform float inputIntensityM;
 layout(location = 1) uniform vec3 inputColor;
 layout(location = 3) uniform vec2 screenSize;
 layout(location = 2) uniform sampler2D inputImageTexture;
 
-const vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
+const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
 
 float monoColor(float v1, float v2) {
   float lr = 2.0 * v1 * v2;
@@ -32,7 +32,7 @@ vec4 processColor(vec4 sourceColor){
       1.0
       );
 
-    return vec4(mix(sourceColor.rgb, outputColor.rgb, inputIntensity), sourceColor.a);
+    return vec4(mix(sourceColor.rgb, outputColor.rgb, inputIntensityM), sourceColor.a);
 }
 
 void main() {

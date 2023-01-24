@@ -26,7 +26,7 @@ void main() {
     });
     test('white_balance 3000, 0.1', () async {
       configuration.temperature = 3000;
-      configuration.tint = 0.1;
+      configuration.tint = 10;
 
       await expectFilteredSuccessfully(
         configuration,
@@ -36,7 +36,7 @@ void main() {
     });
     test('white_balance 5500, 0.2', () async {
       configuration.temperature = 5500;
-      configuration.tint = 0.2;
+      configuration.tint = 20;
 
       await expectFilteredSuccessfully(
         configuration,
@@ -46,7 +46,7 @@ void main() {
     });
     test('white_balance 6000, 0.9', () async {
       configuration.temperature = 6000;
-      configuration.tint = 0.9;
+      configuration.tint = 90;
 
       await expectFilteredSuccessfully(
         configuration,

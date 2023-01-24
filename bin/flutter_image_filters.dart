@@ -67,7 +67,7 @@ Future<void> main(List<String> arguments) async {
       targetFolder.createSync(recursive: true);
     }
     generateShader(shadersFolder, shaders, targetFolder);
-    await Process.run('flutter', [
+    final result = await Process.run('flutter', [
       'pub',
       'run',
       'shader',
@@ -76,6 +76,8 @@ Future<void> main(List<String> arguments) async {
       targetFolder.absolute.path,
       '--to-dart'
     ]);
+    stdout.write(result.stdout);
+    stderr.write(result.stderr);
   }
   if (arguments.firstOrNull == 'help' || arguments.isEmpty) {
     stdout.writeln('\nAvailable subcommands:');
@@ -222,6 +224,12 @@ void processShader(
 
     if (mainFound) {
       continue;
+    }
+
+    if (element.contains('luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);')) {
+      if (shaderConstants.contains(element)) {
+        continue;
+      }
     }
 
     shaderConstants.add(element);
