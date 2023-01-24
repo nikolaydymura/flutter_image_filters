@@ -26,11 +26,25 @@ void main() {
     test('8x8 0.5 intensity', () async {
       final configuration = SquareLookupTableShaderConfiguration();
       configuration.intensity = 0.5;
-      await configuration.setLutFile(File('demos/lookup_amatorka.png'));
+      final bytes = await File('demos/lookup_amatorka.png').readAsBytes();
+      await configuration.setLutImage(bytes);
       await expectFilteredSuccessfully(
         configuration,
         texture,
         '8x8_0.5.jpeg',
+      );
+    });
+    test('asset not found', () async {
+      final configuration = SquareLookupTableShaderConfiguration();
+      expect(
+        () => configuration.setLutAsset('demos/lookup_amatorka.png'),
+        throwsA(
+          isA<Exception>().having(
+            (p0) => p0.toString(),
+            'LUT from asset',
+            'Exception: Asset not found',
+          ),
+        ),
       );
     });
   });
@@ -44,6 +58,15 @@ void main() {
         configuration,
         texture,
         '8x64.jpeg',
+      );
+    });
+    test('8x64 0.5 intensity', () async {
+      final configuration = HALDLookupTableShaderConfiguration();
+      await configuration.setLutFile(File('demos/lookup_hald.png'));
+      await expectFilteredSuccessfully(
+        configuration,
+        texture,
+        '8x64_0.5.jpeg',
       );
     });
     test('asset not found', () async {

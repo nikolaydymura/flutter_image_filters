@@ -24,7 +24,7 @@ final image = await configuration.export(texture, texture.size);
 
 ### Pipeline export 
 
-In case you see performance issues, look on [how to generate and use bunch of filters](https://raw.githubusercontent.com/nikolaydymura/flutter_image_filters/main/GENERATE.md)
+In case you see performance issues, look on [how to generate and use bunch of filters](https://github.com/nikolaydymura/flutter_image_filters/blob/main/GENERATE.md)
 
 ```dart
 final texture = await TextureSource.fromAsset('demo.jpeg');
