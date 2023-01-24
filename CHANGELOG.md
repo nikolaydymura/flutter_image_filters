@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Added new BunchShaderConfiguration and generator binary
+
 ## 0.0.5
 
 - Added new PipelineImageShaderPreview and GroupShaderConfiguration
