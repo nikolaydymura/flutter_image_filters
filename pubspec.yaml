@@ -1,6 +1,6 @@
 name: flutter_image_filters
 description: Image filters based on OpenGL(SPIR-V) fragment shaders with useful preview widgets
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/nikolaydymura/flutter_image_filters
 repository: https://github.com/nikolaydymura/flutter_image_filters
 platforms:
@@ -10,7 +10,7 @@ platforms:
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
-  flutter: ">=2.10.0"
+  flutter: ">=2.10.0 <=3.3.10"
 
 dependencies:
   collection: ^1.16.0

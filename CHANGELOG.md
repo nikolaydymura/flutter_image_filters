@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Only before impeller support
+
 ## 0.0.6
 
 - Added new BunchShaderConfiguration and generator binary
