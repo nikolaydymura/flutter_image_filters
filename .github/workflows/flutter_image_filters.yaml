@@ -26,17 +26,11 @@ jobs:
       - name: Run tests
         run: flutter test --no-pub --coverage
 
-      - name: Format tests
-        run: | 
-          flutter pub global activate remove_from_coverage
-          remove_from_coverage -f coverage/lcov.info -r '\bshaders\b'
-
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v2
         with:
           path: coverage/lcov.info
           min_coverage: 80
-          exclude: 'shaders/'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1

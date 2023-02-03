@@ -29,24 +29,17 @@ const supported = [
 
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
-    String? glslRoot;
+    String glslRoot = '~/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.7/shaders';
     String? glslOutput;
     String? filters;
     for (int i = 0; i < arguments.length; i++) {
       final arg = arguments[i];
-      if (arg == '--glsl-root') {
-        glslRoot = arguments[i + 1];
-      }
       if (arg == '--glsl-output') {
         glslOutput = arguments[i + 1];
       }
       if (arg == '--filters') {
         filters = arguments[i + 1];
       }
-    }
-    if (glslRoot == null) {
-      stderr.writeln('Specify path to shader sources');
-      return;
     }
     final shadersFolder = Directory(glslRoot);
     if (!shadersFolder.existsSync()) {
@@ -67,17 +60,6 @@ Future<void> main(List<String> arguments) async {
       targetFolder.createSync(recursive: true);
     }
     generateShader(shadersFolder, shaders, targetFolder);
-    final result = await Process.run('flutter', [
-      'pub',
-      'run',
-      'shader',
-      '--use-remote',
-      '--path',
-      targetFolder.absolute.path,
-      '--to-dart'
-    ]);
-    stdout.write(result.stdout);
-    stderr.write(result.stderr);
   }
   if (arguments.firstOrNull == 'help' || arguments.isEmpty) {
     stdout.writeln('\nAvailable subcommands:');
@@ -109,7 +91,7 @@ void generateShader(
   Directory targetFolder,
 ) {
   List<String> finalShader = [
-    '#version 320 es',
+    '#include <flutter/runtime_effect.glsl>',
     'precision mediump float;',
     '\n',
     'layout(location = 0) out vec4 fragColor;'
@@ -119,7 +101,7 @@ void generateShader(
   List<String> shaderConstants = [];
   for (String shader in shaders) {
     processShader(
-      File('${sourcesFolder.absolute.path}/$shader.glsl'),
+      File('${sourcesFolder.absolute.path}/$shader.frag'),
       shaderInputs,
       processFunctions,
       shaderConstants,
@@ -139,7 +121,7 @@ void generateShader(
   finalShader.addAll(processFunctions);
   finalShader.add('\n');
   finalShader.add('void main(){');
-  finalShader.add('\tvec2 textureCoordinate = gl_FragCoord.xy / screenSize;');
+  finalShader.add('\tvec2 textureCoordinate = FlutterFragCoord().xy / screenSize;');
   finalShader.add(
     '\tvec4 textureColor = texture(inputImageTexture, textureCoordinate);',
   );
@@ -159,7 +141,7 @@ void generateShader(
   );
   finalShader.add('}');
   final outputFile =
-      File('${targetFolder.absolute.path}/${shaders.join('_')}.glsl');
+      File('${targetFolder.absolute.path}/${shaders.join('_')}.frag');
   outputFile.writeAsStringSync(
     finalShader.join('\n').replaceAll(RegExp('\n{3,}'), '\n\n'),
   );

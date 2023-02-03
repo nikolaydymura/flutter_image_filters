@@ -21,9 +21,6 @@ class ImageShaderPainter extends CustomPainter {
       aspectParameter.value = size;
       aspectParameter.update(_configuration);
     }
-    final floatUniforms = Float32List.fromList(
-      [..._configuration.numUniforms, size.width, size.height],
-    );
 
     final textures = [
       _texture,
@@ -32,12 +29,21 @@ class ImageShaderPainter extends CustomPainter {
           .map((e) => e.textureSource)
           .whereType<TextureSource>()
     ];
+
+    final shader = _fragmentProgram.fragmentShader();
+
+    textures.forEachIndexed((index, e) {
+      shader.setImageSampler(index, e.image);
+    });
+
+    [..._configuration.numUniforms, size.width, size.height]
+        .forEachIndexed((index, value) {
+      shader.setFloat(index, value);
+    });
+
     final paint = Paint()
       ..color = Colors.orangeAccent
-      ..shader = _fragmentProgram.shader(
-        floatUniforms: floatUniforms,
-        samplerUniforms: textures.map((e) => e.image).toList(),
-      );
+      ..shader = shader;
 
     /// Draw a rectangle with the shader-paint
     var vertices = Vertices(

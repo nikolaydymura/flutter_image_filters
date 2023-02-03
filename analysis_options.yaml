@@ -19,7 +19,6 @@ linter:
 
 analyzer:
   exclude:
-    - lib/src/shaders
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

@@ -1,7 +1,7 @@
 part of flutter_image_filters;
 
 class TextureSource {
-  final ImageShader image;
+  final Image image;
   final int width;
   final int height;
 
@@ -46,12 +46,7 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
   }) {
     return TextureSource._(
-      ImageShader(
-        image,
-        tmx,
-        tmy,
-        Matrix4.identity().storage,
-      ),
+      image,
       image.width,
       image.height,
     );

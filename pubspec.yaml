@@ -9,8 +9,8 @@ platforms:
   macos:
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
-  flutter: ">=2.10.0 <=3.3.10"
+  sdk: ">=2.19.0 <3.0.0"
+  flutter: ">=3.7.0"
 
 dependencies:
   collection: ^1.16.0
@@ -23,6 +23,40 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   image: ^3.2.2
-  shader: ^1.0.1
 
 flutter:
+  shaders:
+    - shaders/brightness.frag
+    - shaders/bulge_distortion.frag
+    - shaders/cga_colorspace.frag
+    - shaders/color_invert.frag
+    - shaders/color_matrix.frag
+    - shaders/contrast.frag
+    - shaders/crosshatch.frag
+    - shaders/exposure.frag
+    - shaders/false_color.frag
+    - shaders/gamma.frag
+    - shaders/glass_sphere.frag
+    - shaders/grayscale.frag
+    - shaders/hald_lookup.frag
+    - shaders/halftone.frag
+    - shaders/haze.frag
+    - shaders/highlight_shadow.frag
+    - shaders/hue.frag
+    - shaders/kuwahara.frag
+    - shaders/lookup.frag
+    - shaders/luminance.frag
+    - shaders/luminance_threshold.frag
+    - shaders/monochrome.frag
+    - shaders/none.frag
+    - shaders/opacity.frag
+    - shaders/pixelation.frag
+    - shaders/posterize.frag
+    - shaders/rgb.frag
+    - shaders/saturation.frag
+    - shaders/solarize.frag
+    - shaders/swirl.frag
+    - shaders/vibrance.frag
+    - shaders/vignette.frag
+    - shaders/white_balance.frag
+    - shaders/zoom_blur.frag
