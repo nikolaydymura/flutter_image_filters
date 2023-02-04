@@ -15,14 +15,22 @@ void main()
     highp vec2 samplingOffset = 1.0/100.0 * (inputBlurCenter - textureCoordinate) * inputBlurSize;
     
     lowp vec4 fragmentColor = texture(inputImageTexture, textureCoordinate) * 0.18;
-    fragmentColor += texture(inputImageTexture, textureCoordinate + samplingOffset) * 0.15;
-    fragmentColor += texture(inputImageTexture, textureCoordinate + (2.0 * samplingOffset)) *  0.12;
-    fragmentColor += texture(inputImageTexture, textureCoordinate + (3.0 * samplingOffset)) * 0.09;
-    fragmentColor += texture(inputImageTexture, textureCoordinate + (4.0 * samplingOffset)) * 0.05;
-    fragmentColor += texture(inputImageTexture, textureCoordinate - samplingOffset) * 0.15;
-    fragmentColor += texture(inputImageTexture, textureCoordinate - (2.0 * samplingOffset)) *  0.12;
-    fragmentColor += texture(inputImageTexture, textureCoordinate - (3.0 * samplingOffset)) * 0.09;
-    fragmentColor += texture(inputImageTexture, textureCoordinate - (4.0 * samplingOffset)) * 0.05;
+    vec2 texPos1 = textureCoordinate + samplingOffset;
+    fragmentColor += texture(inputImageTexture, texPos1) * 0.15;
+    vec2 texPos2 = textureCoordinate + (2.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos2) *  0.12;
+    vec2 texPos3 = textureCoordinate + (3.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos3) * 0.09;
+    vec2 texPos4 = textureCoordinate + (4.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos4) * 0.05;
+    vec2 texPos5 = textureCoordinate - samplingOffset;
+    fragmentColor += texture(inputImageTexture, texPos5) * 0.15;
+    vec2 texPos6 = textureCoordinate - (2.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos6) *  0.12;
+    vec2 texPos7 = textureCoordinate - (3.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos7) * 0.09;
+    vec2 texPos8 = textureCoordinate - (4.0 * samplingOffset);
+    fragmentColor += texture(inputImageTexture, texPos8) * 0.05;
     
     fragColor = fragmentColor;
 }

@@ -22,26 +22,26 @@ void main ()
     highp vec4 color = texture(inputImageTexture, textureCoordinate);
 
     // Convert to YIQ
-    highp float YPrime = dot (color, kRGBToYPrime);
-    highp float I = dot (color, kRGBToI);
-    highp float Q = dot (color, kRGBToQ);
+    highp float YPrime = dot(color, kRGBToYPrime);
+    highp float I = dot(color, kRGBToI);
+    highp float Q = dot(color, kRGBToQ);
 
     // Calculate the hue and chroma
-    highp float hue = atan (Q, I);
-    highp float chroma = sqrt (I * I + Q * Q);
+    highp float hue = atan(Q, I);
+    highp float chroma = sqrt(I * I + Q * Q);
 
     // Make the user's adjustments
-    hue += (-inputHueAdjust); //why negative rotation?
+    hue = hue -inputHueAdjust; //why negative rotation?
 
     // Convert back to YIQ
-    Q = chroma * sin (hue);
-    I = chroma * cos (hue);
+    Q = chroma * sin(hue);
+    I = chroma * cos(hue);
 
     // Convert back to RGB
     highp vec4 yIQ = vec4 (YPrime, I, Q, 0.0);
-    color.r = dot (yIQ, kYIQToR);
-    color.g = dot (yIQ, kYIQToG);
-    color.b = dot (yIQ, kYIQToB);
+    color.r = dot(yIQ, kYIQToR);
+    color.g = dot(yIQ, kYIQToG);
+    color.b = dot(yIQ, kYIQToB);
 
     // Save the result
     fragColor = color;
