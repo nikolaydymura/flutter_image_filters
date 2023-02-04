@@ -29,7 +29,8 @@ const supported = [
 
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
-    String glslRoot = '~/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.7/shaders';
+    String glslRoot =
+        '~/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.7/shaders';
     String? glslOutput;
     String? filters;
     for (int i = 0; i < arguments.length; i++) {
@@ -121,7 +122,8 @@ void generateShader(
   finalShader.addAll(processFunctions);
   finalShader.add('\n');
   finalShader.add('void main(){');
-  finalShader.add('\tvec2 textureCoordinate = FlutterFragCoord().xy / screenSize;');
+  finalShader
+      .add('\tvec2 textureCoordinate = FlutterFragCoord().xy / screenSize;');
   finalShader.add(
     '\tvec4 textureColor = texture(inputImageTexture, textureCoordinate);',
   );
