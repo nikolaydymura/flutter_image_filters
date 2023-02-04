@@ -1,6 +1,6 @@
 ## 0.0.7
 
-- Only before impeller support
+- Updated shaders to Flutter 3.7.0
 
 ## 0.0.6
 
