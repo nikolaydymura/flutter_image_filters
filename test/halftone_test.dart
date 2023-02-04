@@ -17,7 +17,7 @@ void main() {
   });
 
   group('HalftoneShaderConfiguration', () {
-    test('zoom_blur default', () async {
+    test('halftone default', () async {
       await expectFilteredSuccessfully(
         configuration,
         texture,

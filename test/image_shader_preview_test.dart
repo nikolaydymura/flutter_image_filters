@@ -36,27 +36,6 @@ void main() {
         matchesGoldenFile('goldens/Kuwahara-failed.png'),
       );
     });
-    testWidgets('Glass Sphere always fails', (tester) async {
-      final configuration = GlassSphereShaderConfiguration();
-      configuration.radius = 0.5;
-      configuration.refractiveIndex = 0.71;
-      configuration.center = const Point(0.7, 0.7);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ImageShaderPreview(
-              texture: texture,
-              configuration: configuration,
-            ),
-          ),
-        ),
-      );
-      await tester.pump(const Duration(milliseconds: 100));
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/GlassSphere-failed.png'),
-      );
-    });
     testWidgets('display error', (tester) async {
       final configuration = InvalidConfiguration();
       FlutterImageFilters.register<InvalidConfiguration>(

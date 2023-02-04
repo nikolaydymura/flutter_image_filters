@@ -235,6 +235,7 @@ await output.writeAsBytes(data);
  | :white_check_mark: | Exposure            |
  | :white_check_mark: | False Color         |
  | :white_check_mark: | Gamma               |
+ | :white_check_mark: | Glass Sphere        |
  | :white_check_mark: | Grayscale           |
  | :white_check_mark: | Halftone            |
  | :white_check_mark: | Haze                |

@@ -32,17 +32,16 @@ class ImageShaderPainter extends CustomPainter {
 
     final shader = _fragmentProgram.fragmentShader();
 
-    textures.forEachIndexed((index, e) {
-      shader.setImageSampler(index, e.image);
-    });
-
     [..._configuration.numUniforms, size.width, size.height]
         .forEachIndexed((index, value) {
       shader.setFloat(index, value);
     });
 
+    textures.forEachIndexed((index, e) {
+      shader.setImageSampler(index, e.image);
+    });
+
     final paint = Paint()
-      ..color = Colors.orangeAccent
       ..shader = shader;
 
     /// Draw a rectangle with the shader-paint

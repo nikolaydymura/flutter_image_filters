@@ -19,9 +19,9 @@ class _ColorParameter extends ColorParameter {
       }
     } else {
       final color = value;
-      configuration._floats[_offset] = color.red / 255.0;
-      configuration._floats[_offset + 1] = color.green / 255.0;
-      configuration._floats[_offset + 2] = color.blue / 255.0;
+      configuration._floats[_offset] = color.red / 255.0 * color.opacity;
+      configuration._floats[_offset + 1] = color.green / 255.0 * color.opacity;
+      configuration._floats[_offset + 2] = color.blue / 255.0 * color.opacity;
     }
   }
 }

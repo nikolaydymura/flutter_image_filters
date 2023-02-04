@@ -72,7 +72,7 @@ class FlutterImageFilters {
     'Exposure': () => ExposureShaderConfiguration(),
     'False Color': () => FalseColorShaderConfiguration(),
     'Gamma': () => GammaShaderConfiguration(),
-    //TODO: 'Glass Sphere': () => GlassSphereShaderConfiguration(),
+    'Glass Sphere': () => GlassSphereShaderConfiguration(),
     'Grayscale': () => GrayscaleShaderConfiguration(),
     'Halftone': () => HalftoneShaderConfiguration(),
     'Haze': () => HazeShaderConfiguration(),
