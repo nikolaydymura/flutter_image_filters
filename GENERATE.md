@@ -6,7 +6,7 @@
 flutter pub run flutter_image_filters
 ```
 
-### 2. Find filters you need and generate and compile new shader
+### 2. Find filters you need and generate new shader
 
 ```shell
 flutter pub run flutter_image_filters generate --filters brightness,contrast

@@ -41,8 +41,7 @@ class ImageShaderPainter extends CustomPainter {
       shader.setImageSampler(index, e.image);
     });
 
-    final paint = Paint()
-      ..shader = shader;
+    final paint = Paint()..shader = shader;
 
     /// Draw a rectangle with the shader-paint
     var vertices = Vertices(
