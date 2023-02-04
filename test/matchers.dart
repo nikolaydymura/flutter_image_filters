@@ -30,8 +30,8 @@ Future<void> expectFilteredSuccessfully(
   try {
     await expectLater(data, bufferMatchesGoldenFile(output.absolute.path));
   } on FlutterError catch (e) {
-    final diffTolerance =
-        '$e'.contains(RegExp(r'Pixel test failed, [01]\.[0-9]+% diff detected'));
+    final diffTolerance = '$e'
+        .contains(RegExp(r'Pixel test failed, [01]\.[0-9]+% diff detected'));
     if (diffTolerance) {
       debugPrint(e.message);
     } else {
