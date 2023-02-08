@@ -18,12 +18,16 @@ class _ColorParameter extends ColorParameter {
         update(conf);
       }
     } else {
-      final color = value;
-      configuration._floats[_offset] = color.red / 255.0 * color.opacity;
-      configuration._floats[_offset + 1] = color.green / 255.0 * color.opacity;
-      configuration._floats[_offset + 2] = color.blue / 255.0 * color.opacity;
+      configuration._floats.setAll(_offset, values);
     }
   }
+
+  @override
+  List<double> get values => [
+        value.red / 255.0 * value.opacity,
+        value.green / 255.0 * value.opacity,
+        value.blue / 255.0 * value.opacity
+      ];
 }
 
 class _NumberParameter extends NumberParameter {
@@ -44,7 +48,7 @@ class _NumberParameter extends NumberParameter {
         update(conf);
       }
     } else {
-      configuration._floats[_offset] = value.toDouble();
+      configuration._floats[_offset] = floatValue;
     }
   }
 }
@@ -69,7 +73,7 @@ class _RangeNumberParameter extends RangeNumberParameter {
         update(conf);
       }
     } else {
-      configuration._floats[_offset] = value.toDouble();
+      configuration._floats[_offset] = floatValue;
     }
   }
 }
@@ -92,14 +96,12 @@ class _PointParameter extends PointParameter {
         update(conf);
       }
     } else {
-      final point = value;
-      configuration._floats[_offset] = point.x;
-      configuration._floats[_offset + 1] = point.y;
+      configuration._floats.setAll(_offset, values);
     }
   }
 }
 
-class _Matrix4Parameter extends Matrix4Parameter {
+class _Matrix4Parameter extends Mat4Parameter {
   final int _offset;
 
   _Matrix4Parameter(
@@ -140,7 +142,7 @@ class _AspectRatioParameter extends AspectRatioParameter {
         update(conf);
       }
     } else {
-      configuration._floats[_offset] = value.width / value.height;
+      configuration._floats[_offset] = floatValue;
     }
   }
 }
@@ -161,7 +163,7 @@ class _IntParameter extends _NumberParameter {
         update(conf);
       }
     } else {
-      configuration._floats[_offset] = value.toInt().toDouble();
+      configuration._floats[_offset] = intValue.toDouble();
     }
   }
 }

@@ -33,7 +33,7 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.7/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.8/shaders';
     String? glslOutput;
     String? filters;
     for (int i = 0; i < arguments.length; i++) {

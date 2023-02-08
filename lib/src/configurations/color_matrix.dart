@@ -1,7 +1,7 @@
 part of flutter_image_filters;
 
 class ColorMatrixShaderConfiguration extends ShaderConfiguration {
-  final Matrix4Parameter _colorMatrix;
+  final Mat4Parameter _colorMatrix;
   final NumberParameter _intensity;
 
   ColorMatrixShaderConfiguration()

@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Updated parameters
+
 ## 0.0.7
 
 - Updated shaders to Flutter 3.7.0
