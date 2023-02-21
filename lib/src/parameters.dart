@@ -119,7 +119,7 @@ class _Matrix4Parameter extends Mat4Parameter {
         update(conf);
       }
     } else {
-      configuration._floats.setAll(_offset, value.storage);
+      configuration._floats.setAll(_offset, values);
     }
   }
 }

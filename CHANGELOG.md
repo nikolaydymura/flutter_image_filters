@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Added `prepare()`
+
 ## 0.0.8
 
 - Updated parameters

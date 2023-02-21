@@ -14,7 +14,7 @@ class ImageShaderPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cachedProgram = configuration._cachedProgram;
+    final cachedProgram = configuration._internalProgram;
     if (cachedProgram != null) {
       return SizedBox.expand(
         child: CustomPaint(
@@ -27,15 +27,15 @@ class ImageShaderPreview extends StatelessWidget {
         ),
       );
     }
-    return FutureBuilder<FragmentProgram?>(
-      future: configuration._loadProgram,
+    return FutureBuilder<void>(
+      future: Future.value(configuration.prepare()),
       builder: ((context, snapshot) {
         if (snapshot.hasError && kDebugMode) {
           return SingleChildScrollView(
             child: Text(snapshot.error.toString()),
           );
         }
-        final shaderProgram = snapshot.data;
+        final shaderProgram = configuration._internalProgram;
         if (shaderProgram == null) {
           return const CircularProgressIndicator();
         }

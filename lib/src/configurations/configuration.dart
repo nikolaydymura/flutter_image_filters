@@ -2,15 +2,21 @@ part of flutter_image_filters;
 
 abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;
-  FragmentProgram? _cachedProgram;
+  FragmentProgram? _internalProgram;
 
   ShaderConfiguration(this._floats);
 
+
+  @override
+  FutureOr<void> prepare() async {
+    _internalProgram ??= await _fragmentPrograms[runtimeType]?.call();
+  }
+
+  @override
+  bool get ready => _internalProgram != null;
+
   /// Returns all shader uniforms. Order of items in array must be as listed in fragment shader code
   Iterable<double> get numUniforms => _floats;
-
-  Future<FragmentProgram?> get _loadProgram async =>
-      (_cachedProgram ??= await _fragmentPrograms[runtimeType]?.call());
 
   Future<Image> export(
     TextureSource texture,
@@ -23,7 +29,10 @@ abstract class ShaderConfiguration extends FilterConfiguration {
 // coverage:ignore-end
     PictureRecorder recorder = PictureRecorder();
     Canvas canvas = Canvas(recorder);
-    final fragmentProgram = await _loadProgram;
+    if (!ready) {
+      await prepare();
+    }
+    final fragmentProgram = _internalProgram;
     if (fragmentProgram == null) {
       throw UnsupportedError('Invalid shader for $runtimeType');
     }
@@ -49,10 +58,10 @@ class GroupShaderConfiguration extends ShaderConfiguration {
   GroupShaderConfiguration() : super(<double>[]);
 
   @override
-  FragmentProgram? get _cachedProgram => _configuration._cachedProgram;
+  FragmentProgram? get _internalProgram => _configuration._internalProgram;
 
   @override
-  Future<FragmentProgram?> get _loadProgram => _configuration._loadProgram;
+  FutureOr<void> prepare() => _configuration.prepare();
 
   void add(ShaderConfiguration configuration) {
     _configurations.add(configuration);
