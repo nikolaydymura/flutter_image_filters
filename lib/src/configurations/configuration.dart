@@ -6,11 +6,19 @@ abstract class ShaderConfiguration extends FilterConfiguration {
 
   ShaderConfiguration(this._floats);
 
-
   @override
   FutureOr<void> prepare() async {
     _internalProgram ??= await _fragmentPrograms[runtimeType]?.call();
   }
+
+  @override
+  FutureOr<void> dispose() {
+    _internalProgram?.fragmentShader().dispose();
+    _internalProgram = null;
+  }
+
+  @override
+  FutureOr<void> update() {}
 
   @override
   bool get ready => _internalProgram != null;
@@ -62,6 +70,12 @@ class GroupShaderConfiguration extends ShaderConfiguration {
 
   @override
   FutureOr<void> prepare() => _configuration.prepare();
+
+  @override
+  FutureOr<void> update() => _configuration.update();
+
+  @override
+  FutureOr<void> dispose() => _configuration.dispose();
 
   void add(ShaderConfiguration configuration) {
     _configurations.add(configuration);

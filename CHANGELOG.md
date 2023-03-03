@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Added `dispose()`
+
 ## 0.0.9
 
 - Added `prepare()`
