@@ -1,3 +1,7 @@
+## 0.0.11
+
+- Fixed `BunchShaderConfiguration` for lookups
+
 ## 0.0.10
 
 - Added `dispose()`

@@ -141,6 +141,9 @@ class BunchShaderConfiguration extends ShaderConfiguration {
   T configuration<T extends ShaderConfiguration>({required int at}) =>
       _configurations[at] as T;
 
+  Iterable<T> configurations<T extends ShaderConfiguration>() =>
+      _configurations.whereType<T>();
+
   @override
   List<ConfigurationParameter> get parameters =>
       _configurations.map((e) => e.parameters).expand((e) => e).toList();

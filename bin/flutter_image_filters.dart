@@ -33,7 +33,7 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.10/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.11/shaders';
     String? glslOutput;
     String? filters;
     for (int i = 0; i < arguments.length; i++) {
@@ -100,7 +100,7 @@ void generateShader(
     '\n',
     'layout(location = 0) out vec4 fragColor;'
   ];
-  List<String> shaderInputs = [];
+  List<String> shaderInputs = ['layout(location = 0) uniform sampler2D inputImageTexture;'];
   List<String> processFunctions = [];
   List<String> shaderConstants = [];
   for (String shader in shaders) {
@@ -113,9 +113,6 @@ void generateShader(
   }
   shaderInputs.add(
     'layout(location = ${shaderInputs.length}) uniform vec2 screenSize;',
-  );
-  shaderInputs.add(
-    'layout(location = ${shaderInputs.length}) uniform sampler2D inputImageTexture;',
   );
 
   finalShader.addAll(shaderInputs);
