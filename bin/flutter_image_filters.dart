@@ -100,7 +100,9 @@ void generateShader(
     '\n',
     'layout(location = 0) out vec4 fragColor;'
   ];
-  List<String> shaderInputs = ['layout(location = 0) uniform sampler2D inputImageTexture;'];
+  List<String> shaderInputs = [
+    'layout(location = 0) uniform sampler2D inputImageTexture;'
+  ];
   List<String> processFunctions = [];
   List<String> shaderConstants = [];
   for (String shader in shaders) {
