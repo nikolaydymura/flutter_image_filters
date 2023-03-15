@@ -19,7 +19,7 @@ vec2 computeSliceOffset(float slice, vec2 sliceSize) {
 }
 
 vec4 sampleAs3DTexture(vec3 textureColor) {
-  float slice = textureColor.z * (cubeSize - 1.0);
+  float slice = textureColor.b * 511.0;
   float zOffset = fract(slice);                         // dist between slices
 
   vec2 slice0Offset = computeSliceOffset(floor(slice), sliceSize);

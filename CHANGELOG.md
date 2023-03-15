@@ -1,3 +1,7 @@
+## 0.0.12
+
+- Fixed `hald_lookup.frag` and `brightness.frag` for PNG images
+
 ## 0.0.11
 
 - Fixed `BunchShaderConfiguration` for lookups
