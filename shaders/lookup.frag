@@ -34,7 +34,7 @@ vec4 lookupFrom2DTexture(vec3 textureColor) {
 }
 
 vec4 processColor(vec4 sourceColor){
-   vec4 newColor = lookupFrom2DTexture(sourceColor.rgb);
+   vec4 newColor = lookupFrom2DTexture(clamp(sourceColor.rgb, 0.0, 1.0));
    return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensityL);
 }
 

@@ -1,3 +1,7 @@
+## 0.0.13
+
+- Added clamp to `hald_lookup.frag` and `lookup.frag`
+
 ## 0.0.12
 
 - Fixed `hald_lookup.frag` and `brightness.frag` for PNG images
