@@ -88,7 +88,7 @@ class CustomBrightnessConfiguration extends ShaderConfiguration {
   final NumberParameter _brightness;
 
   CustomBrightnessConfiguration()
-      : _brightness = SahderRangeNumberParameter(
+      : _brightness = ShaderRangeNumberParameter(
     'inputBrightness', // uniform name
     'brightness', // display name
     0.0,

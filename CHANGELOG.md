@@ -1,3 +1,7 @@
+## 0.0.14
+
+- Opened parameters for custom configurations
+
 ## 0.0.13
 
 - Added clamp to `hald_lookup.frag` and `lookup.frag`
