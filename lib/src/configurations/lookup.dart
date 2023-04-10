@@ -5,7 +5,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
   final DataParameter _cubeData;
 
   SquareLookupTableShaderConfiguration()
-      : _intensity = _RangeNumberParameter(
+      : _intensity = ShaderRangeNumberParameter(
           'inputIntensity',
           'intensity',
           1.0,
@@ -13,7 +13,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
           min: 0,
           max: 1,
         ),
-        _cubeData = TextureParameter('inputTextureCubeData', 'LUT'),
+        _cubeData = ShaderTextureParameter('inputTextureCubeData', 'LUT'),
         super([1.0]);
 
   Future<void> setLutImage(Uint8List value) async {
@@ -51,7 +51,7 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
   final DataParameter _cubeData;
 
   HALDLookupTableShaderConfiguration()
-      : _intensity = _RangeNumberParameter(
+      : _intensity = ShaderRangeNumberParameter(
           'inputIntensity',
           'intensity',
           1.0,
@@ -59,7 +59,7 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
           min: 0,
           max: 1,
         ),
-        _cubeData = TextureParameter('inputTextureCubeData', 'HALD LUT'),
+        _cubeData = ShaderTextureParameter('inputTextureCubeData', 'HALD LUT'),
         super([1.0]);
 
   Future<void> setLutImage(Uint8List value) async {

@@ -118,3 +118,27 @@ class FlutterImageFilters {
     }
   }
 }
+
+class CustomBrightnessConfiguration extends ShaderConfiguration {
+  final NumberParameter _brightness;
+
+  CustomBrightnessConfiguration()
+      : _brightness = ShaderRangeNumberParameter(
+          'inputBrightness', // uniform name
+          'brightness', // display name
+          0.0,
+          0, // default value
+          min: -1.0, // minimum value
+          max: 1.0, // maximum value
+        ),
+        super([0.0]); // default values
+
+  // custom setter (optional)
+  set brightness(double value) {
+    _brightness.value = value;
+  }
+
+  // enlist all parameters
+  @override
+  List<ConfigurationParameter> get parameters => [_brightness];
+}

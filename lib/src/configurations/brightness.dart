@@ -5,7 +5,7 @@ class BrightnessShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _brightness;
 
   BrightnessShaderConfiguration()
-      : _brightness = _RangeNumberParameter(
+      : _brightness = ShaderRangeNumberParameter(
           'inputBrightness',
           'brightness',
           0.0,

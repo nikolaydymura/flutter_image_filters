@@ -4,7 +4,7 @@ class GammaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _gamma;
 
   GammaShaderConfiguration()
-      : _gamma = _RangeNumberParameter(
+      : _gamma = ShaderRangeNumberParameter(
           'inputGamma',
           'gamma',
           1.2,

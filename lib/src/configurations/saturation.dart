@@ -4,7 +4,7 @@ class SaturationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _saturation;
 
   SaturationShaderConfiguration()
-      : _saturation = _RangeNumberParameter(
+      : _saturation = ShaderRangeNumberParameter(
           'inputSaturation',
           'saturation',
           1.0,

@@ -1,9 +1,9 @@
 part of flutter_image_filters;
 
-class _ColorParameter extends ColorParameter {
+class ShaderColorParameter extends ColorParameter {
   final int _offset;
 
-  _ColorParameter(
+  ShaderColorParameter(
     super.shaderName,
     super.displayName,
     super.value,
@@ -30,10 +30,10 @@ class _ColorParameter extends ColorParameter {
       ];
 }
 
-class _NumberParameter extends NumberParameter {
+class ShaderNumberParameter extends NumberParameter {
   final int _offset;
 
-  _NumberParameter(
+  ShaderNumberParameter(
     super.shaderName,
     super.displayName,
     super.value,
@@ -53,10 +53,10 @@ class _NumberParameter extends NumberParameter {
   }
 }
 
-class _RangeNumberParameter extends RangeNumberParameter {
+class ShaderRangeNumberParameter extends RangeNumberParameter {
   final int _offset;
 
-  _RangeNumberParameter(
+  ShaderRangeNumberParameter(
     super.shaderName,
     super.displayName,
     super.value,
@@ -78,10 +78,10 @@ class _RangeNumberParameter extends RangeNumberParameter {
   }
 }
 
-class _PointParameter extends PointParameter {
+class ShaderPointParameter extends PointParameter {
   final int _offset;
 
-  _PointParameter(
+  ShaderPointParameter(
     super.name,
     super.displayName,
     super.value,
@@ -101,10 +101,10 @@ class _PointParameter extends PointParameter {
   }
 }
 
-class _Matrix4Parameter extends Mat4Parameter {
+class ShaderMatrix4Parameter extends Mat4Parameter {
   final int _offset;
 
-  _Matrix4Parameter(
+  ShaderMatrix4Parameter(
     super.name,
     super.displayName,
     super.value,
@@ -147,8 +147,8 @@ class _AspectRatioParameter extends AspectRatioParameter {
   }
 }
 
-class _IntParameter extends _NumberParameter {
-  _IntParameter(
+class ShaderIntParameter extends ShaderNumberParameter {
+  ShaderIntParameter(
     super.shaderName,
     super.displayName,
     super.value,
@@ -168,10 +168,10 @@ class _IntParameter extends _NumberParameter {
   }
 }
 
-class TextureParameter extends DataParameter {
+class ShaderTextureParameter extends DataParameter {
   TextureSource? textureSource;
 
-  TextureParameter(super.name, super.displayName);
+  ShaderTextureParameter(super.name, super.displayName);
 
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) async {

@@ -5,7 +5,7 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
   final ColorParameter _color;
 
   MonochromeShaderConfiguration()
-      : _intensity = _RangeNumberParameter(
+      : _intensity = ShaderRangeNumberParameter(
           'inputIntensity',
           'intensity',
           1.0,
@@ -13,7 +13,7 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
           min: 0.0,
           max: 1.0,
         ),
-        _color = _ColorParameter(
+        _color = ShaderColorParameter(
           'inputColor',
           'color',
           Color.fromRGBO(

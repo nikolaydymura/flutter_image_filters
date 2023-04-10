@@ -51,7 +51,7 @@ class RGBShaderConfiguration extends ShaderConfiguration {
   List<ConfigurationParameter> get parameters => [_red, _green, _blue];
 }
 
-class _ColorIntensityParameter extends _RangeNumberParameter {
+class _ColorIntensityParameter extends ShaderRangeNumberParameter {
   _ColorIntensityParameter(
     super.shaderName,
     super.displayName,

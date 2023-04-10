@@ -5,13 +5,13 @@ class FalseColorShaderConfiguration extends ShaderConfiguration {
   final ColorParameter _secondColor;
 
   FalseColorShaderConfiguration()
-      : _firstColor = _ColorParameter(
+      : _firstColor = ShaderColorParameter(
           'inputFirstColor',
           'firstColor',
           Color.fromRGBO(0, 0, (0.5 * 255).toInt(), 1.0),
           0,
         ),
-        _secondColor = _ColorParameter(
+        _secondColor = ShaderColorParameter(
           'inputSecondColor',
           'secondColor',
           const Color.fromRGBO(255, 0, 0, 1.0),

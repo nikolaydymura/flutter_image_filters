@@ -25,7 +25,7 @@ class ImageShaderPainter extends CustomPainter {
     final textures = [
       _texture,
       ..._configuration.parameters
-          .whereType<TextureParameter>()
+          .whereType<ShaderTextureParameter>()
           .map((e) => e.textureSource)
           .whereType<TextureSource>()
     ];

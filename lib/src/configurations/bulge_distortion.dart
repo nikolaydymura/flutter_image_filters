@@ -13,13 +13,13 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
           const Size(1, 1),
           0,
         ),
-        _center = _PointParameter(
+        _center = ShaderPointParameter(
           'inputCenter',
           'center',
           const Point<double>(0.5, 0.5),
           1,
         ),
-        _radius = _RangeNumberParameter(
+        _radius = ShaderRangeNumberParameter(
           'inputRadius',
           'radius',
           0.25,
@@ -27,7 +27,7 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
           min: .0,
           max: 1.0,
         ),
-        _scale = _RangeNumberParameter(
+        _scale = ShaderRangeNumberParameter(
           'inputScale',
           'scale',
           0.5,

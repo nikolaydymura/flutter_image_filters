@@ -5,7 +5,7 @@ class HighlightShadowShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _highlights;
 
   HighlightShadowShaderConfiguration()
-      : _shadows = _RangeNumberParameter(
+      : _shadows = ShaderRangeNumberParameter(
           'inputShadows',
           'shadows',
           0.0,
@@ -13,7 +13,7 @@ class HighlightShadowShaderConfiguration extends ShaderConfiguration {
           min: 0.0,
           max: 1.0,
         ),
-        _highlights = _RangeNumberParameter(
+        _highlights = ShaderRangeNumberParameter(
           'inputHighlights',
           'highlights',
           1.0,

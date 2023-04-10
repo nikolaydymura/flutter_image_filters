@@ -4,7 +4,7 @@ class OpacityShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _opacity;
 
   OpacityShaderConfiguration()
-      : _opacity = _RangeNumberParameter(
+      : _opacity = ShaderRangeNumberParameter(
           'inputOpacity',
           'opacity',
           1.0,

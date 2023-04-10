@@ -2,7 +2,7 @@ part of flutter_image_filters;
 
 class HueShaderConfiguration extends ShaderConfiguration {
   HueShaderConfiguration()
-      : _hueAdjust = _RangeNumberParameter(
+      : _hueAdjust = ShaderRangeNumberParameter(
           'inputHueAdjust',
           'hueAdjust',
           90.0,

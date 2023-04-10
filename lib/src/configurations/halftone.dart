@@ -4,7 +4,7 @@ class HalftoneShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _fractionalWidthOfPixel;
 
   HalftoneShaderConfiguration()
-      : _fractionalWidthOfPixel = _NumberParameter(
+      : _fractionalWidthOfPixel = ShaderNumberParameter(
           'inputFractionalWidthOfPixel',
           'fractionalWidthOfPixel',
           0.01,

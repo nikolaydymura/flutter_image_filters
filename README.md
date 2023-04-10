@@ -13,6 +13,10 @@ A flutter package for iOS and Android for applying OpenGL filters to image.
 
 ## Usage
 
+### [How to generate and use a bunch of filters](https://github.com/nikolaydymura/flutter_image_filters/blob/main/GENERATE.md)
+
+### [How to add custom filters](https://github.com/nikolaydymura/flutter_image_filters/blob/main/CUSTOM.md)
+
 ### Export processed image
 
 ```dart

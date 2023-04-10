@@ -4,7 +4,7 @@ class ExposureShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _exposure;
 
   ExposureShaderConfiguration()
-      : _exposure = _RangeNumberParameter(
+      : _exposure = ShaderRangeNumberParameter(
           'inputExposure',
           'exposure',
           1.0,

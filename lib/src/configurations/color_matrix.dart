@@ -5,13 +5,13 @@ class ColorMatrixShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _intensity;
 
   ColorMatrixShaderConfiguration()
-      : _colorMatrix = _Matrix4Parameter(
+      : _colorMatrix = ShaderMatrix4Parameter(
           'inputColorMatrix',
           'colorMatrix',
           Matrix4.identity(),
           0,
         ),
-        _intensity = _NumberParameter(
+        _intensity = ShaderNumberParameter(
           'inputIntensity',
           'intensity',
           1.0,

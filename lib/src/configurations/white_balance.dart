@@ -33,7 +33,7 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
   List<ConfigurationParameter> get parameters => [_temperature, _tint];
 }
 
-class _TemperatureParameter extends _NumberParameter {
+class _TemperatureParameter extends ShaderNumberParameter {
   _TemperatureParameter(
     super.name,
     super.displayName,
@@ -50,7 +50,7 @@ class _TemperatureParameter extends _NumberParameter {
   }
 }
 
-class _TintParameter extends _NumberParameter {
+class _TintParameter extends ShaderNumberParameter {
   _TintParameter(
     super.shaderName,
     super.displayName,

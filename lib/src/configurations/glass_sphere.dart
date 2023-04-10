@@ -7,13 +7,13 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _refractiveIndex;
 
   GlassSphereShaderConfiguration()
-      : _center = _PointParameter(
+      : _center = ShaderPointParameter(
           'inputCenter',
           'center',
           const Point<double>(0.5, 0.5),
           0,
         ),
-        _radius = _NumberParameter(
+        _radius = ShaderNumberParameter(
           'inputRadius',
           'radius',
           0.25,
@@ -25,7 +25,7 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
           const Size(1, 1),
           3,
         ),
-        _refractiveIndex = _NumberParameter(
+        _refractiveIndex = ShaderNumberParameter(
           'inputRefractiveIndex',
           'refractiveIndex',
           0.71,
