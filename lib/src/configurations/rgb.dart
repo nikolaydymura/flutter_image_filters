@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes RGB manipulations
 class RGBShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _red;
   final NumberParameter _green;
@@ -32,16 +33,25 @@ class RGBShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.0, 1.0, 1.0]);
 
+  /// Updates the [red] value.
+  ///
+  /// The [value] must be in 0.0 and 255.0 range.
   set red(double value) {
     _red.value = value;
     _red.update(this);
   }
 
+  /// Updates the [green] value.
+  ///
+  /// The [value] must be in 0.0 and 255.0 range.
   set green(double value) {
     _green.value = value;
     _green.update(this);
   }
 
+  /// Updates the [blue] value.
+  ///
+  /// The [value] must be in 0.0 and 255.0 range.
   set blue(double value) {
     _blue.value = value;
     _blue.update(this);

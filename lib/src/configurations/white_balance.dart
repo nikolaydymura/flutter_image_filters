@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes white balance manipulations
 class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _temperature;
   final NumberParameter _tint;
@@ -19,11 +20,13 @@ class WhiteBalanceShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.0, 0.0]);
 
+  /// Updates the [temperature] value.
   set temperature(double value) {
     _temperature.value = value;
     _temperature.update(this);
   }
 
+  /// Updates the [tint] value.
   set tint(double value) {
     _tint.value = value;
     _tint.update(this);

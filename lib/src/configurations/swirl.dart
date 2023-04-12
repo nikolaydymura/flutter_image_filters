@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes swirl manipulations
 class SwirlShaderConfiguration extends ShaderConfiguration {
   final PointParameter _center;
   final NumberParameter _radius;
@@ -30,16 +31,23 @@ class SwirlShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.5, 0.5, 0.5, 1.0]);
 
+  /// Updates the [center] value.
   set center(Point<double> value) {
     _center.value = value;
     _center.update(this);
   }
 
+  /// Updates the [radius] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set radius(double value) {
     _radius.value = value;
     _radius.update(this);
   }
 
+  /// Updates the [angle] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set angle(double value) {
     _angle.value = value;
     _angle.update(this);
