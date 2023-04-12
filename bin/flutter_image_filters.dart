@@ -33,13 +33,18 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.14/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.15/shaders';
+
+    String? glslCustomRoot;
     String? glslOutput;
     String? filters;
     for (int i = 0; i < arguments.length; i++) {
       final arg = arguments[i];
       if (arg == '--glsl-output') {
         glslOutput = arguments[i + 1];
+      }
+      if (arg == '--glsl-root') {
+        glslCustomRoot = arguments[i + 1];
       }
       if (arg == '--filters') {
         filters = arguments[i + 1];
@@ -63,7 +68,7 @@ Future<void> main(List<String> arguments) async {
     if (!targetFolder.existsSync()) {
       targetFolder.createSync(recursive: true);
     }
-    generateShader(shadersFolder, shaders, targetFolder);
+    generateShader(shadersFolder, shaders, targetFolder, glslCustomRoot);
   }
   if (arguments.firstOrNull == 'help' || arguments.isEmpty) {
     stdout.writeln('\nAvailable subcommands:');
@@ -93,6 +98,7 @@ void generateShader(
   Directory sourcesFolder,
   List<String> shaders,
   Directory targetFolder,
+  String? customSourcesFolder,
 ) {
   List<String> finalShader = [
     '#include <flutter/runtime_effect.glsl>',
@@ -106,12 +112,22 @@ void generateShader(
   List<String> processFunctions = [];
   List<String> shaderConstants = [];
   for (String shader in shaders) {
-    processShader(
-      File('${sourcesFolder.absolute.path}/$shader.frag'),
-      shaderInputs,
-      processFunctions,
-      shaderConstants,
-    );
+    final shaderFile = File('${sourcesFolder.absolute.path}/$shader.frag');
+    if (shaderFile.existsSync()) {
+      processShader(
+        shaderFile,
+        shaderInputs,
+        processFunctions,
+        shaderConstants,
+      );
+    } else if (customSourcesFolder != null) {
+      processShader(
+        File('${Directory(customSourcesFolder).absolute.path}/$shader.frag'),
+        shaderInputs,
+        processFunctions,
+        shaderConstants,
+      );
+    }
   }
   shaderInputs.add(
     'layout(location = ${shaderInputs.length}) uniform vec2 screenSize;',

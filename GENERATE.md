@@ -12,6 +12,11 @@ flutter pub run flutter_image_filters
 flutter pub run flutter_image_filters generate --filters brightness,contrast
 ```
 
+#### 2.1 Generate shader mixing custom filters
+```shell
+flutter pub run flutter_image_filters generate --filters brightness,contrast --glsl-root <path_to_custom_shader_sources>
+```
+
 ### 3. Add new shader file to list of shaders in `pubspec.yaml`
 ```yaml
 # The following section is specific to Flutter packages.

@@ -1,3 +1,7 @@
+## 0.0.15
+
+- Added custom configurations to generation process
+
 ## 0.0.14
 
 - Opened parameters for custom configurations
