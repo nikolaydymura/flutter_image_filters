@@ -58,7 +58,7 @@ class TextureSource {
     TileMode tmy,
   ) async {
     final codec =
-        await PaintingBinding.instance.instantiateImageCodecFromBuffer(buffer);
+        await PaintingBinding.instance.instantiateImageCodecWithSize(buffer);
     final frameInfo = await codec.getNextFrame();
 
     return fromImage(frameInfo.image, tmx: tmx, tmy: tmy);
