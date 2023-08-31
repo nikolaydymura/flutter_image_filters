@@ -3,10 +3,10 @@ precision mediump float;
 
 layout(location = 0) uniform lowp float inputIntensity;
 layout(location = 1) uniform vec2 screenSize;
-layout(location = 2) uniform lowp sampler2D inputImageTexture;
-layout(location = 3) uniform mediump sampler2D inputTextureCubeData;
+uniform lowp sampler2D inputImageTexture;
+uniform mediump sampler2D inputTextureCubeData;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 const float cubeSize = 8.0;
 const float cubeRows = 64.0;

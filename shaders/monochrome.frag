@@ -2,12 +2,13 @@
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 layout(location = 0) uniform float inputIntensityM;
 layout(location = 1) uniform vec3 inputColor;
-layout(location = 3) uniform vec2 screenSize;
-layout(location = 2) uniform sampler2D inputImageTexture;
+layout(location = 2) uniform vec2 screenSize;
+
+uniform sampler2D inputImageTexture;
 
 const mediump vec3 luminanceWeighting = vec3(0.2125, 0.7154, 0.0721);
 

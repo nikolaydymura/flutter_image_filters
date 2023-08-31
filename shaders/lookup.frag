@@ -3,10 +3,10 @@ precision mediump float;
 
 layout(location = 0) uniform lowp float inputIntensityL;
 layout(location = 1) uniform vec2 screenSize;
-layout(location = 2) uniform lowp sampler2D inputImageTexture;
-layout(location = 3) uniform mediump sampler2D inputTextureCubeDataL;
+uniform lowp sampler2D inputImageTexture;
+uniform mediump sampler2D inputTextureCubeDataL;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 vec4 lookupFrom2DTexture(vec3 textureColor) {
     float blueColor = textureColor.b * 63.0;

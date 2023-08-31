@@ -2,9 +2,9 @@
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
-layout(location = 4) uniform sampler2D inputImageTexture;
+uniform sampler2D inputImageTexture;
 
 layout(location = 0) uniform highp vec2 inputCenter;
 layout(location = 1) uniform highp float inputRadius;

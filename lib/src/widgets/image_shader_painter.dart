@@ -65,9 +65,9 @@ class ImageShaderPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     if (oldDelegate is ImageShaderPainter &&
-        oldDelegate._configuration == _configuration) {
-      return false;
+        oldDelegate._configuration != _configuration) {
+      return true;
     }
-    return true;
+    return _configuration.needRedraw;
   }
 }

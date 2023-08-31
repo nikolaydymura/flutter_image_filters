@@ -1,3 +1,7 @@
+## 0.0.16
+
+- Added redrawing optimization for `ImageShaderPreview`
+
 ## 0.0.15
 
 - Added custom configurations to generation process

@@ -33,7 +33,7 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.15/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.16/shaders';
 
     String? glslCustomRoot;
     String? glslOutput;
@@ -104,11 +104,12 @@ void generateShader(
     '#include <flutter/runtime_effect.glsl>',
     'precision mediump float;',
     '\n',
-    'layout(location = 0) out vec4 fragColor;'
+    'out vec4 fragColor;'
   ];
-  List<String> shaderInputs = [
-    'layout(location = 0) uniform sampler2D inputImageTexture;'
+  List<String> shaderSamplers = [
+    'uniform sampler2D inputImageTexture;'
   ];
+  List<String> shaderInputs = [];
   List<String> processFunctions = [];
   List<String> shaderConstants = [];
   for (String shader in shaders) {
@@ -117,6 +118,7 @@ void generateShader(
       processShader(
         shaderFile,
         shaderInputs,
+        shaderSamplers,
         processFunctions,
         shaderConstants,
       );
@@ -124,6 +126,7 @@ void generateShader(
       processShader(
         File('${Directory(customSourcesFolder).absolute.path}/$shader.frag'),
         shaderInputs,
+        shaderSamplers,
         processFunctions,
         shaderConstants,
       );
@@ -133,6 +136,9 @@ void generateShader(
     'layout(location = ${shaderInputs.length}) uniform vec2 screenSize;',
   );
 
+  finalShader.add('\n');
+  finalShader.addAll(shaderSamplers);
+  finalShader.add('\n');
   finalShader.addAll(shaderInputs);
   finalShader.add('\n');
   finalShader.addAll(shaderConstants);
@@ -170,6 +176,7 @@ void generateShader(
 void processShader(
   File shader,
   List<String> finalInputs,
+  List<String> samplers,
   List<String> processFunctions,
   List<String> shaderConstants,
 ) {
@@ -182,18 +189,24 @@ void processShader(
   bool processFound = false;
   bool mainFound = false;
   for (final element in shaderLines) {
-    if (element.startsWith('layout')) {
+    if (element.endsWith('fragColor;')) {
+      continue;
+    }
+    if (element.startsWith('layout') || element.startsWith('uniform')) {
       if (element.endsWith('screenSize;') ||
-          element.endsWith('inputImageTexture;') ||
-          element.endsWith('fragColor;')) {
+          element.endsWith('inputImageTexture;')) {
         continue;
       }
-      final start = element.lastIndexOf('uniform') + 8;
-      finalInputs.add(
-        'layout(location = ${finalInputs.length}) uniform ${element.substring(
-          start,
-        )}',
-      );
+      if (element.contains('sampler2D')) {
+        samplers.add(element);
+      } else {
+        final start = element.lastIndexOf('uniform') + 8;
+        finalInputs.add(
+          'layout(location = ${finalInputs.length}) uniform ${element.substring(
+            start,
+          )}',
+        );
+      }
       continue;
     }
 

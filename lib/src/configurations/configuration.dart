@@ -2,6 +2,7 @@ part of flutter_image_filters;
 
 abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;
+  bool _needRedraw = true;
   FragmentProgram? _internalProgram;
 
   ShaderConfiguration(this._floats);
@@ -25,6 +26,12 @@ abstract class ShaderConfiguration extends FilterConfiguration {
 
   /// Returns all shader uniforms. Order of items in array must be as listed in fragment shader code
   Iterable<double> get numUniforms => _floats;
+
+  bool get needRedraw {
+    final result = _needRedraw;
+    _needRedraw = false;
+    return result;
+  }
 
   Future<Image> export(
     TextureSource texture,
@@ -67,6 +74,9 @@ class GroupShaderConfiguration extends ShaderConfiguration {
 
   @override
   FragmentProgram? get _internalProgram => _configuration._internalProgram;
+
+  @override
+  bool get needRedraw => _configurations.map((e) => e.needRedraw).any((e) => e);
 
   @override
   FutureOr<void> prepare() => _configuration.prepare();
@@ -135,6 +145,10 @@ class BunchShaderConfiguration extends ShaderConfiguration {
   @override
   Iterable<double> get numUniforms =>
       _configurations.map((e) => e.numUniforms).expand((e) => e);
+
+
+  @override
+  bool get needRedraw => _configurations.map((e) => e.needRedraw).any((e) => e);
 
   BunchShaderConfiguration(this._configurations) : super(<double>[]);
 

@@ -2,11 +2,11 @@
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 layout(location = 0) uniform float imageWidthFactor;
 layout(location = 1) uniform float imageHeightFactor;
-layout(location = 4) uniform sampler2D inputImageTexture;
+uniform sampler2D inputImageTexture;
 layout(location = 2) uniform float inputPixel;
 layout(location = 3) uniform vec2 screenSize;
 

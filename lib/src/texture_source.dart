@@ -25,8 +25,7 @@ class TextureSource {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
   }) async {
-    final data = await file.readAsBytes();
-    final buffer = await ImmutableBuffer.fromUint8List(data);
+    final buffer = await ImmutableBuffer.fromFilePath(file.path);
     return _fromImmutableBuffer(buffer, tmx, tmy);
   }
 

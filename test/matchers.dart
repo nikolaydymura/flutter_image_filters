@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
@@ -18,12 +19,13 @@ Future<void> expectFilteredSuccessfully(
   expect(bytes, isNotNull);
 
   final persistedImage = img.Image.fromBytes(
-    image.width,
-    image.height,
-    bytes!.buffer.asUint8List(),
+    width: image.width,
+    height: image.height,
+    bytes: bytes!.buffer,
+    numChannels: 4,
   );
   img.JpegEncoder encoder = img.JpegEncoder();
-  final data = encoder.encodeImage(persistedImage);
+  final data = encoder.encode(persistedImage);
   final output = File(
     'test/goldens/shaders/${configurationKey ?? configuration.runtimeType}/$goldenKey',
   );

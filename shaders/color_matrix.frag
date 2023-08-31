@@ -2,9 +2,9 @@
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
-layout(location = 3) uniform sampler2D inputImageTexture;
+uniform sampler2D inputImageTexture;
 layout(location = 0) uniform lowp mat4 inputColorMatrix;
 layout(location = 1) uniform lowp float inputIntensityCM;
 layout(location = 2) uniform vec2 screenSize;

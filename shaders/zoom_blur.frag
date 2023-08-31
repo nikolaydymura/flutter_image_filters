@@ -2,12 +2,12 @@
 
 precision highp float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
 layout(location = 0) uniform vec2 inputBlurCenter;
 layout(location = 1) uniform float inputBlurSize;
 layout(location = 2) uniform vec2 screenSize;
-layout(location = 3) uniform sampler2D inputImageTexture;
+uniform sampler2D inputImageTexture;
 
 void main()
 {

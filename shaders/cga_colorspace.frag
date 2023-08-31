@@ -2,9 +2,9 @@
 
 precision mediump float;
 
-layout(location = 0) out vec4 fragColor;
+out vec4 fragColor;
 
-layout(location = 1) uniform sampler2D inputImageTexture;
+uniform sampler2D inputImageTexture;
 layout(location = 0) uniform vec2 screenSize;
 
 const mediump vec4 colorCyan = vec4(0.333, 1.0, 1.0, 1.0);
