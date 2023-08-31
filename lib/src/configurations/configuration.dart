@@ -146,7 +146,6 @@ class BunchShaderConfiguration extends ShaderConfiguration {
   Iterable<double> get numUniforms =>
       _configurations.map((e) => e.numUniforms).expand((e) => e);
 
-
   @override
   bool get needRedraw => _configurations.map((e) => e.needRedraw).any((e) => e);
 
