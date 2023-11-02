@@ -6,10 +6,13 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
+import 'package:exif/exif.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/services.dart';
 import 'package:flutter_gpu_filters_interface/flutter_gpu_filters_interface.dart';
+
+export 'package:exif/exif.dart' show IfdTag;
 
 part 'src/configurations/brightness.dart';
 part 'src/configurations/bulge_distortion.dart';

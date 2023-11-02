@@ -27,7 +27,7 @@ class ShaderColorParameter extends ColorParameter {
   List<double> get values => [
         value.red / 255.0 * value.opacity,
         value.green / 255.0 * value.opacity,
-        value.blue / 255.0 * value.opacity
+        value.blue / 255.0 * value.opacity,
       ];
 }
 

@@ -27,7 +27,7 @@ class ImageShaderPainter extends CustomPainter {
       ..._configuration.parameters
           .whereType<ShaderTextureParameter>()
           .map((e) => e.textureSource)
-          .whereType<TextureSource>()
+          .whereType<TextureSource>(),
     ];
 
     final shader = _fragmentProgram.fragmentShader();
@@ -50,13 +50,13 @@ class ImageShaderPainter extends CustomPainter {
         Offset(0, size.height),
         Offset(size.width, size.height),
         const Offset(0, 0),
-        Offset(size.width, 0)
+        Offset(size.width, 0),
       ],
       textureCoordinates: [
         Offset(0, size.height),
         Offset(size.width, size.height),
         const Offset(0, 0),
-        Offset(size.width, 0)
+        Offset(size.width, 0),
       ],
     );
     canvas.drawVertices(vertices, blendMode, paint);

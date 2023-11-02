@@ -4,10 +4,13 @@ class TextureSource {
   final Image image;
   final int width;
   final int height;
+  final Map<String, IfdTag>? exif;
 
   Size get size => Size(width.toDouble(), height.toDouble());
 
-  TextureSource._(this.image, this.width, this.height);
+  double get aspectRatio => width / height;
+
+  TextureSource._(this.image, this.width, this.height, [this.exif]);
 
   static Future<TextureSource> fromAsset(
     String asset, {
@@ -15,8 +18,10 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
   }) async {
     final buffer = await ImmutableBuffer.fromAsset(asset);
+    final data = await rootBundle.load(asset);
+    final exif = await readExifFromBytes(data.buffer.asInt8List());
 // coverage:ignore-start
-    return await _fromImmutableBuffer(buffer, tmx, tmy);
+    return await _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
 // coverage:ignore-end
   }
 
@@ -26,7 +31,8 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
   }) async {
     final buffer = await ImmutableBuffer.fromFilePath(file.path);
-    return _fromImmutableBuffer(buffer, tmx, tmy);
+    final exif = await readExifFromFile(file);
+    return _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
   }
 
   static Future<TextureSource> fromMemory(
@@ -35,31 +41,35 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
   }) async {
     final buffer = await ImmutableBuffer.fromUint8List(data);
+    final exif = await readExifFromBytes(data);
 
-    return await _fromImmutableBuffer(buffer, tmx, tmy);
+    return await _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
   }
 
   static TextureSource fromImage(
     Image image, {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
+    Map<String, IfdTag>? exif,
   }) {
     return TextureSource._(
       image,
       image.width,
       image.height,
+      exif,
     );
   }
 
   static Future<TextureSource> _fromImmutableBuffer(
     ImmutableBuffer buffer,
     TileMode tmx,
-    TileMode tmy,
-  ) async {
+    TileMode tmy, {
+    Map<String, IfdTag>? exif,
+  }) async {
     final codec =
         await PaintingBinding.instance.instantiateImageCodecWithSize(buffer);
     final frameInfo = await codec.getNextFrame();
 
-    return fromImage(frameInfo.image, tmx: tmx, tmy: tmy);
+    return fromImage(frameInfo.image, tmx: tmx, tmy: tmy, exif: exif);
   }
 }

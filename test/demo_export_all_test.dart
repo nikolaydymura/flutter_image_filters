@@ -74,7 +74,7 @@ void main() {
   test('custom configuration', () async {
     final configuration = InvalidConfiguration();
     FlutterImageFilters.register<InvalidConfiguration>(
-      () async => DummyFragmentProgram(),
+      () => FragmentProgram.fromAsset('invalid.frag'),
       override: true,
     );
     final size = Size(texture.width.toDouble(), texture.height.toDouble()) / 3;
@@ -84,7 +84,11 @@ void main() {
         size,
       ),
       throwsA(
-        isA<NoSuchMethodError>(),
+        isA<Exception>().having(
+          (p0) => p0.toString(),
+          'asset not provided',
+          "Exception: Asset 'invalid.frag' not found",
+        ),
       ),
     );
   });

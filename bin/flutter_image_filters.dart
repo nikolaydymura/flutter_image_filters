@@ -24,7 +24,7 @@ const supported = [
   'saturation',
   'solarize',
   'vibrance',
-  'white_balance'
+  'white_balance',
 ];
 
 String get userHome =>
@@ -33,7 +33,7 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.16/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.17/shaders';
 
     String? glslCustomRoot;
     String? glslOutput;
@@ -104,7 +104,7 @@ void generateShader(
     '#include <flutter/runtime_effect.glsl>',
     'precision mediump float;',
     '\n',
-    'out vec4 fragColor;'
+    'out vec4 fragColor;',
   ];
   List<String> shaderSamplers = ['uniform sampler2D inputImageTexture;'];
   List<String> shaderInputs = [];

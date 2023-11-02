@@ -34,7 +34,7 @@ void main() {
       'Vibrance',
       'Vignette',
       'White Balance',
-      'Zoom Blur'
+      'Zoom Blur',
     ];
     for (final name in filters) {
       final configuration = FlutterImageFilters.createFilter(displayName: name);

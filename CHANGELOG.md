@@ -1,3 +1,7 @@
+## 0.0.17
+
+- Added auto-support for aspect ratio `ImageShaderPreview`
+
 ## 0.0.16
 
 - Added redrawing optimization for `ImageShaderPreview`
