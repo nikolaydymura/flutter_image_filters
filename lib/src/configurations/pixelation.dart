@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes pixelation manipulations
 class PixelationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _widthFactor;
   final NumberParameter _heightFactor;
@@ -26,16 +27,19 @@ class PixelationShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.005, 0.005, 1.0]);
 
+  /// Updates the [widthFactor] value.
   set widthFactor(double value) {
     _widthFactor.value = value;
     _widthFactor.update(this);
   }
 
+  /// Updates the [heightFactor] value.
   set heightFactor(double value) {
     _heightFactor.value = value;
     _heightFactor.update(this);
   }
 
+  /// Updates the [pixel] value.
   set pixel(double value) {
     _pixel.value = value;
     _pixel.update(this);

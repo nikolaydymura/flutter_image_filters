@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes contrast manipulations
 class ContrastShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _contrast;
 
@@ -14,6 +15,9 @@ class ContrastShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.2]);
 
+  /// Updates the [contrast] value.
+  ///
+  /// The [value] must be in 0.0 and 4.0 range.
   set contrast(double value) {
     _contrast.value = value;
     _contrast.update(this);

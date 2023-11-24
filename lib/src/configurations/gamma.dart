@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes manipulation with gamma correction
 class GammaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _gamma;
 
@@ -14,6 +15,9 @@ class GammaShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.2]);
 
+  /// Updates the [gamma] value.
+  ///
+  /// The [value] must be in 0.0 and 3.0 range.
   set gamma(double value) {
     _gamma.value = value;
     _gamma.update(this);

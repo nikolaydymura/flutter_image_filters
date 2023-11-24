@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes crosshatch manipulations
 class CrosshatchShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _crossHatchSpacing;
   final NumberParameter _lineWidth;
@@ -19,11 +20,13 @@ class CrosshatchShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.03, 0.003]);
 
+  /// Updates the [crossHatchSpacing] value.
   set crossHatchSpacing(double value) {
     _crossHatchSpacing.value = value;
     _crossHatchSpacing.update(this);
   }
 
+  /// Updates the [lineWidth] value.
   set lineWidth(double value) {
     _lineWidth.value = value;
     _lineWidth.update(this);

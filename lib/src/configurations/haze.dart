@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes haze manipulations
 class HazeShaderConfiguration extends ShaderConfiguration {
   HazeShaderConfiguration()
       : _distance = ShaderNumberParameter(
@@ -14,11 +15,13 @@ class HazeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _distance;
   final NumberParameter _slope;
 
+  /// Updates the [distance] value.
   set distance(double value) {
     _distance.value = value;
     _distance.update(this);
   }
 
+  /// Updates the [slope] value.
   set slope(double value) {
     _slope.value = value;
     _slope.update(this);

@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes solarize manipulations
 class SolarizeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _threshold;
 
@@ -12,6 +13,7 @@ class SolarizeShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.5]);
 
+  /// Updates the [threshold] value.
   set threshold(double value) {
     _threshold.value = value;
     _threshold.update(this);

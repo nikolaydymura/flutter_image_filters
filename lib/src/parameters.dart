@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes Color Parameter updating
 class ShaderColorParameter extends ColorParameter {
   final int _offset;
 
@@ -10,6 +11,7 @@ class ShaderColorParameter extends ColorParameter {
     this._offset,
   );
 
+  /// Updates the Color Parameter value.
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -31,6 +33,7 @@ class ShaderColorParameter extends ColorParameter {
       ];
 }
 
+/// Describes Number Parameter updating
 class ShaderNumberParameter extends NumberParameter {
   final int _offset;
 
@@ -41,6 +44,7 @@ class ShaderNumberParameter extends NumberParameter {
     this._offset,
   );
 
+  /// Updates the Number Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -55,6 +59,7 @@ class ShaderNumberParameter extends NumberParameter {
   }
 }
 
+/// Describes Range Parameter updating
 class ShaderRangeNumberParameter extends RangeNumberParameter {
   final int _offset;
 
@@ -67,6 +72,7 @@ class ShaderRangeNumberParameter extends RangeNumberParameter {
     super.max,
   });
 
+  /// Updates the Range Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -81,6 +87,7 @@ class ShaderRangeNumberParameter extends RangeNumberParameter {
   }
 }
 
+/// Describes Point Parameter updating
 class ShaderPointParameter extends PointParameter {
   final int _offset;
 
@@ -91,6 +98,7 @@ class ShaderPointParameter extends PointParameter {
     this._offset,
   );
 
+  /// Updates the Point Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -105,6 +113,7 @@ class ShaderPointParameter extends PointParameter {
   }
 }
 
+/// Describes Matrix Parameter updating
 class ShaderMatrix4Parameter extends Mat4Parameter {
   final int _offset;
 
@@ -115,6 +124,7 @@ class ShaderMatrix4Parameter extends Mat4Parameter {
     this._offset,
   );
 
+  /// Updates the Matrix Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -129,6 +139,7 @@ class ShaderMatrix4Parameter extends Mat4Parameter {
   }
 }
 
+/// Describes AspectRatio Parameter updating
 class _AspectRatioParameter extends AspectRatioParameter {
   final int _offset;
 
@@ -139,6 +150,7 @@ class _AspectRatioParameter extends AspectRatioParameter {
     this._offset,
   );
 
+  /// Updates the AspectRatio Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -153,6 +165,7 @@ class _AspectRatioParameter extends AspectRatioParameter {
   }
 }
 
+/// Describes Int Parameter updating
 class ShaderIntParameter extends ShaderNumberParameter {
   ShaderIntParameter(
     super.shaderName,
@@ -161,6 +174,7 @@ class ShaderIntParameter extends ShaderNumberParameter {
     super.offset,
   );
 
+  /// Updates the Int Parameter value.
   @override
   void update(covariant ShaderConfiguration configuration) {
     if (configuration is BunchShaderConfiguration) {
@@ -175,11 +189,13 @@ class ShaderIntParameter extends ShaderNumberParameter {
   }
 }
 
+/// Describes Texture Parameter updating
 class ShaderTextureParameter extends DataParameter {
   TextureSource? textureSource;
 
   ShaderTextureParameter(super.name, super.displayName);
 
+  /// Updates the Texture Parameter value.
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) async {
     if (configuration is BunchShaderConfiguration) {
@@ -202,7 +218,9 @@ class ShaderTextureParameter extends DataParameter {
   }
 }
 
+/// Describes configuration search by parameters
 extension on ConfigurationParameter {
+  /// Searches Configuration by Parameters.
   ShaderConfiguration? findByParameter(BunchShaderConfiguration configuration) {
     return configuration._configurations.firstWhereOrNull(
       (conf) =>

@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes square lookup manipulations
 class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
   final RangeNumberParameter _intensity;
   final DataParameter _cubeData;
@@ -16,6 +17,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
         _cubeData = ShaderTextureParameter('inputTextureCubeData', 'LUT'),
         super([1.0]);
 
+  /// Update [_cubeData] value by [setLutImage].
   Future<void> setLutImage(Uint8List value) async {
     _cubeData.data = value;
     _cubeData.asset = null;
@@ -23,6 +25,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Update [_cubeData] value by [setLutAsset].
   Future<void> setLutAsset(String value) async {
     _cubeData.data = null;
     _cubeData.asset = value;
@@ -30,6 +33,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Update [_cubeData] value by [setLutFile].
   Future<void> setLutFile(File value) async {
     _cubeData.data = null;
     _cubeData.asset = null;
@@ -37,6 +41,9 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Updates the [intensity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set intensity(double value) {
     _intensity.value = value;
     _intensity.update(this);
@@ -46,6 +53,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
   List<ConfigurationParameter> get parameters => [_intensity, _cubeData];
 }
 
+/// Describes HALD lookup table manipulations
 class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
   final RangeNumberParameter _intensity;
   final DataParameter _cubeData;
@@ -62,6 +70,7 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
         _cubeData = ShaderTextureParameter('inputTextureCubeData', 'HALD LUT'),
         super([1.0]);
 
+  /// Update [_cubeData] value by [setLutImage].
   Future<void> setLutImage(Uint8List value) async {
     _cubeData.data = value;
     _cubeData.asset = null;
@@ -69,6 +78,7 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Update [_cubeData] value by [setLutAsset].
   Future<void> setLutAsset(String value) async {
     _cubeData.data = null;
     _cubeData.asset = value;
@@ -76,6 +86,7 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Update [_cubeData] value by [setLutFile].
   Future<void> setLutFile(File value) async {
     _cubeData.data = null;
     _cubeData.asset = null;
@@ -83,6 +94,9 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Updates the [intensity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set intensity(double value) {
     _intensity.value = value;
     _intensity.update(this);

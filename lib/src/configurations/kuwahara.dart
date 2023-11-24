@@ -1,5 +1,6 @@
 part of flutter_image_filters;
 
+/// Describes kuwahara manipulations
 class KuwaharaShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _radius;
 
@@ -12,6 +13,7 @@ class KuwaharaShaderConfiguration extends ShaderConfiguration {
         ),
         super([3.0]);
 
+  /// Updates the [radius] value.
   set radius(double value) {
     _radius.value = value;
     _radius.update(this);
