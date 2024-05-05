@@ -1,4 +1,4 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
 /// Describes brightness manipulations
 class BrightnessShaderConfiguration extends ShaderConfiguration {

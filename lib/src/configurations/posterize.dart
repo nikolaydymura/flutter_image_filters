@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes posterize manipulations
 class PosterizeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _colorLevels;
 
@@ -14,6 +15,9 @@ class PosterizeShaderConfiguration extends ShaderConfiguration {
         ),
         super([10.0]);
 
+  /// Updates the [colorLevels] value.
+  ///
+  /// The [value] must be in 1.0 and 256.0 range.
   set colorLevels(double value) {
     _colorLevels.value = value;
     _colorLevels.update(this);

@@ -1,4 +1,4 @@
-part of flutter_image_filters;
+part of '../flutter_image_filters.dart';
 
 String _shadersRoot = Platform.environment.containsKey('FLUTTER_TEST')
     ? ''

@@ -173,10 +173,10 @@ class PipelineImageShaderPreviewDemo extends StatefulWidget {
   final GroupShaderConfiguration configuration;
 
   const PipelineImageShaderPreviewDemo({
-    Key? key,
+    super.key,
     required this.texture,
     required this.configuration,
-  }) : super(key: key);
+  });
 
   @override
   State<PipelineImageShaderPreviewDemo> createState() =>

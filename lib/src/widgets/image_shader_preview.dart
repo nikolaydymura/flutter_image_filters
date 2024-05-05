@@ -1,4 +1,4 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
 class ImageShaderPreview extends StatelessWidget {
   final ShaderConfiguration configuration;

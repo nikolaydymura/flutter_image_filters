@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes highlight shadow manipulations
 class HighlightShadowShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _shadows;
   final NumberParameter _highlights;
@@ -23,11 +24,17 @@ class HighlightShadowShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.0, 1.0]);
 
+  /// Updates the [shadows] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set shadows(double value) {
     _shadows.value = value;
     _shadows.update(this);
   }
 
+  /// Updates the [highlights] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set highlights(double value) {
     _highlights.value = value;
     _highlights.update(this);

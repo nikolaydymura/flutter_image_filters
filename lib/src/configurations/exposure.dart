@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes exposure manipulations
 class ExposureShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _exposure;
 
@@ -14,6 +15,9 @@ class ExposureShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.0]);
 
+  /// Updates the [exposure] value.
+  ///
+  /// The [value] must be in -10.0 and 10.0 range.
   set exposure(double value) {
     _exposure.value = value;
     _exposure.update(this);

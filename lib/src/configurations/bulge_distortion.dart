@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes bulge distortion manipulations
 class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
   final AspectRatioParameter _aspectRatio;
   final PointParameter _center;
@@ -43,16 +44,25 @@ class BulgeDistortionShaderConfiguration extends ShaderConfiguration {
           0.5,
         ]);
 
+  /// Updates the [center] value.
+  ///
+  /// Default value is `Point(0.5, 0.5)`.
   set center(Point<double> value) {
     _center.value = value;
     _center.update(this);
   }
 
+  /// Updates the [radius] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set radius(double value) {
     _radius.value = value;
     _radius.update(this);
   }
 
+  /// Updates the [scale] value.
+  ///
+  /// The [value] must be in -1.0 and 1.0 range.
   set scale(double value) {
     _scale.value = value;
     _scale.update(this);

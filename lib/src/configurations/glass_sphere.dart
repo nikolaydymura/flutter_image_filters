@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes glass sphere manipulations
 class GlassSphereShaderConfiguration extends ShaderConfiguration {
   final PointParameter _center;
   final NumberParameter _radius;
@@ -33,16 +34,19 @@ class GlassSphereShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.5, 0.5, 0.25, 1.0, 0.71]);
 
+  /// Updates the [center] value.
   set center(Point<double> value) {
     _center.value = value;
     _center.update(this);
   }
 
+  /// Updates the [radius] value.
   set radius(double value) {
     _radius.value = value;
     _radius.update(this);
   }
 
+  /// Updates the [refractiveIndex] value.
   set refractiveIndex(double value) {
     _refractiveIndex.value = value;
     _refractiveIndex.update(this);

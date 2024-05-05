@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes opacity manipulations
 class OpacityShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _opacity;
 
@@ -14,6 +15,9 @@ class OpacityShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.0]);
 
+  /// Updates the [opacity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set opacity(double value) {
     _opacity.value = value;
     _opacity.update(this);

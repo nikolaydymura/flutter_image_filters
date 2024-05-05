@@ -1,3 +1,7 @@
+## 0.0.18
+
+- Updated dependencies
+
 ## 0.0.17
 
 - Added auto-support for aspect ratio `ImageShaderPreview`

@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes vibrance manipulations
 class VibranceShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _vibrance;
 
@@ -12,6 +13,7 @@ class VibranceShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.0]);
 
+  /// Updates the [vibrance] value.
   set vibrance(double value) {
     _vibrance.value = value;
     _vibrance.update(this);

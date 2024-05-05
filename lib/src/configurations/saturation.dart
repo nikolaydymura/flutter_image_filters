@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes saturation manipulations
 class SaturationShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _saturation;
 
@@ -14,6 +15,9 @@ class SaturationShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.0]);
 
+  /// Updates the [saturation] value.
+  ///
+  /// The [value] must be in 0.0 and 2.0 range.
   set saturation(double value) {
     _saturation.value = value;
     _saturation.update(this);

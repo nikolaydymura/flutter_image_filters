@@ -104,10 +104,10 @@ class ImageShaderPreviewDemo extends StatefulWidget {
   final ShaderConfiguration configuration;
 
   const ImageShaderPreviewDemo({
-    Key? key,
+    super.key,
     required this.texture,
     required this.configuration,
-  }) : super(key: key);
+  });
 
   @override
   State<ImageShaderPreviewDemo> createState() => _ImageShaderPreviewDemoState();

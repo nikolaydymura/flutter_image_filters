@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_image_filters/flutter_image_filters.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_test/src/buffer_matcher.dart';
 import 'package:image/image.dart' as img;
 
 Future<void> expectFilteredSuccessfully(
@@ -29,7 +28,7 @@ Future<void> expectFilteredSuccessfully(
     'test/goldens/shaders/${configurationKey ?? configuration.runtimeType}/$goldenKey',
   );
   try {
-    await expectLater(data, bufferMatchesGoldenFile(output.absolute.path));
+    await expectLater(data, matchesGoldenFile(output.absolute.path));
   } on FlutterError catch (e) {
     final diffTolerance = '$e'
         .contains(RegExp(r'Pixel test failed, [01]\.[0-9]+% diff detected'));

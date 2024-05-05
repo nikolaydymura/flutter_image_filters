@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes lookup table manipulations
 class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
   final RangeNumberParameter _intensity;
   final DataParameter _cubeData;
@@ -37,6 +38,9 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Updates the [intensity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set intensity(double value) {
     _intensity.value = value;
     _intensity.update(this);
@@ -46,6 +50,7 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
   List<ConfigurationParameter> get parameters => [_intensity, _cubeData];
 }
 
+/// Describes HALD lookup table manipulations
 class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
   final RangeNumberParameter _intensity;
   final DataParameter _cubeData;
@@ -83,6 +88,9 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  /// Updates the [intensity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set intensity(double value) {
     _intensity.value = value;
     _intensity.update(this);

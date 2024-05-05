@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes halftone manipulations
 class HalftoneShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _fractionalWidthOfPixel;
 
@@ -20,6 +21,7 @@ class HalftoneShaderConfiguration extends ShaderConfiguration {
 
   final AspectRatioParameter _aspectRatio;
 
+  /// Updates the [fractionalWidthOfPixel] value.
   set fractionalWidthOfPixel(double value) {
     _fractionalWidthOfPixel.value = value;
     _fractionalWidthOfPixel.update(this);

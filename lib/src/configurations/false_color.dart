@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes false color manipulations
 class FalseColorShaderConfiguration extends ShaderConfiguration {
   final ColorParameter _firstColor;
   final ColorParameter _secondColor;
@@ -19,11 +20,13 @@ class FalseColorShaderConfiguration extends ShaderConfiguration {
         ),
         super([0.0, 0.0, 0.5, 1.0, 0.0, 0.0]);
 
+  /// Updates the [firstColor] value.
   set firstColor(Color value) {
     _firstColor.value = value;
     _firstColor.update(this);
   }
 
+  /// Updates the [secondColor] value.
   set secondColor(Color value) {
     _secondColor.value = value;
     _secondColor.update(this);

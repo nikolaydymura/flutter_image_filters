@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes generic shader configuration
 abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;
   bool _needRedraw = true;
@@ -7,20 +8,30 @@ abstract class ShaderConfiguration extends FilterConfiguration {
 
   ShaderConfiguration(this._floats);
 
+  /// Prepares the shader program
+  ///
+  /// This method is called before the first usage of the shader program
   @override
   FutureOr<void> prepare() async {
     _internalProgram ??= await _fragmentPrograms[runtimeType]?.call();
   }
 
+  /// Disposes the shader program
+  ///
+  /// This method is called when the shader program is no longer needed
   @override
   FutureOr<void> dispose() {
     _internalProgram?.fragmentShader().dispose();
     _internalProgram = null;
   }
 
+  /// Updates the shader program
+  ///
+  /// This method is called when the shader program needs to be updated
   @override
   FutureOr<void> update() {}
 
+  /// Returns the readiness of the shader program
   @override
   bool get ready => _internalProgram != null;
 
@@ -33,6 +44,10 @@ abstract class ShaderConfiguration extends FilterConfiguration {
     return result;
   }
 
+  /// Exports date to an image
+  ///
+  /// [texture] - source texture
+  /// [size] - size of the output image
   Future<Image> export(
     TextureSource texture,
     Size size,
@@ -60,6 +75,7 @@ abstract class ShaderConfiguration extends FilterConfiguration {
     return renderedImage;
   }
 
+  /// Returns all shader parameters
   @override
   List<ConfigurationParameter> get parameters => [];
 }

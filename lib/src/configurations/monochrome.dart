@@ -1,5 +1,6 @@
-part of flutter_image_filters;
+part of '../../flutter_image_filters.dart';
 
+/// Describes monochrome manipulations
 class MonochromeShaderConfiguration extends ShaderConfiguration {
   final NumberParameter _intensity;
   final ColorParameter _color;
@@ -26,11 +27,15 @@ class MonochromeShaderConfiguration extends ShaderConfiguration {
         ),
         super([1.0, 0.6, 0.45, 0.3]);
 
+  /// Updates the [intensity] value.
+  ///
+  /// The [value] must be in 0.0 and 1.0 range.
   set intensity(double value) {
     _intensity.value = value;
     _intensity.update(this);
   }
 
+  /// Updates the [color] value.
   set color(Color value) {
     _color.value = value;
     _color.update(this);
