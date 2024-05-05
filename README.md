@@ -1,6 +1,3 @@
-
-![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![OpenGL](https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl) 
-
 <p align="center">
 <a href="https://pub.dev/packages/flutter_image_filters"><img src="https://img.shields.io/pub/v/flutter_image_filters.svg" alt="Pub"></a>
 <a href="https://codecov.io/gh/nikolaydymura/flutter_image_filters"><img src="https://codecov.io/gh/nikolaydymura/flutter_image_filters/main/master/graph/badge.svg" alt="codecov"></a>
