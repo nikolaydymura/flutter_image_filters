@@ -1,3 +1,7 @@
+## 0.0.19
+
+- Fixed `impellerc` compilation issues for shaders on Android
+
 ## 0.0.18
 
 - Updated dependencies

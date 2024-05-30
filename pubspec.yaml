@@ -1,6 +1,6 @@
 name: flutter_image_filters
 description: Image filters based on OpenGL(SPIR-V) fragment shaders with useful preview widgets
-version: 0.0.18
+version: 0.0.19
 homepage: https://github.com/nikolaydymura/flutter_image_filters
 repository: https://github.com/nikolaydymura/flutter_image_filters
 platforms:
@@ -44,7 +44,7 @@ flutter:
     - shaders/haze.frag
     - shaders/highlight_shadow.frag
     - shaders/hue.frag
-    - shaders/kuwahara.frag
+#    - shaders/kuwahara.frag
     - shaders/lookup.frag
     - shaders/luminance.frag
     - shaders/luminance_threshold.frag

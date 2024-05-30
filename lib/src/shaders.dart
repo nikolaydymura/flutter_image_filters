@@ -44,8 +44,8 @@ Map<Type, Future<FragmentProgram> Function()> _fragmentPrograms = {
   LuminanceThresholdShaderConfiguration: () => FragmentProgram.fromAsset(
         '${_shadersRoot}shaders/luminance_threshold.frag',
       ),
-  KuwaharaShaderConfiguration: () =>
-      FragmentProgram.fromAsset('${_shadersRoot}shaders/kuwahara.frag'),
+/*  KuwaharaShaderConfiguration: () =>
+      FragmentProgram.fromAsset('${_shadersRoot}shaders/kuwahara.frag'),*/
   HighlightShadowShaderConfiguration: () =>
       FragmentProgram.fromAsset('${_shadersRoot}shaders/highlight_shadow.frag'),
   BulgeDistortionShaderConfiguration: () =>
