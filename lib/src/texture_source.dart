@@ -16,12 +16,19 @@ class TextureSource {
     String asset, {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
+    TargetImageSize? targetSize,
   }) async {
     final buffer = await ImmutableBuffer.fromAsset(asset);
     final data = await rootBundle.load(asset);
     final exif = await readExifFromBytes(data.buffer.asInt8List());
 // coverage:ignore-start
-    return await _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
+    return await _fromImmutableBuffer(
+      buffer,
+      tmx,
+      tmy,
+      exif: exif,
+      targetSize: targetSize,
+    );
 // coverage:ignore-end
   }
 
@@ -29,21 +36,35 @@ class TextureSource {
     File file, {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
+    TargetImageSize? targetSize,
   }) async {
     final buffer = await ImmutableBuffer.fromFilePath(file.path);
     final exif = await readExifFromFile(file);
-    return _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
+    return _fromImmutableBuffer(
+      buffer,
+      tmx,
+      tmy,
+      exif: exif,
+      targetSize: targetSize,
+    );
   }
 
   static Future<TextureSource> fromMemory(
     Uint8List data, {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
+    TargetImageSize? targetSize,
   }) async {
     final buffer = await ImmutableBuffer.fromUint8List(data);
     final exif = await readExifFromBytes(data);
 
-    return await _fromImmutableBuffer(buffer, tmx, tmy, exif: exif);
+    return await _fromImmutableBuffer(
+      buffer,
+      tmx,
+      tmy,
+      exif: exif,
+      targetSize: targetSize,
+    );
   }
 
   static TextureSource fromImage(
@@ -51,6 +72,7 @@ class TextureSource {
     TileMode tmx = TileMode.repeated,
     TileMode tmy = TileMode.repeated,
     Map<String, IfdTag>? exif,
+    TargetImageSize? targetSize,
   }) {
     return TextureSource._(
       image,
@@ -65,9 +87,23 @@ class TextureSource {
     TileMode tmx,
     TileMode tmy, {
     Map<String, IfdTag>? exif,
+    TargetImageSize? targetSize,
   }) async {
-    final codec =
-        await PaintingBinding.instance.instantiateImageCodecWithSize(buffer);
+    final codec = await PaintingBinding.instance.instantiateImageCodecWithSize(
+      buffer,
+      getTargetSize: (width, height) {
+        final size = targetSize;
+        if (size == null) {
+          return TargetImageSize(width: width, height: height);
+        }
+        final scale = min(width / size.width!, height / size.height!);
+
+        return TargetImageSize(
+          width: (width / scale).toInt(),
+          height: (height / scale).toInt(),
+        );
+      },
+    );
     final frameInfo = await codec.getNextFrame();
 
     return fromImage(frameInfo.image, tmx: tmx, tmy: tmy, exif: exif);

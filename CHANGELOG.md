@@ -1,3 +1,7 @@
+## 0.0.20
+
+- Added `targetSize` for `TextureSource`
+
 ## 0.0.19
 
 - Fixed `impellerc` compilation issues for shaders on Android
