@@ -1,3 +1,7 @@
+## 0.0.21
+
+- Fixed `targetSize` for `TextureSource`
+
 ## 0.0.20
 
 - Added `targetSize` for `TextureSource`

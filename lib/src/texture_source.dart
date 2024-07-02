@@ -96,7 +96,15 @@ class TextureSource {
         if (size == null) {
           return TargetImageSize(width: width, height: height);
         }
-        final scale = min(width / size.width!, height / size.height!);
+        final w = size.width;
+        final h = size.height;
+        if (w == null || h == null) {
+          return TargetImageSize(width: width, height: height);
+        }
+        if (w < width || h < height) {
+          return TargetImageSize(width: width, height: height);
+        }
+        final scale = min(width / w, height / h);
 
         return TargetImageSize(
           width: (width / scale).toInt(),
