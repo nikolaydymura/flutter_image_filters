@@ -101,7 +101,7 @@ class TextureSource {
         if (w == null || h == null) {
           return TargetImageSize(width: width, height: height);
         }
-        if (w < width || h < height) {
+        if (w >= width || h >= height) {
           return TargetImageSize(width: width, height: height);
         }
         final scale = min(width / w, height / h);
