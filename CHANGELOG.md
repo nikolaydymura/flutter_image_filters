@@ -1,3 +1,7 @@
+## 0.0.23
+
+- Updated drawing output
+
 ## 0.0.22
 
 - Updated `targetSize` for `TextureSource`

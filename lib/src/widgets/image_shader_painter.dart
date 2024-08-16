@@ -43,23 +43,7 @@ class ImageShaderPainter extends CustomPainter {
 
     final paint = Paint()..shader = shader;
 
-    /// Draw a rectangle with the shader-paint
-    var vertices = Vertices(
-      VertexMode.triangleStrip,
-      [
-        Offset(0, size.height),
-        Offset(size.width, size.height),
-        const Offset(0, 0),
-        Offset(size.width, 0),
-      ],
-      textureCoordinates: [
-        Offset(0, size.height),
-        Offset(size.width, size.height),
-        const Offset(0, 0),
-        Offset(size.width, 0),
-      ],
-    );
-    canvas.drawVertices(vertices, blendMode, paint);
+    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
   }
 
   @override
