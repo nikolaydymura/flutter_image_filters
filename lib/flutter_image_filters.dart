@@ -101,9 +101,6 @@ class FlutterImageFilters {
   };
 
   static ShaderConfiguration? createFilter({required String displayName}) {
-    if (kIsWeb) {
-      return null;
-    }
     return _availableFilters[displayName]?.call();
   }
 

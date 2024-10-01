@@ -52,11 +52,6 @@ abstract class ShaderConfiguration extends FilterConfiguration {
     TextureSource texture,
     Size size,
   ) async {
-// coverage:ignore-start
-    if (kIsWeb) {
-      throw UnsupportedError('Not supported for web');
-    }
-// coverage:ignore-end
     PictureRecorder recorder = PictureRecorder();
     Canvas canvas = Canvas(recorder);
     if (!ready) {

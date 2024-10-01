@@ -1,3 +1,7 @@
+## 0.0.24
+
+- Added web support
+
 ## 0.0.23
 
 - Updated drawing output

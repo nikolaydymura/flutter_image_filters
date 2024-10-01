@@ -1,8 +1,9 @@
 part of '../flutter_image_filters.dart';
 
-String _shadersRoot = Platform.environment.containsKey('FLUTTER_TEST')
-    ? ''
-    : 'packages/flutter_image_filters/';
+String _shadersRoot =
+    !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST')
+        ? ''
+        : 'packages/flutter_image_filters/';
 
 Map<Type, Future<FragmentProgram> Function()> _fragmentPrograms = {
   MonochromeShaderConfiguration: () =>

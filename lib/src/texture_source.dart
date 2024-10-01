@@ -18,6 +18,17 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
     TargetImageSize? targetSize,
   }) async {
+    if (kIsWeb) {
+      final data = await rootBundle.load(asset);
+// coverage:ignore-start
+      return fromMemory(
+        data.buffer.asUint8List(),
+        tmx: tmx,
+        tmy: tmy,
+        targetSize: targetSize,
+      );
+// coverage:ignore-end
+    }
     final buffer = await ImmutableBuffer.fromAsset(asset);
     final data = await rootBundle.load(asset);
     final exif = await readExifFromBytes(data.buffer.asInt8List());
@@ -38,6 +49,15 @@ class TextureSource {
     TileMode tmy = TileMode.repeated,
     TargetImageSize? targetSize,
   }) async {
+    if (kIsWeb) {
+      final data = await file.readAsBytes();
+      return await fromMemory(
+        data,
+        tmx: tmx,
+        tmy: tmy,
+        targetSize: targetSize,
+      );
+    }
     final buffer = await ImmutableBuffer.fromFilePath(file.path);
     final exif = await readExifFromFile(file);
     return _fromImmutableBuffer(
