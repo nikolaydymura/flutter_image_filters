@@ -6,12 +6,16 @@ class ImageShaderPainter extends CustomPainter {
     this._texture,
     this._configuration, {
     this.blendMode = BlendMode.src,
+    this.filterQuality = FilterQuality.none,
+    this.isAntiAlias = true,
   });
 
   final BlendMode blendMode;
   final ShaderConfiguration _configuration;
   final TextureSource _texture;
   final FragmentProgram _fragmentProgram;
+  final bool isAntiAlias;
+  final FilterQuality filterQuality;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -41,8 +45,10 @@ class ImageShaderPainter extends CustomPainter {
       shader.setImageSampler(index, e.image);
     });
 
-    final paint = Paint()..shader = shader;
-
+    final paint = Paint()
+      ..shader = shader
+      ..isAntiAlias = isAntiAlias
+      ..filterQuality = filterQuality;
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
   }
 

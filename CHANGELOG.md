@@ -1,3 +1,7 @@
+## 0.0.25
+
+- Added `FilterQuality` to ImageShaderPreview
+
 ## 0.0.24
 
 - Added web support
