@@ -1,3 +1,7 @@
+## 0.0.26
+
+- Updated dependencies
+
 ## 0.0.25
 
 - Added `FilterQuality` to ImageShaderPreview

@@ -1,4 +1,4 @@
-library flutter_image_filters;
+library;
 
 import 'dart:async';
 import 'dart:io';
