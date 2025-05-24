@@ -46,10 +46,18 @@ class _TemperatureParameter extends ShaderNumberParameter {
 
   @override
   void update(ShaderConfiguration configuration) {
-    final temperature = value.toDouble();
-    configuration._floats[_offset] = temperature < 5000
-        ? 0.0004 * (temperature - 5000.0)
-        : 0.00006 * (temperature - 5000.0);
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      final temperature = value.toDouble();
+      configuration._floats[_offset] = temperature < 5000
+          ? 0.0004 * (temperature - 5000.0)
+          : 0.00006 * (temperature - 5000.0);
+      configuration._needRedraw = true;
+    }
   }
 }
 
@@ -63,6 +71,14 @@ class _TintParameter extends ShaderNumberParameter {
 
   @override
   void update(ShaderConfiguration configuration) {
-    configuration._floats[_offset] = value.toDouble() / 100.0;
+    if (configuration is BunchShaderConfiguration) {
+      final conf = findByParameter(configuration);
+      if (conf != null) {
+        update(conf);
+      }
+    } else {
+      configuration._floats[_offset] = value.toDouble() / 100.0;
+      configuration._needRedraw = true;
+    }
   }
 }

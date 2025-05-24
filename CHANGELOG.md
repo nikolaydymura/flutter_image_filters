@@ -1,3 +1,7 @@
+## 0.0.27
+
+- Fixed issue with `WhiteBalance` shader in bunch configuration
+
 ## 0.0.26
 
 - Updated dependencies
