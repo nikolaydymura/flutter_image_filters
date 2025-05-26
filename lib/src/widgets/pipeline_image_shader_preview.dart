@@ -27,10 +27,7 @@ class PipelineImageShaderPreview extends StatelessWidget {
         if (image == null) {
           return const CircularProgressIndicator();
         }
-        return ImageShaderPreview(
-          configuration: configuration,
-          texture: TextureSource.fromImage(image),
-        );
+        return RawImage(image: image);
       }),
     );
   }

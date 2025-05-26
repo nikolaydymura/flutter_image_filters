@@ -80,8 +80,9 @@ class GroupShaderConfiguration extends ShaderConfiguration {
   final Map<ShaderConfiguration, Image> _cache = {};
   final Map<ShaderConfiguration, List<double>> _cacheUniforms = {};
   final ShaderConfiguration _configuration = NoneShaderConfiguration();
+  final bool reimportImage;
 
-  GroupShaderConfiguration() : super(<double>[]);
+  GroupShaderConfiguration({this.reimportImage = false}) : super(<double>[]);
 
   @override
   FragmentProgram? get _internalProgram => _configuration._internalProgram;
@@ -143,7 +144,18 @@ class GroupShaderConfiguration extends ShaderConfiguration {
         size,
       ));
       if (_configurations.length > 1) {
-        texture = TextureSource.fromImage(result);
+        if (reimportImage) {
+          final data = await result.toByteData(format: ImageByteFormat.png);
+          if (data == null) {
+            throw UnsupportedError('Failed to convert image to byte data');
+          }
+          texture = await TextureSource.fromMemory(
+            data.buffer.asUint8List(),
+          );
+        } else {
+          texture = TextureSource.fromImage(result, exif: texture.exif);
+        }
+        _cache[configuration] = texture.image;
       }
     }
     return result;

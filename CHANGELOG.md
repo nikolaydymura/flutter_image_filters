@@ -1,3 +1,9 @@
+## 0.0.28
+
+- Added `willChange` parameter to  `ImageShaderPreview`
+- Fixed missed texture warning in `ImageShaderPreview`
+- Added `reimportImage` to `GroupShaderConfiguration` to fix upside down images on Android
+
 ## 0.0.27
 
 - Fixed issue with `WhiteBalance` shader in bunch configuration

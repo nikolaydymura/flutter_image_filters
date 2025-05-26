@@ -26,12 +26,12 @@ class ImageShaderPainter extends CustomPainter {
       aspectParameter.update(_configuration);
     }
 
+    final additionalTextures = _configuration.parameters
+        .whereType<ShaderTextureParameter>()
+        .map((e) => e.textureSource);
     final textures = [
       _texture,
-      ..._configuration.parameters
-          .whereType<ShaderTextureParameter>()
-          .map((e) => e.textureSource)
-          .whereType<TextureSource>(),
+      ...additionalTextures.nonNulls,
     ];
 
     final shader = _fragmentProgram.fragmentShader();
@@ -45,11 +45,24 @@ class ImageShaderPainter extends CustomPainter {
       shader.setImageSampler(index, e.image);
     });
 
-    final paint = Paint()
-      ..shader = shader
-      ..isAntiAlias = isAntiAlias
-      ..filterQuality = filterQuality;
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    if (additionalTextures.length + 1 == textures.length) {
+      final paint = Paint()
+        ..shader = shader
+        ..isAntiAlias = isAntiAlias
+        ..filterQuality = filterQuality;
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
+    } else {
+      final paint = Paint()
+        ..isAntiAlias = isAntiAlias
+        ..filterQuality = filterQuality;
+      canvas.drawImageRect(
+        textures.first.image,
+        Rect.fromLTWH(0, 0, textures.first.width.toDouble(),
+            textures.first.height.toDouble()),
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        paint,
+      );
+    }
   }
 
   @override

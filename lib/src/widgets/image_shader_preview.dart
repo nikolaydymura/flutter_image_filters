@@ -7,6 +7,7 @@ class ImageShaderPreview extends StatelessWidget {
   final BlendMode blendMode;
   final bool isAntiAlias;
   final FilterQuality filterQuality;
+  final bool willChange;
 
   const ImageShaderPreview({
     super.key,
@@ -16,6 +17,7 @@ class ImageShaderPreview extends StatelessWidget {
     this.fix = BoxFit.contain,
     this.filterQuality = FilterQuality.none,
     this.isAntiAlias = true,
+    this.willChange = true,
   });
 
   @override
@@ -27,6 +29,7 @@ class ImageShaderPreview extends StatelessWidget {
           aspectRatio: texture.aspectRatio,
           child: CustomPaint(
             size: texture.size,
+            willChange: willChange,
             painter: ImageShaderPainter(
               cachedProgram,
               texture,
@@ -40,6 +43,7 @@ class ImageShaderPreview extends StatelessWidget {
       }
       return SizedBox.expand(
         child: CustomPaint(
+          willChange: willChange,
           painter: ImageShaderPainter(
             cachedProgram,
             texture,
@@ -67,6 +71,7 @@ class ImageShaderPreview extends StatelessWidget {
           return AspectRatio(
             aspectRatio: texture.aspectRatio,
             child: CustomPaint(
+              willChange: willChange,
               painter: ImageShaderPainter(
                 shaderProgram,
                 texture,
@@ -81,6 +86,7 @@ class ImageShaderPreview extends StatelessWidget {
 
         return SizedBox.expand(
           child: CustomPaint(
+            willChange: willChange,
             painter: ImageShaderPainter(
               shaderProgram,
               texture,
