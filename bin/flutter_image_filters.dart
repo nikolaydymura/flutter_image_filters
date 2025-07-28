@@ -24,6 +24,7 @@ const supported = [
   'saturation',
   'solarize',
   'vibrance',
+  'vignette',
   'white_balance',
 ];
 
@@ -33,7 +34,7 @@ String get userHome =>
 Future<void> main(List<String> arguments) async {
   if (arguments.firstOrNull == 'generate') {
     String glslRoot =
-        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.28/shaders';
+        '$userHome/.pub-cache/hosted/pub.dev/flutter_image_filters-0.0.29/shaders';
 
     String? glslCustomRoot;
     String? glslOutput;
@@ -149,19 +150,31 @@ void generateShader(
   finalShader.add(
     '\tvec4 textureColor = texture(inputImageTexture, textureCoordinate);',
   );
-  int lastIndex = 0;
+  late String lastResult;
   for (final func in processFunctions) {
     if (func.startsWith('vec4 processColor')) {
+      final funcName = func.split('(').first.split(' ').last.trim();
       final index =
           int.parse(func.replaceAll('vec4', '').replaceAll(RegExp(r'\D'), ''));
+      final arguments = [
+        index == 0 ? 'textureColor' : lastResult,
+        ...func
+            .replaceAll('vec4 processColor(', '')
+            .replaceAll(')', '')
+            .replaceAll('{', '')
+            .trim()
+            .split(',')
+            .map((e) => e.split(' ').last.trim())
+            .skip(1),
+      ];
+      lastResult = funcName.replaceAll('processColor', 'processedColor');
       finalShader.add(
-        '\tvec4 processedColor$index = processColor$index(${index == 0 ? 'textureColor' : 'processedColor${index - 1}'});',
+        '\tvec4 $lastResult = $funcName(${arguments.join(', ')});',
       );
-      lastIndex = index;
     }
   }
   finalShader.add(
-    '\tfragColor = processedColor$lastIndex;',
+    '\tfragColor = $lastResult;',
   );
   finalShader.add('}');
   final outputFile =
@@ -212,7 +225,12 @@ void processShader(
       final index = processFunctions
           .where((element) => element.startsWith('vec4 processColor'))
           .length;
-      processFunctions.add('vec4 processColor$index(vec4 sourceColor){');
+      final arguments = element
+          .replaceAll('vec4 processColor(', '')
+          .replaceAll(')', '')
+          .replaceAll('{', '')
+          .trim();
+      processFunctions.add('vec4 processColor$index($arguments){');
       processFound = true;
       continue;
     }

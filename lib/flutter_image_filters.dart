@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gpu_filters_interface/flutter_gpu_filters_interface.dart';
 
 export 'package:exif/exif.dart' show IfdTag;
+export 'annotations.dart' show BunchShaderConfig, BunchShaderConfigs;
 
 part 'src/configurations/brightness.dart';
 part 'src/configurations/bulge_distortion.dart';

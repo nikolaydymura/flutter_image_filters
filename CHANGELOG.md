@@ -1,3 +1,7 @@
+## 0.0.29
+
+- Added build_runner support to generate `BunchShaderConfiguration`
+
 ## 0.0.28
 
 - Added `willChange` parameter to  `ImageShaderPreview`

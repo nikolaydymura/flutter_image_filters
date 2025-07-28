@@ -1,0 +1,64 @@
+targets:
+  $default:
+    builders:
+      flutter_image_filters|flutter_image_filters_builder:
+        options:
+          additional_public_assets:
+            - shaders/brightness.frag
+            - shaders/color_invert.frag
+            - shaders/color_matrix.frag
+            - shaders/contrast.frag
+            - shaders/exposure.frag
+            - shaders/false_color.frag
+            - shaders/gamma.frag
+            - shaders/grayscale.frag
+            - shaders/hald_lookup.frag
+            - shaders/halftone.frag
+            - shaders/highlight_shadow.frag
+            - shaders/lookup.frag
+            - shaders/luminance.frag
+            - shaders/luminance_threshold.frag
+            - shaders/monochrome.frag
+            - shaders/opacity.frag
+            - shaders/posterize.frag
+            - shaders/rgb.frag
+            - shaders/saturation.frag
+            - shaders/solarize.frag
+            - shaders/vibrance.frag
+            - shaders/vignette.frag
+            - shaders/white_balance.frag
+            - shaders/zoom_blur.frag
+
+additional_public_assets:
+  - shaders/brightness.frag
+  - shaders/color_invert.frag
+  - shaders/color_matrix.frag
+  - shaders/contrast.frag
+  - shaders/exposure.frag
+  - shaders/false_color.frag
+  - shaders/gamma.frag
+  - shaders/grayscale.frag
+  - shaders/hald_lookup.frag
+  - shaders/halftone.frag
+  - shaders/highlight_shadow.frag
+  - shaders/lookup.frag
+  - shaders/luminance.frag
+  - shaders/luminance_threshold.frag
+  - shaders/monochrome.frag
+  - shaders/opacity.frag
+  - shaders/posterize.frag
+  - shaders/rgb.frag
+  - shaders/saturation.frag
+  - shaders/solarize.frag
+  - shaders/vibrance.frag
+  - shaders/vignette.frag
+  - shaders/white_balance.frag
+  - shaders/zoom_blur.frag
+
+builders:
+  flutter_image_filters_builder:
+    import: "package:flutter_image_filters/builder.dart"
+    builder_factories: [ "flutterImageFiltersBuilder" ]
+    build_extensions: { ".dart": [ ".config.dart" ] }
+    auto_apply: dependents
+    build_to: source
