@@ -174,8 +174,9 @@ Future<void> generateShader(
         processFunctions,
         shaderConstants,
       );
-    } catch (e) {
-      print('Error processing shader $shader: $e');
+    } catch (e, t) {
+      stderr.writeln(e);
+      stderr.writeln(t);
       continue;
     }
   }

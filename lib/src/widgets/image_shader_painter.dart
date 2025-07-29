@@ -57,8 +57,12 @@ class ImageShaderPainter extends CustomPainter {
         ..filterQuality = filterQuality;
       canvas.drawImageRect(
         textures.first.image,
-        Rect.fromLTWH(0, 0, textures.first.width.toDouble(),
-            textures.first.height.toDouble()),
+        Rect.fromLTWH(
+          0,
+          0,
+          textures.first.width.toDouble(),
+          textures.first.height.toDouble(),
+        ),
         Rect.fromLTWH(0, 0, size.width, size.height),
         paint,
       );
