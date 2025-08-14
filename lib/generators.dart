@@ -12,7 +12,9 @@ class BunchShaderConfigurationsGenerator extends Generator {
   @override
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
     final annotations = library.annotatedWith(
-      TypeChecker.fromRuntime(BunchShaderConfigs),
+      TypeChecker.typeNamed(
+        BunchShaderConfigs,
+      ),
     );
     if (annotations.isNotEmpty) {
       final configs = annotations.single.annotation
