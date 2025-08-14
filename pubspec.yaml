@@ -1,6 +1,6 @@
 name: flutter_image_filters
 description: Image filters based on OpenGL(SPIR-V) fragment shaders with useful preview widgets
-version: 0.0.29
+version: 0.0.30
 homepage: https://github.com/nikolaydymura/flutter_image_filters
 repository: https://github.com/nikolaydymura/flutter_image_filters
 platforms:
@@ -30,6 +30,10 @@ dev_dependencies:
   image: ^4.5.4
 
 flutter:
+
+  assets:
+    - assets/empty_texture.jpg
+
   shaders:
     - shaders/brightness.frag
     - shaders/bulge_distortion.frag

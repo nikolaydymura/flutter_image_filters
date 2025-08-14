@@ -176,9 +176,17 @@ class ShaderIntParameter extends ShaderNumberParameter {
 }
 
 class ShaderTextureParameter extends DataParameter {
-  TextureSource? textureSource;
+  static TextureSource? _emptyTexture;
+
+  TextureSource? _textureSource;
 
   ShaderTextureParameter(super.name, super.displayName);
+
+  TextureSource? get textureSource => _textureSource ?? _emptyTexture;
+
+  set textureSource(TextureSource? value) {
+    _textureSource = value;
+  }
 
   @override
   FutureOr<void> update(covariant ShaderConfiguration configuration) async {
@@ -197,8 +205,17 @@ class ShaderTextureParameter extends DataParameter {
       } else if (data != null) {
         textureSource = await TextureSource.fromMemory(data!);
         configuration._needRedraw = true;
+      } else {
+        textureSource = null;
+        configuration._needRedraw = true;
       }
     }
+  }
+
+  static Future<void> _loadEmptyTexture() async {
+    _emptyTexture = await TextureSource.fromAsset(
+      'packages/flutter_image_filters/assets/empty_texture.jpg',
+    );
   }
 }
 

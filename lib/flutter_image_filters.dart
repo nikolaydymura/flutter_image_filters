@@ -63,6 +63,10 @@ class FlutterImageFilters {
 
 // coverage:ignore-end
 
+  static Future<void> prepare() async {
+    await ShaderTextureParameter._loadEmptyTexture();
+  }
+
   static Iterable<String> get availableFilters =>
       kIsWeb ? const <String>[] : _availableFilters.keys;
 

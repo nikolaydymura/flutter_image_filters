@@ -37,6 +37,10 @@ vec4 sampleAs3DTexture(vec3 textureColor) {
 }
 
 vec4 processColor(vec4 sourceColor){
+   vec2 textSize = textureSize(inputTextureCubeData, 0);
+   if (textSize.x == 1.0 || textSize.y == 1.0) {
+       return sourceColor;
+   }
    vec4 newColor = sampleAs3DTexture(clamp(sourceColor.rgb, 0.0, 1.0));
    return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
 }

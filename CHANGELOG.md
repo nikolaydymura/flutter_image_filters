@@ -1,3 +1,7 @@
+## 0.0.30
+
+- Added stub for empty texture for Lookup shaders
+
 ## 0.0.29
 
 - Added build_runner support to generate `BunchShaderConfiguration`

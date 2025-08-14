@@ -38,6 +38,13 @@ class SquareLookupTableShaderConfiguration extends ShaderConfiguration {
     await _cubeData.update(this);
   }
 
+  Future<void> noLutData() async {
+    _cubeData.data = null;
+    _cubeData.asset = null;
+    _cubeData.file = null;
+    await _cubeData.update(this);
+  }
+
   /// Updates the [intensity] value.
   ///
   /// The [value] must be in 0.0 and 1.0 range.
@@ -85,6 +92,13 @@ class HALDLookupTableShaderConfiguration extends ShaderConfiguration {
     _cubeData.data = null;
     _cubeData.asset = null;
     _cubeData.file = value;
+    await _cubeData.update(this);
+  }
+
+  Future<void> noLutData() async {
+    _cubeData.data = null;
+    _cubeData.asset = null;
+    _cubeData.file = null;
     await _cubeData.update(this);
   }
 

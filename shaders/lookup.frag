@@ -34,6 +34,10 @@ vec4 lookupFrom2DTexture(vec3 textureColor) {
 }
 
 vec4 processColor(vec4 sourceColor){
+   vec2 textSize = textureSize(inputTextureCubeDataL, 0);
+   if (textSize.x == 1.0 || textSize.y == 1.0) {
+       return sourceColor;
+   }
    vec4 newColor = lookupFrom2DTexture(clamp(sourceColor.rgb, 0.0, 1.0));
    return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensityL);
 }
