@@ -1,3 +1,7 @@
+## 0.0.31
+
+- Removed unused dependencies
+
 ## 0.0.30
 
 - Added stub for empty texture for Lookup shaders
