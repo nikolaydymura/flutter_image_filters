@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:build/build.dart';
 import 'package:collection/collection.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:analyzer/dart/constant/value.dart';
 
 import 'annotations.dart';
 
@@ -20,7 +19,7 @@ class BunchShaderConfigurationsGenerator extends Generator {
       final configs = annotations.single.annotation
           .read('configs')
           .listValue
-          .map((e) => e.config);
+          .map((e) => configFrom(e));
       for (final config in configs) {
         if (config.shaders.isEmpty) {
           continue;
@@ -66,19 +65,18 @@ extension on String {
   }
 }
 
-extension on DartObject {
-  BunchShaderDescription get config {
-    final shaders = getField('shaders')
-        ?.toListValue()
-        ?.map((e) => e.toTypeValue()?.getDisplayString())
-        .whereType<String>();
-    final output = getField('output')?.toStringValue() ?? 'shaders';
-    return BunchShaderDescription(
-      shaders: shaders?.toList() ?? [],
-      output: output,
-      customName: getField('name')?.toStringValue(),
-    );
-  }
+BunchShaderDescription configFrom(dynamic dartObject) {
+  final shaders = dartObject
+      .getField('shaders')
+      ?.toListValue()
+      ?.map((e) => e.toTypeValue()?.getDisplayString())
+      .whereType<String>();
+  final output = dartObject.getField('output')?.toStringValue() ?? 'shaders';
+  return BunchShaderDescription(
+    shaders: shaders?.toList() ?? [],
+    output: output,
+    customName: dartObject.getField('name')?.toStringValue(),
+  );
 }
 
 extension on Iterable<BunchShaderDescription> {
