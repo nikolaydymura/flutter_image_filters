@@ -25,4 +25,15 @@ class BrightnessShaderConfiguration extends ShaderConfiguration {
 
   @override
   List<ConfigurationParameter> get parameters => [_brightness];
+  
+  @override
+  ShaderConfiguration _createCopyWithCorrectedColors(List<double> correctedColors) {
+    // Create a new instance with corrected brightness value
+    final corrected = BrightnessShaderConfiguration();
+    if (correctedColors.isNotEmpty) {
+      corrected._brightness.value = correctedColors[0];
+      corrected._brightness.update(corrected);
+    }
+    return corrected;
+  }
 }

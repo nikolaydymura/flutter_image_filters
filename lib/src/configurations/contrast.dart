@@ -25,4 +25,15 @@ class ContrastShaderConfiguration extends ShaderConfiguration {
 
   @override
   List<ConfigurationParameter> get parameters => [_contrast];
+  
+  @override
+  ShaderConfiguration _createCopyWithCorrectedColors(List<double> correctedColors) {
+    // Create a new instance with corrected contrast value
+    final corrected = ContrastShaderConfiguration();
+    if (correctedColors.isNotEmpty) {
+      corrected._contrast.value = correctedColors[0];
+      corrected._contrast.update(corrected);
+    }
+    return corrected;
+  }
 }

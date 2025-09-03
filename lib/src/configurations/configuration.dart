@@ -1,5 +1,66 @@
 part of '../../flutter_image_filters.dart';
 
+/// Color space correction utility for consistent handling across platforms
+class ColorSpaceCorrection {
+  static const double _gamma = 2.2;
+  static const double _invGamma = 1.0 / _gamma;
+  
+  /// Detects if we're running on iOS
+  static bool get _isIOS {
+    if (kIsWeb) return false;
+    try {
+      // Check for iOS-specific behavior
+      return Platform.isIOS;
+    } catch (e) {
+      // Fallback detection
+      return false;
+    }
+  }
+  
+  /// Converts gamma-corrected color to linear space
+  static double gammaToLinear(double color) {
+    return pow(color, _gamma).toDouble();
+  }
+  
+  /// Converts linear color to gamma-corrected space
+  static double linearToGamma(double color) {
+    return pow(color, _invGamma).toDouble();
+  }
+  
+  /// Applies gamma correction to RGB values
+  static List<double> correctColorSpace(List<double> colors) {
+    if (kIsWeb) return colors; // Web doesn't need correction
+    
+    // iOS needs special handling for color space consistency
+    if (_isIOS) {
+      return colors.map((color) {
+        if (color > 0.0 && color < 1.0) {
+          // Apply sRGB to linear conversion for iOS
+          return _sRGBToLinear(color);
+        }
+        return color;
+      }).toList();
+    }
+    
+    // Android and other platforms
+    return colors.map((color) {
+      if (color > 0.0 && color < 1.0) {
+        return linearToGamma(color);
+      }
+      return color;
+    }).toList();
+  }
+  
+  /// sRGB to linear conversion for iOS color space handling
+  static double _sRGBToLinear(double c) {
+    if (c <= 0.04045) {
+      return c / 12.92;
+    } else {
+      return pow((c + 0.055) / 1.055, 2.4).toDouble();
+    }
+  }
+}
+
 /// Describes generic shader configuration
 abstract class ShaderConfiguration extends FilterConfiguration {
   final List<double> _floats;
@@ -61,13 +122,35 @@ abstract class ShaderConfiguration extends FilterConfiguration {
     if (fragmentProgram == null) {
       throw UnsupportedError('Invalid shader for $runtimeType');
     }
-    final painter = ImageShaderPainter(fragmentProgram, texture, this);
+    
+    // Ensure color space consistency for export
+    final correctedConfiguration = _createColorCorrectedConfiguration();
+    final painter = ImageShaderPainter(fragmentProgram, texture, correctedConfiguration);
 
     painter.paint(canvas, size);
     Image renderedImage = await recorder
         .endRecording()
         .toImage(size.width.floor(), size.height.floor());
     return renderedImage;
+  }
+  
+  /// Creates a color-corrected configuration for consistent export
+  ShaderConfiguration _createColorCorrectedConfiguration() {
+    // For iOS and Android, ensure color space consistency
+    if (!kIsWeb) {
+      // Create a copy with corrected color parameters
+      final correctedFloats = ColorSpaceCorrection.correctColorSpace(_floats);
+      return _createCopyWithCorrectedColors(correctedFloats);
+    }
+    return this;
+  }
+  
+  /// Creates a copy of this configuration with corrected colors
+  /// Override in subclasses if needed
+  ShaderConfiguration _createCopyWithCorrectedColors(List<double> correctedColors) {
+    // Default implementation returns this instance
+    // Subclasses can override for more specific color correction
+    return this;
   }
 
   /// Returns all shader parameters
