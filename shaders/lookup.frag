@@ -1,10 +1,12 @@
+#version 460 core
 #include <flutter/runtime_effect.glsl>
 precision mediump float;
 
 layout(location = 0) uniform lowp float inputIntensityL;
-layout(location = 1) uniform vec2 screenSize;
+layout(location = 1) uniform vec2 inputTextureCubeDataSize;
+layout(location = 2) uniform vec2 screenSize;
 uniform lowp sampler2D inputImageTexture;
-uniform mediump sampler2D inputTextureCubeDataL;
+uniform mediump sampler2D inputTextureCubeData;
 
 out vec4 fragColor;
 
@@ -27,15 +29,14 @@ vec4 lookupFrom2DTexture(vec3 textureColor) {
     texPos2.x = (quad2.x * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.r);
     texPos2.y = (quad2.y * 0.125) + 0.5/512.0 + ((0.125 - 1.0/512.0) * textureColor.g);
 
-    vec4 newColor1 = texture(inputTextureCubeDataL, texPos1);
-    vec4 newColor2 = texture(inputTextureCubeDataL, texPos2);
+    vec4 newColor1 = texture(inputTextureCubeData, texPos1);
+    vec4 newColor2 = texture(inputTextureCubeData, texPos2);
 
     return mix(newColor1, newColor2, fract(blueColor));
 }
 
 vec4 processColor(vec4 sourceColor){
-   vec2 textSize = textureSize(inputTextureCubeDataL, 0);
-   if (textSize.x == 1.0 || textSize.y == 1.0) {
+   if (inputTextureCubeDataSize.x == 1.0 || inputTextureCubeDataSize.y == 1.0) {
        return sourceColor;
    }
    vec4 newColor = lookupFrom2DTexture(clamp(sourceColor.rgb, 0.0, 1.0));

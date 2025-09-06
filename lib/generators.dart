@@ -180,14 +180,23 @@ Future<void> generateShader(
       continue;
     }
   }
+  for (int i = 1; i < shaderSamplers.length; i++) {
+    final uniform = shaderSamplers[i];
+    final name = uniform.split(' ').last.replaceAll(';', '').trim();
+    final textureUniform = 'uniform vec2 ${name}Size;';
+    shaderInputs.remove(textureUniform);
+    shaderInputs.add(
+      'uniform vec2 ${name}Size;',
+    );
+  }
   shaderInputs.add(
-    'layout(location = ${shaderInputs.length}) uniform vec2 screenSize;',
+    'uniform vec2 screenSize;',
   );
 
   finalShader.add('\n');
   finalShader.addAll(shaderSamplers);
   finalShader.add('\n');
-  finalShader.addAll(shaderInputs);
+  finalShader.addAll(shaderInputs.mapIndexed((i, e) => 'layout(location = $i) $e'));
   finalShader.add('\n');
   finalShader.addAll(shaderConstants);
   finalShader.add('\n');
@@ -265,7 +274,7 @@ void processShader(
       } else {
         final start = element.lastIndexOf('uniform') + 8;
         finalInputs.add(
-          'layout(location = ${finalInputs.length}) uniform ${element.substring(
+          'uniform ${element.substring(
             start,
           )}',
         );

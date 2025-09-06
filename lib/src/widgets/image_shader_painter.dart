@@ -36,7 +36,12 @@ class ImageShaderPainter extends CustomPainter {
 
     final shader = _fragmentProgram.fragmentShader();
 
-    [..._configuration.numUniforms, size.width, size.height]
+    final additionalSizes = additionalTextures
+        .map((e) => [e?.width, e?.height])
+        .expand((e) => e)
+        .nonNulls
+        .map((e) => e.toDouble());
+    [..._configuration.numUniforms, ...additionalSizes, size.width, size.height]
         .forEachIndexed((index, value) {
       shader.setFloat(index, value);
     });

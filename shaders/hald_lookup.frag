@@ -1,8 +1,9 @@
 #include <flutter/runtime_effect.glsl>
 precision mediump float;
 
-layout(location = 0) uniform lowp float inputIntensity;
-layout(location = 1) uniform vec2 screenSize;
+layout(location = 0) uniform lowp float inputIntensityHL;
+layout(location = 1) uniform vec2 inputTextureCubeDataSize;
+layout(location = 2) uniform vec2 screenSize;
 uniform lowp sampler2D inputImageTexture;
 uniform mediump sampler2D inputTextureCubeData;
 
@@ -37,12 +38,11 @@ vec4 sampleAs3DTexture(vec3 textureColor) {
 }
 
 vec4 processColor(vec4 sourceColor){
-   vec2 textSize = textureSize(inputTextureCubeData, 0);
-   if (textSize.x == 1.0 || textSize.y == 1.0) {
+   if (inputTextureCubeDataSize.x == 1.0 || inputTextureCubeDataSize.y == 1.0) {
        return sourceColor;
    }
    vec4 newColor = sampleAs3DTexture(clamp(sourceColor.rgb, 0.0, 1.0));
-   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensity);
+   return mix(sourceColor, vec4(newColor.rgb, sourceColor.w), inputIntensityHL);
 }
 
 void main() {
