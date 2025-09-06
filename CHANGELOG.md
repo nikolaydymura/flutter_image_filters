@@ -1,3 +1,7 @@
+## 0.0.32
+
+- Fixed texture size for Android
+
 ## 0.0.31
 
 - Removed unused dependencies
